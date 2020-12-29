@@ -1,0 +1,31 @@
+.url-block {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 0;
+  background: rgb(228, 169, 220);
+
+  display: flex;
+  align-items: center;
+}
+
+.url-block__text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000000;
+  padding-right: 10px;
+  min-width: max-content;
+}
+
+.url-block__url {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #000000;
+
+  background: #ffffff;
+  padding: 5px 15px;
+  width: 100%;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}

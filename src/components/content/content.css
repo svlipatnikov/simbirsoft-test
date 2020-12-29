@@ -1,11 +1,15 @@
-.json-text {
-  width: 100%;
+.content {
+  width: 60%;
   max-height: 400px;
   min-height: min-content;
-  margin: 10px 0;
-  padding: 0 10px;
+  padding: 10px 10px;
+  margin: 0;
   overflow: auto;
 
+  background: rgb(214, 224, 157);
+}
+
+.json-text {
   font-family: 'Roboto', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;

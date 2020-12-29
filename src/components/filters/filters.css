@@ -1,0 +1,14 @@
+.filters {
+  width: 40%;
+  background: rgb(157, 222, 224);
+  padding: 10px;
+}
+
+.filters__header {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000000;
+}

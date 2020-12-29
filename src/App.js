@@ -1,15 +1,13 @@
 import './App.css'
-import Content from './components/content/Content'
+import DataBlock from './components/dataBlock/DataBlock'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
-import TopMenu from './components/topMenu/TopMenu'
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <TopMenu />
-      <Content />
+      <DataBlock />
       <Footer />
     </div>
   )
