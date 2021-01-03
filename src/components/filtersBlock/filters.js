@@ -1,0 +1,70 @@
+export const filtres = [
+  { name: 'id', type: 'Integer', list: null, comment: 'The id of a resource' },
+  { name: 'matchday', type: 'Integer', list: null, comment: '' },
+  {
+    name: 'season',
+    type: 'String',
+    list: null,
+    comment: 'The starting year of a season e.g. 2017 or 2016',
+  },
+  {
+    name: 'status',
+    type: 'Enum',
+    list: [
+      'SCHEDULED',
+      'LIVE',
+      'IN_PLAY',
+      'PAUSED',
+      'FINISHED',
+      'POSTPONED',
+      'SUSPENDED',
+      'CANCELED',
+    ],
+    comment: 'The status of a match',
+  },
+  {
+    name: 'venue',
+    type: 'Enum',
+    list: ['HOME', 'AWAY'],
+    comment: 'Defines the venue (type)',
+  },
+  { name: 'dateFrom', type: 'String', list: null, comment: 'e.g. 2018-06-22' },
+  { name: 'dateTo', type: 'String', list: null, comment: 'e.g. 2018-06-22' },
+  {
+    name: 'stage',
+    type: 'String',
+    list: null,
+    comment:
+      'Check the season node for available stages of a particular competition/season',
+  },
+  {
+    name: 'plan',
+    type: 'String',
+    list: null,
+    comment: '[ TIER_ONE | TIER_TWO | TIER_THREE | TIER_FOUR ]',
+  },
+  {
+    name: 'competitions',
+    type: 'String',
+    list: null,
+    comment: 'Comma separated list of competition ids.',
+  },
+  {
+    name: 'group',
+    type: 'String',
+    list: null,
+    comment: 'Allows filtering for groupings in a competition',
+  },
+  {
+    name: 'limit',
+    type: 'Integer',
+    list: null,
+    comment: 'Limits your result set to the given number. Defaults to 10',
+  },
+  {
+    name: 'standingType',
+    type: 'String',
+    list: null,
+    comment: 'TOTAL (default) | HOME | AWAY',
+  },
+]

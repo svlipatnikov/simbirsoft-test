@@ -9,6 +9,7 @@ export default function (state, action) {
     case 'makeUrl':
       newUrl = host
       action.payload.map((resource) => (newUrl = newUrl + '/' + resource))
+      console.log('makeUrl:', newUrl)
       return newUrl
 
     case 'addFilter':
@@ -20,7 +21,7 @@ export default function (state, action) {
           newUrl = newUrl + '&' + filter.type + '=' + filter.value
         }
       })
-      console.log('new URL:', newUrl)
+      console.log('addFilter:', newUrl)
       return newUrl
   }
 }
