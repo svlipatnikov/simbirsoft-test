@@ -9,14 +9,13 @@ import urlReducer from '../../urlReducer.js'
 import { Context } from '../../context.js'
 
 export default function DataBlock() {
-  const startUrl = 'http://api.football-data.org/v2/matches'
-
+  const startUrl = new URL('http://api.football-data.org/v2/matches')
   const [url, urlDispatch] = useReducer(urlReducer, startUrl)
   const [jsonData, setJsonData] = useState({})
 
   function sendRequest(url) {
-    console.log('sendRequest:', url)
-    return fetch(url, {
+    console.log('sendRequest:', url.toString())
+    return fetch(url.toString(), {
       headers: { 'X-Auth-Token': '8c4f30d4f4354979ac043901839c7664' },
       dataType: 'json',
       type: 'GET',
@@ -33,37 +32,20 @@ export default function DataBlock() {
   }
 
   // ComponentDidMount
-  useEffect(() => {
-    urlDispatch({
-      type: 'makeUrl',
-      payload: ['teams', '86', 'matches'],
-    })
-
-    // urlDispatch({
-    //   type: 'addFilter',
-    //   payload: [{ type: 'status', value: 'SCHEDULED' }],
-    // })
-
-    // sendRequest(startUrl)
-    //   .then((data) => {
-    //     setJsonData(data)
-    //   })
-    //   .catch((err) => console.log(err))
-  }, [])
+  // useEffect(() => {}, [])
 
   useEffect(() => {
-    console.log('useEffect')
+    console.log('useEffect by url')
+    setJsonData('Ожидание ответа сервера...')
     sendRequest(url)
-      .then((data) => {
-        setJsonData(data)
-      })
-      .catch((err) => console.log(err))
+      .then((data) => setJsonData(data))
+      .catch((err) => setJsonData('Error in sendRequest:', err))
   }, [url])
 
   return (
     <Context.Provider value={{ urlDispatch }}>
       <div className="data-block">
-        {console.log('reder')}
+        {console.log('Reder!')}
         <TopMenu />
         <UrlBlock url={url} />
         <FiltersBlock url={url} />

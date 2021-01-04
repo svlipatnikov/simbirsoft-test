@@ -1,9 +1,10 @@
 export const resourceToFilter = [
-  { resource: 'competitions', filters: ['areas', 'plan'] },
-  { resource: 'competitions/{id}/teams', filters: ['season', 'stage'] },
-  { resource: 'competitions/{id}/standings', filters: ['standingType'] },
+  { resource: '/competitions', filters: ['areas', 'plan'] },
+  { resource: '/competitions/{id}', filters: [] }, // фильтры отсутствуют
+  { resource: '/competitions/{id}/teams', filters: ['season', 'stage'] },
+  { resource: '/competitions/{id}/standings', filters: ['standingType'] },
   {
-    resource: 'competitions/{id}/matches',
+    resource: '/competitions/{id}/matches',
     filters: [
       'dateFrom',
       'dateTo',
@@ -14,17 +15,21 @@ export const resourceToFilter = [
       'season',
     ],
   },
-  { resource: 'competitions/{id}/scorers', filters: ['limit'] },
+  { resource: '/competitions/{id}/scorers', filters: ['limit'] },
   {
-    resource: 'matches',
+    resource: '/matches',
     filters: ['competitions', 'dateFrom', 'dateTo', 'status'],
   },
   {
-    resource: 'teams/{id}/matches',
+    resource: '/teams/{id}/matches',
     filters: ['dateFrom', 'dateTo', 'status', 'venue', 'limit'],
   },
+  { resource: '/teams/{id}', filters: [] }, // фильтры отсутствуют
+  { resource: '/areas', filters: [] }, // фильтры отсутствуют
+  { resource: '/areas/{id}', filters: [] }, // фильтры отсутствуют
+  { resource: '/players/{id}', filters: [] }, // фильтры отсутствуют
   {
-    resource: 'players/{id}/matches',
+    resource: '/players/{id}/matches',
     filters: ['dateFrom', 'dateTo', 'status', 'competitions', 'limit'],
   },
 ]
