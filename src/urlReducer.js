@@ -12,8 +12,11 @@ export default function (state, action) {
 
     case 'addFilter':
       let filterUrl = state
-      action.payload.foreach((p) => filterUrl.searchParams.set(p.type, p.value))
-      // console.log('Add filter:', filterUrl.search)
+      console.log(action.payload)
+      action.payload.forEach((p) => {
+        filterUrl.searchParams.set(p.type, p.value)
+      })
+
       console.log('Filtered url:', filterUrl.toString())
       return filterUrl
   }

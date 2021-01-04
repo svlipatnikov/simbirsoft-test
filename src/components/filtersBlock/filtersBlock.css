@@ -2,6 +2,8 @@
   width: 40%;
   background: rgb(157, 222, 224);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .filters__header {
@@ -10,5 +12,48 @@
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  color: #000000;
+  color: #2c3268;
+  margin: 5px 0;
+}
+
+.filters__item {
+  margin: 5px 0;
+  padding: 5px;
+  background: #5c5ec2;
+  border: 1px solid #eff5f7;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters__item div {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  min-width: max-content;
+  padding-right: 10px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.filters__item select,
+input {
+  width: 60%;
+}
+
+.filters__button {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+
+  margin-top: 10px;
+  padding: 5px;
+  background: #5c5ec2;
+  border-radius: 10px;
+}
+
+.filters__button:hover {
+  background: #7475c5;
 }
