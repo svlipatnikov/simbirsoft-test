@@ -1,12 +1,24 @@
 .content {
   width: 60%;
-  max-height: 400px;
   min-height: min-content;
   padding: 10px 10px;
   margin: 0;
   overflow: auto;
 
   background: rgb(214, 224, 157);
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.content__count {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
 }
 
 .json-text {
@@ -14,4 +26,54 @@
   font-size: 0.7rem;
   font-weight: 400;
   color: #000000;
+}
+
+.competition {
+  width: 50%;
+  min-width: max-content;
+  padding: 5px;
+}
+
+.competition__inner {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #2c6e24;
+  border-radius: 5px;
+  background-color: #ebd18c;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.competition__inner:hover {
+  background-color: #f0e4c4;
+}
+
+.competition__inner__name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.competition__inner__data {
+  font-size: 0.7rem;
+  font-weight: 400;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__message {
+  width: 100%;
+  padding: 5px;
+
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

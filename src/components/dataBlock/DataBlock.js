@@ -19,37 +19,23 @@ export default function DataBlock() {
       headers: { 'X-Auth-Token': '8c4f30d4f4354979ac043901839c7664' },
       dataType: 'json',
       type: 'GET',
-    }).then((response) => {
-      if (response.ok) {
-        return response.json()
-      }
-      return response.json().then((error) => {
-        const e = new Error('Что-то пошло не так')
-        e.data = console.error
-        throw e
-      })
-    })
+    }).then((response) => response.json())
   }
 
-  // ComponentDidMount
-  // useEffect(() => {}, [])
-
   useEffect(() => {
-    console.log('useEffect by url')
-    setJsonData('Ожидание ответа сервера...')
+    setJsonData({ message: 'Waiting server response...' }) // очистка контента, ожидание нового
     sendRequest(url)
       .then((data) => setJsonData(data))
-      .catch((err) => setJsonData('Error in sendRequest:', err))
+      .catch((err) => setJsonData({ message: 'Error in sendRequest:' + err }))
   }, [url])
 
   return (
     <Context.Provider value={{ urlDispatch }}>
       <div className="data-block">
-        {console.log('Reder!')}
         <TopMenu />
         <UrlBlock url={url} />
         <FiltersBlock url={url} />
-        <Content data={jsonData} />
+        <Content data={jsonData} resource={url.pathname} />
       </div>
     </Context.Provider>
   )

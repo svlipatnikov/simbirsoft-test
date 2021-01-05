@@ -11,12 +11,10 @@ export default function (state, action) {
       return newUrl
 
     case 'addFilter':
-      let filterUrl = state
-      console.log(action.payload)
+      let filterUrl = new URL(state.pathname, state.origin)
       action.payload.forEach((p) => {
         filterUrl.searchParams.set(p.type, p.value)
       })
-
       console.log('Filtered url:', filterUrl.toString())
       return filterUrl
   }

@@ -18,8 +18,9 @@ export default function EnumFilter({ filter, setArrFilters }) {
           })
         }}
       >
-        {filter.list.map((item) => {
-          return <option>{item}</option>
+        <option selected></option>
+        {filter.list.map((item, id) => {
+          return <option key={id}>{item}</option>
         })}
       </select>
     </div>

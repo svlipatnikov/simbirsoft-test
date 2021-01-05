@@ -1,4 +1,4 @@
-export const filters = [
+export const allFilters = [
   {
     name: 'id',
     type: 'Integer',
@@ -67,9 +67,9 @@ export const filters = [
   },
   {
     name: 'plan',
-    type: 'String',
-    list: null,
-    comment: '[ TIER_ONE | TIER_TWO | TIER_THREE | TIER_FOUR ]',
+    type: 'Enum',
+    list: ['TIER_ONE', 'TIER_TWO', 'TIER_THREE', 'TIER_FOUR'],
+    comment: '',
     pattern: '[A-Z]+',
   },
   {

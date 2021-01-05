@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import './filtersBlock.css'
 import { resourceToFilter } from './resourceToFilter.js'
-import { filters } from './filters.js'
+import { allFilters } from './allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
 import { Context } from '../../context.js'
@@ -10,29 +10,37 @@ export default function Filters({ url }) {
   const [arrFilters, setArrFilters] = useState([])
   const { urlDispatch } = useContext(Context)
 
-  // обнуление фильтров при смене контента
+  // обнуление массива фильтров при смене контента
   useEffect(() => {
-    console.log('Clear Filters!')
     setArrFilters([])
-  }, [url])
+  }, [url.pathname])
 
+  // применение фильтров
   const submit = () => {
-    urlDispatch({
-      type: 'addFilter',
-      payload: arrFilters,
-    })
+    // если есть новые фильтры или в url осталисть старые
+    if (arrFilters.length || url.search.length) {
+      urlDispatch({
+        type: 'addFilter',
+        payload: arrFilters,
+      })
+    }
   }
 
   return (
-    <div className="filters">
+    <form className="filters">
       <h2 className="filters__header">Filters</h2>
 
+      {/* цикл по массиву доступных фильтров для ресурса */}
       {resourceToFilter.map((item) => {
         if (item.resource === url.pathname.slice(3)) {
+          //если для данного ресурса есть фильтры
           if (item.filters.length) {
+            // проход по найденным для ресурса фильтрам
             return item.filters.map((fItem, id) =>
-              filters.map((filter) => {
+              // цикл по массиву всех возможных фильтров
+              allFilters.map((filter) => {
                 if (filter.name === fItem) {
+                  // отображене фильтра в зависимости от filter.type
                   switch (filter.type) {
                     case 'String':
                       return (
@@ -71,6 +79,6 @@ export default function Filters({ url }) {
       <button type="button" className="filters__button" onClick={submit}>
         Применить
       </button>
-    </div>
+    </form>
   )
 }
