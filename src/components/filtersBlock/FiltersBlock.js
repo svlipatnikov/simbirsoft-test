@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import './filtersBlock.css'
-import { resourceToFilter } from './resourceToFilter.js'
-import { allFilters } from './allFilters.js'
+import { resources } from '../resources.js'
+import { allFilters } from '../allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
 import { Context } from '../../context.js'
@@ -17,8 +17,8 @@ export default function Filters({ url }) {
 
   // применение фильтров
   const submit = () => {
-    // если есть новые фильтры или в url осталисть старые
-    if (arrFilters.length || url.search.length) {
+    // если фильтры не пустые или если удаляем из url старые
+    if (arrFilters.length || (!arrFilters.length && url.search.length)) {
       urlDispatch({
         type: 'addFilter',
         payload: arrFilters,
@@ -30,9 +30,9 @@ export default function Filters({ url }) {
     <form className="filters">
       <h2 className="filters__header">Filters</h2>
 
-      {/* цикл по массиву доступных фильтров для ресурса */}
-      {resourceToFilter.map((item) => {
-        if (item.resource === url.pathname.slice(3)) {
+      {/* цикл по массиву ресурсов для поиска доступных фильтров */}
+      {resources.map((item) => {
+        if (item.pathname === url.pathname) {
           //если для данного ресурса есть фильтры
           if (item.filters.length) {
             // проход по найденным для ресурса фильтрам
