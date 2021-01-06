@@ -3,7 +3,7 @@ import './topMenu.css'
 import { Context } from '../../context.js'
 
 export default function TopMenu() {
-  const { urlDispatch } = useContext(Context)
+  const { urlDispatch, setDataType } = useContext(Context)
 
   return (
     <div className="top-menu">
@@ -11,6 +11,7 @@ export default function TopMenu() {
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['competitions'] })
+          setDataType('listOfCompetitions')
         }}
       >
         Competitions
@@ -19,6 +20,7 @@ export default function TopMenu() {
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['matches'] })
+          setDataType('listOfMatches')
         }}
       >
         Matches
@@ -27,6 +29,7 @@ export default function TopMenu() {
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['teams'] })
+          setDataType('listOfTeams')
         }}
       >
         Teams
@@ -35,6 +38,7 @@ export default function TopMenu() {
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['areas'] })
+          setDataType('listOfAreas')
         }}
       >
         Areas

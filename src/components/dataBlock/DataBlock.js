@@ -12,6 +12,7 @@ export default function DataBlock() {
   const startUrl = new URL('http://api.football-data.org/v2/matches')
   const [url, urlDispatch] = useReducer(urlReducer, startUrl)
   const [jsonData, setJsonData] = useState({})
+  const [dataType, setDataType] = useState('listOfMatches')
 
   function sendRequest(url) {
     console.log('sendRequest:', url.toString())
@@ -23,19 +24,22 @@ export default function DataBlock() {
   }
 
   useEffect(() => {
-    setJsonData({ message: 'Waiting server response...' }) // очистка контента, ожидание нового
+    // очистка контента, ожидание нового
+    setJsonData({ message: 'Waiting server response...' })
     sendRequest(url)
-      .then((data) => setJsonData(data))
       .catch((err) => setJsonData({ message: 'Error in sendRequest:' + err }))
+      .then((data) => {
+        setJsonData(() => data)
+      })
   }, [url])
 
   return (
-    <Context.Provider value={{ urlDispatch }}>
+    <Context.Provider value={{ urlDispatch, setDataType }}>
       <div className="data-block">
         <TopMenu />
         <UrlBlock url={url} />
         <FiltersBlock url={url} />
-        <Content data={jsonData} resource={url.pathname} />
+        <Content data={jsonData} dataType={dataType} />
       </div>
     </Context.Provider>
   )

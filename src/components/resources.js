@@ -2,13 +2,13 @@ export const resources = [
   {
     pathname: '/v2/competitions',
     filters: ['areas', 'plan'],
-    dataType: 'competitionsList',
+    dataType: 'listOfCompetitions',
   },
   { pathname: '/v2/competitions/{id}', filters: [], dataType: 'competition' },
   {
     pathname: '/v2/competitions/{id}/teams',
     filters: ['season', 'stage'],
-    dataType: 'teamsList',
+    dataType: 'listOfTeams',
   },
   {
     pathname: '/v2/competitions/{id}/standings',
@@ -26,7 +26,7 @@ export const resources = [
       'group',
       'season',
     ],
-    dataType: 'matchesList',
+    dataType: 'listOfMatches',
   },
   {
     pathname: '/v2/competitions/{id}/scorers',
@@ -36,20 +36,20 @@ export const resources = [
   {
     pathname: '/v2/matches',
     filters: ['competitions', 'dateFrom', 'dateTo', 'status'],
-    dataType: 'matchesList',
+    dataType: 'listOfMatches',
   },
   {
     pathname: '/v2/teams/{id}/matches',
     filters: ['dateFrom', 'dateTo', 'status', 'venue', 'limit'],
-    dataType: 'matchesList',
+    dataType: 'listOfMatches',
   },
   { pathname: '/v2/teams/{id}', filters: [], dataType: 'team' },
-  { pathname: '/v2/areas', filters: [], dataType: 'areasList' },
+  { pathname: '/v2/areas', filters: [], dataType: 'listOfAreas' },
   { pathname: '/v2/areas/{id}', filters: [], dataType: 'area' },
   { pathname: '/v2/players/{id}', filters: [], dataType: 'player' },
   {
     pathname: '/v2/players/{id}/matches',
     filters: ['dateFrom', 'dateTo', 'status', 'competitions', 'limit'],
-    dataType: 'matchesList',
+    dataType: 'listOfMatches',
   },
 ]

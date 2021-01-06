@@ -1,46 +1,30 @@
 import React from 'react'
-import Competition from './Competition'
+import ListOfCompetitions from './ListOfCompetitions.js'
+import Competition from './Competition.js'
 import './content.css'
-import { resources } from '../resources.js'
 
-export default function Content({ data, resource }) {
-  // функция определения типа данных контента
-  function getDataType(path) {
-    let type
-    let pathArr = path.split('/')
+export default function Content({ data, dataType, status }) {
+  console.log('Тип данных контента: ', dataType)
 
-    resources.forEach((item) => {
-      let resArr = item.pathname.split('/')
-      resArr.forEach((resPart, id) => {
-        if (resPart === '{id}') {
-          resPart = pathArr[id]
-        }
-      })
-      // type = item.dataType
-    })
-    console.log('Тип данных контента: ', type)
-    return type
+  if (data.message) {
+    return (
+      <div className="content">
+        <div className="content content__message">{data.message}</div>
+      </div>
+    )
   }
 
-  switch (data.hasOwnProperty('message') ? 'message' : getDataType(resource)) {
-    case 'message':
+  switch (dataType) {
+    case 'listOfCompetitions':
       return (
-        <div className="content">
-          <div className="content content__message">{data.message}</div>
-        </div>
+        <ListOfCompetitions
+          count={data.count}
+          competitions={data.competitions}
+        />
       )
 
-    case 'competitionsList':
-      if (data.competitions) {
-        return (
-          <div className="content">
-            <div className="content__count">Найдено: {data.count}</div>
-            {data.competitions.map((competition, id) => (
-              <Competition info={competition} key={id} />
-            ))}
-          </div>
-        )
-      }
+    case 'competition':
+      return <Competition info={data} />
 
     default:
       return (
