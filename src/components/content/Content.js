@@ -1,10 +1,17 @@
 import React from 'react'
 import ListOfCompetitions from './ListOfCompetitions.js'
 import Competition from './Competition.js'
+import ListOfTeams from './ListOfTeams.js'
 import './content.css'
+import ListOfMatches from './listOfMatches/ListOfMatches.js'
+import ListOfAreas from './listOfAreas/ListOfAreas.js'
 
-export default function Content({ data, dataType, status }) {
+export default function Content({ data, dataType }) {
   console.log('Тип данных контента: ', dataType)
+
+  if (data === undefined) {
+    return null
+  }
 
   if (data.message) {
     return (
@@ -25,6 +32,15 @@ export default function Content({ data, dataType, status }) {
 
     case 'competition':
       return <Competition info={data} />
+
+    case 'listOfTeams':
+      return <ListOfTeams count={data.count} teams={data.teams} />
+
+    case 'listOfMatches':
+      return <ListOfMatches count={data.count} matches={data.matches} />
+
+    case 'listOfAreas':
+      return <ListOfAreas count={data.count} areas={data.areas} />
 
     default:
       return (

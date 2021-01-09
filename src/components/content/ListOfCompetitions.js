@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../../context.js'
+import ListOfTeams from './ListOfTeams.js'
 
 export default function ListOfCompetitions({ count, competitions }) {
   const { urlDispatch, setDataType } = useContext(Context)
@@ -14,11 +15,11 @@ export default function ListOfCompetitions({ count, competitions }) {
     <div className="content">
       <div className="content__count">Найдено: {count}</div>
 
-      {competitions.map((competition, counter) => {
+      {competitions.map((competition, key) => {
         return (
           <div
             className="competition_list"
-            key={counter}
+            key={key}
             onClick={() => {
               urlDispatch({
                 type: 'makeUrl',
@@ -30,7 +31,7 @@ export default function ListOfCompetitions({ count, competitions }) {
             <div className="competition__inner interactive">
               <div className="competition__name">{competition.name}</div>
 
-              <div className="competition__data">
+              <div className="competition__info">
                 <div>
                   Area: {competition.area.countryCode} ({competition.area.name})
                 </div>

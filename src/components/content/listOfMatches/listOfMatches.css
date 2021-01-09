@@ -1,0 +1,55 @@
+.match__item {
+  width: 100%;
+  padding: 5px;
+}
+
+.match__inner {
+  width: 100%;
+  background: #e7b3b3;
+  padding: 10px;
+  border: 1px solid #2c6e24;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.match__info {
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.team__header {
+  width: 100%;
+  padding-bottom: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.match__teams {
+  width: 49%;
+  /* max-width: max-content; */
+  font-size: 1rem;
+  color: #e8fcff;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  background: #e49f9f;
+  border-radius: 5px;
+  padding: 5px;
+}
+.match__score {
+  min-width: max-content;
+  padding: 0 10px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}

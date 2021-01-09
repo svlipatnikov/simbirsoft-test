@@ -33,46 +33,41 @@ export default function Filters({ url }) {
       {/* цикл по массиву ресурсов для поиска доступных фильтров */}
       {resources.map((item) => {
         if (item.pathname === url.pathname) {
-          //если для данного ресурса есть фильтры
-          if (item.filters.length) {
-            // проход по найденным для ресурса фильтрам
-            return item.filters.map((fItem, id) =>
-              // цикл по массиву всех возможных фильтров
-              allFilters.map((filter) => {
-                if (filter.name === fItem) {
-                  // отображене фильтра в зависимости от filter.type
-                  switch (filter.type) {
-                    case 'String':
-                      return (
-                        <InputFilter
-                          filter={filter}
-                          key={id}
-                          setArrFilters={setArrFilters}
-                        />
-                      )
-                    case 'Enum':
-                      return (
-                        <EnumFilter
-                          filter={filter}
-                          key={id}
-                          setArrFilters={setArrFilters}
-                        />
-                      )
-                    case 'Integer':
-                      return (
-                        <InputFilter
-                          filter={filter}
-                          key={id}
-                          setArrFilters={setArrFilters}
-                        />
-                      )
-                  }
+          // проход по найденным для ресурса фильтрам
+          return item.filters.map((fItem, id) =>
+            // цикл по массиву всех возможных фильтров
+            allFilters.map((filter) => {
+              if (filter.name === fItem) {
+                // отображене фильтра в зависимости от filter.type
+                switch (filter.type) {
+                  case 'String':
+                    return (
+                      <InputFilter
+                        filter={filter}
+                        key={id}
+                        setArrFilters={setArrFilters}
+                      />
+                    )
+                  case 'Enum':
+                    return (
+                      <EnumFilter
+                        filter={filter}
+                        key={id}
+                        setArrFilters={setArrFilters}
+                      />
+                    )
+                  case 'Integer':
+                    return (
+                      <InputFilter
+                        filter={filter}
+                        key={id}
+                        setArrFilters={setArrFilters}
+                      />
+                    )
                 }
-              })
-            )
-          } else {
-            return <div>Фильтры отсутствуют</div>
-          }
+              }
+            })
+          )
         }
       })}
 
