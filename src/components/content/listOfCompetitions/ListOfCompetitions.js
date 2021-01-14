@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
-import { Context } from '../../context.js'
-import ListOfTeams from './ListOfTeams.js'
+import { Context } from '../../../context.js'
+import ListOfTeams from '../listOfTeams/ListOfTeams.js'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 export default function ListOfCompetitions({ count, competitions }) {
   const { urlDispatch, setDataType } = useContext(Context)
+
+  let match = useRouteMatch()
 
   // проверка на undefined
   if (!count || !competitions) {
@@ -17,7 +20,8 @@ export default function ListOfCompetitions({ count, competitions }) {
 
       {competitions.map((competition, key) => {
         return (
-          <div
+          <Link
+            to={`${match.url}/competition`}
             className="competition_list"
             key={key}
             onClick={() => {
@@ -38,7 +42,7 @@ export default function ListOfCompetitions({ count, competitions }) {
                 <div>id: {competition.id}</div>
               </div>
             </div>
-          </div>
+          </Link>
         )
       })}
     </div>

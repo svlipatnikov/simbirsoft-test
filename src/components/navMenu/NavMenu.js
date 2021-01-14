@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
-import './topMenu.css'
+import './navMenu.css'
 import { Context } from '../../context.js'
+import { Link } from 'react-router-dom'
 
 export default function TopMenu() {
   const { urlDispatch, setDataType } = useContext(Context)
 
   return (
     <div className="top-menu">
-      <div
+      <Link
+        to="/competitions"
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['competitions'] })
@@ -15,8 +17,10 @@ export default function TopMenu() {
         }}
       >
         Competitions
-      </div>
-      <div
+      </Link>
+
+      <Link
+        to="/matches"
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['matches'] })
@@ -24,8 +28,10 @@ export default function TopMenu() {
         }}
       >
         Matches
-      </div>
-      <div
+      </Link>
+
+      <Link
+        to="/teams"
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['teams'] })
@@ -33,8 +39,10 @@ export default function TopMenu() {
         }}
       >
         Teams
-      </div>
-      <div
+      </Link>
+
+      <Link
+        to="/areas"
         className="top-menu__item"
         onClick={() => {
           urlDispatch({ type: 'makeUrl', payload: ['areas'] })
@@ -42,7 +50,7 @@ export default function TopMenu() {
         }}
       >
         Areas
-      </div>
+      </Link>
     </div>
   )
 }

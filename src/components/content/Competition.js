@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../../context.js'
+import { Link } from 'react-router-dom'
 
 export default function Competition({ info }) {
   const { urlDispatch, setDataType } = useContext(Context)
@@ -20,7 +21,8 @@ export default function Competition({ info }) {
             <div>Plan: {info.plan}</div>
           </div>
           <div className="competition__buttons-block">
-            <button
+            <Link
+              to="/teams"
               className="competition__button"
               onClick={() => {
                 urlDispatch({ type: 'addPath', payload: 'teams' })
@@ -28,7 +30,7 @@ export default function Competition({ info }) {
               }}
             >
               Teams
-            </button>
+            </Link>
 
             <button
               className="competition__button"

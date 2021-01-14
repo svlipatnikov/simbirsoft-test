@@ -3,7 +3,7 @@ import DataBlock from './components/dataBlock/DataBlock'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 
-function App() {
+export default function App() {
   return (
     <div className="app">
       <Header />
@@ -12,5 +12,3 @@ function App() {
     </div>
   )
 }
-
-export default App

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import FiltersBlock from '../filtersBlock/FiltersBlock.js'
 import Content from '../content/Content.js'
-import TopMenu from '../topMenu/TopMenu.js'
+import NavMenu from '../navMenu/NavMenu.js'
 import UrlBlock from '../urlBlock/UrlBlock.js'
 
 import './dataBlock.css'
 import urlReducer from '../../urlReducer.js'
 import { Context } from '../../context.js'
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 export default function DataBlock() {
   const startUrl = new URL('http://api.football-data.org/v2/matches')
@@ -35,12 +37,21 @@ export default function DataBlock() {
 
   return (
     <Context.Provider value={{ urlDispatch, setDataType }}>
-      <div className="data-block">
-        <TopMenu />
-        <UrlBlock url={url} />
-        <FiltersBlock url={url} />
-        <Content data={jsonData} dataType={dataType} />
-      </div>
+      <BrowserRouter>
+        <div className="data-block">
+          <NavMenu />
+          <UrlBlock url={url} />
+          <FiltersBlock url={url} />
+          {/* <Content data={jsonData} dataType={dataType} /> */}
+          <Switch>
+            <Route
+              exact
+              path="/:path"
+              children={<Content data={jsonData} dataType={dataType} />}
+            ></Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </Context.Provider>
   )
 }
