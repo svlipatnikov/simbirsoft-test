@@ -1,17 +1,17 @@
 import React from 'react'
-import ListOfCompetitions from './listOfCompetitions/ListOfCompetitions.js'
-import Competition from './Competition.js'
-import ListOfTeams from './listOfTeams/ListOfTeams.js'
+import ListOfCompetitions from './listOfCompetitions/ListOfCompetitions'
+import ListOfTeams from './listOfTeams/ListOfTeams'
+import ListOfMatches from './listOfMatches/ListOfMatches'
+import ListOfAreas from './listOfAreas/ListOfAreas'
+import Competition from './competition/Competition'
 import './content.css'
-import ListOfMatches from './listOfMatches/ListOfMatches.js'
-import ListOfAreas from './listOfAreas/ListOfAreas.js'
 import { useParams } from 'react-router-dom'
 
 export default function Content({ data, dataType }) {
   console.log('Тип данных контента: ', dataType)
 
   let { path } = useParams()
-  console.log('path = ', path)
+  console.log('path:', path)
 
   if (data === undefined) {
     return null

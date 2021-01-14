@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
-import { Context } from '../../context.js'
+import { Context } from '../../../context.js'
 import { Link } from 'react-router-dom'
+import './competition.css'
 
 export default function Competition({ info }) {
   const { urlDispatch, setDataType } = useContext(Context)
+
+  console.log('---Competition')
 
   // проверка на undefined
   if (info.name === undefined || info === {}) {

@@ -1,4 +1,5 @@
 import React from 'react'
+import './listOfTeams.css'
 
 export default function ListOfTeams({ count, teams }) {
   if (!count || !teams) {
@@ -12,11 +13,11 @@ export default function ListOfTeams({ count, teams }) {
 
       {teams.map((team, key) => {
         return (
-          <div className="team__list" key={key}>
-            <div className="team__inner">
-              <img className="team__img" src={team.crestUrl} />
-              <div className="team__name">{team.shortName}</div>
-              <div className="team__info">
+          <div className="team-item" key={key}>
+            <div className="team-item__inner">
+              <img className="team-item__img" src={team.crestUrl} />
+              <div className="team-item__name">{team.shortName}</div>
+              <div className="team-item__info">
                 <div>
                   <b>Name: </b>
                   {team.name}

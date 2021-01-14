@@ -14,7 +14,7 @@ export default function DataBlock() {
   const startUrl = new URL('http://api.football-data.org/v2/matches')
   const [url, urlDispatch] = useReducer(urlReducer, startUrl)
   const [jsonData, setJsonData] = useState({})
-  const [dataType, setDataType] = useState('listOfMatches')
+  const [dataType, setDataType] = useState('')
 
   function sendRequest(url) {
     console.log('sendRequest:', url.toString())
@@ -43,13 +43,13 @@ export default function DataBlock() {
           <UrlBlock url={url} />
           <FiltersBlock url={url} />
           {/* <Content data={jsonData} dataType={dataType} /> */}
-          <Switch>
-            <Route
-              exact
-              path="/:path"
-              children={<Content data={jsonData} dataType={dataType} />}
-            ></Route>
-          </Switch>
+          {/* <Switch> */}
+          <Route
+            // exact
+            path="/:path"
+            children={<Content data={jsonData} dataType={dataType} />}
+          ></Route>
+          {/* </Switch> */}
         </div>
       </BrowserRouter>
     </Context.Provider>
