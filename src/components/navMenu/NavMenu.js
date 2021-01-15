@@ -4,16 +4,23 @@ import { Context } from '../../context.js'
 import { Link } from 'react-router-dom'
 
 export default function TopMenu() {
-  const { urlDispatch, setDataType } = useContext(Context)
+  const { urlDispatch, sendRequest } = useContext(Context)
+  const host = 'https://api.football-data.org/'
+
+  function makeUrl(urlArr) {
+    const newUrl = new URL('v2/' + urlArr.join('/'), host)
+    console.log('makeUrl:', newUrl.toString())
+    return newUrl
+  }
 
   return (
-    <div className="top-menu">
+    <div className="nav-menu">
       <Link
         to="/competitions"
-        className="top-menu__item"
+        className="nav-menu__item"
         onClick={() => {
-          urlDispatch({ type: 'makeUrl', payload: ['competitions'] })
-          setDataType('listOfCompetitions')
+          // urlDispatch({ type: 'makeUrl', payload: ['competitions'] })
+          sendRequest(makeUrl(['competitions']))
         }}
       >
         Competitions
@@ -21,10 +28,10 @@ export default function TopMenu() {
 
       <Link
         to="/matches"
-        className="top-menu__item"
+        className="nav-menu__item"
         onClick={() => {
-          urlDispatch({ type: 'makeUrl', payload: ['matches'] })
-          setDataType('listOfMatches')
+          // urlDispatch({ type: 'makeUrl', payload: ['matches'] })
+          sendRequest(makeUrl(['matches']))
         }}
       >
         Matches
@@ -32,10 +39,10 @@ export default function TopMenu() {
 
       <Link
         to="/teams"
-        className="top-menu__item"
+        className="nav-menu__item"
         onClick={() => {
-          urlDispatch({ type: 'makeUrl', payload: ['teams'] })
-          setDataType('listOfTeams')
+          // urlDispatch({ type: 'makeUrl', payload: ['teams'] })
+          sendRequest(makeUrl(['teams']))
         }}
       >
         Teams
@@ -43,10 +50,10 @@ export default function TopMenu() {
 
       <Link
         to="/areas"
-        className="top-menu__item"
+        className="nav-menu__item"
         onClick={() => {
-          urlDispatch({ type: 'makeUrl', payload: ['areas'] })
-          setDataType('listOfAreas')
+          // urlDispatch({ type: 'makeUrl', payload: ['areas'] })
+          sendRequest(makeUrl(['areas']))
         }}
       >
         Areas

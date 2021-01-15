@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function EnumFilter({ filter, setArrFilters }) {
+export default function EnumFilter({ filter, setFilters }) {
   return (
     <div className="filters__item">
       <div>{filter.name}</div>
       <select
         onBlur={(e) => {
-          setArrFilters((arr) => {
+          setFilters((arr) => {
             if (e.target.value) {
               return [
                 ...arr.filter((p) => p.type !== filter.name),

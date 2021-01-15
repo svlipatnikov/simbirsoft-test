@@ -1,18 +1,13 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 import ListOfCompetitions from './listOfCompetitions/ListOfCompetitions'
 import ListOfTeams from './listOfTeams/ListOfTeams'
 import ListOfMatches from './listOfMatches/ListOfMatches'
 import ListOfAreas from './listOfAreas/ListOfAreas'
 import Competition from './competition/Competition'
 import './content.css'
-import { useParams } from 'react-router-dom'
 
-export default function Content({ data, dataType }) {
-  console.log('Тип данных контента: ', dataType)
-
-  let { path } = useParams()
-  console.log('path:', path)
-
+export default function Content({ data }) {
   if (data === undefined) {
     return null
   }
@@ -20,37 +15,38 @@ export default function Content({ data, dataType }) {
   if (data.message) {
     return (
       <div className="content">
-        <div className="content content__message">{data.message}</div>
+        <div className="content__message">{data.message}</div>
       </div>
     )
   }
 
-  switch (dataType) {
-    case 'listOfCompetitions':
-      return (
-        <ListOfCompetitions
-          count={data.count}
-          competitions={data.competitions}
-        />
-      )
+  return (
+    <Switch>
+      <Route exact path="/competitions">
+        <ListOfCompetitions data={data} />
+      </Route>
 
-    case 'competition':
-      return <Competition info={data} />
+      <Route path={`/competitions/:id`}>
+        <Competition info={data} />
+      </Route>
 
-    case 'listOfTeams':
-      return <ListOfTeams count={data.count} teams={data.teams} />
+      <Route path="/teams">
+        <ListOfTeams count={data.count} teams={data.teams} />
+      </Route>
 
-    case 'listOfMatches':
-      return <ListOfMatches count={data.count} matches={data.matches} />
+      <Route path="/matches">
+        <ListOfMatches count={data.count} matches={data.matches} />
+      </Route>
 
-    case 'listOfAreas':
-      return <ListOfAreas count={data.count} areas={data.areas} />
+      <Route path="/areas">
+        <ListOfAreas count={data.count} areas={data.areas} />
+      </Route>
 
-    default:
-      return (
+      <Route>
         <div className="content">
           <pre className="json-text">{JSON.stringify(data, null, '    ')}</pre>
         </div>
-      )
-  }
+      </Route>
+    </Switch>
+  )
 }

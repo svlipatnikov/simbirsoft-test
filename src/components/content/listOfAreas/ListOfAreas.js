@@ -2,6 +2,7 @@ import React from 'react'
 import './listOfAreas.css'
 
 export default function ListOfAreas({ count, areas }) {
+  console.log('---ListOfAreas')
   if (!count || !areas) {
     count = 0
     areas = []

@@ -1,12 +1,18 @@
 import React, { useContext } from 'react'
 import { Context } from '../../../context.js'
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch, useParams } from 'react-router-dom'
 import './competition.css'
 
 export default function Competition({ info }) {
-  const { urlDispatch, setDataType } = useContext(Context)
+  const { urlDispatch } = useContext(Context)
 
-  console.log('---Competition')
+  let { url } = useRouteMatch()
+  console.log('------Competition url:', url)
+
+  let { id } = useParams()
+  console.log('------Competition id:', id)
+
+  console.log('------window.location.path:', window.location.pathname)
 
   // проверка на undefined
   if (info.name === undefined || info === {}) {
@@ -25,34 +31,33 @@ export default function Competition({ info }) {
           </div>
           <div className="competition__buttons-block">
             <Link
-              to="/teams"
+              to={`${url}/teams`}
               className="competition__button"
               onClick={() => {
                 urlDispatch({ type: 'addPath', payload: 'teams' })
-                setDataType('listOfTeams')
               }}
             >
               Teams
             </Link>
 
-            <button
+            <Link
+              to={`${url}/standings`}
               className="competition__button"
               onClick={() => {
                 urlDispatch({ type: 'addPath', payload: 'standings' })
-                setDataType('standings')
               }}
             >
               Standings
-            </button>
-            <button
+            </Link>
+            <Link
+              to={`${url}/matches`}
               className="competition__button"
               onClick={() => {
                 urlDispatch({ type: 'addPath', payload: 'matches' })
-                setDataType('listOfMatches')
               }}
             >
               Matches
-            </button>
+            </Link>
           </div>
         </div>
       </div>

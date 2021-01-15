@@ -2,6 +2,8 @@ import React from 'react'
 import './listOfTeams.css'
 
 export default function ListOfTeams({ count, teams }) {
+  console.log('---ListOfTeams')
+
   if (!count || !teams) {
     count = 0
     teams = []

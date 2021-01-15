@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
 import './filtersBlock.css'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
@@ -6,23 +7,36 @@ import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
 import { Context } from '../../context.js'
 
-export default function Filters({ url }) {
-  const [arrFilters, setArrFilters] = useState([])
-  const { urlDispatch } = useContext(Context)
+export default function Filters() {
+  const [Filters, setFilters] = useState([])
+  const { urlDispatch, sendRequest } = useContext(Context)
+  let { path, url } = useRouteMatch()
+
+  function addFilter(filterArr) {
+    const newUrl = new URL(window.location.pathname, window.location.origin)
+    filterArr.forEach((p) => {
+      newUrl.searchParams.set(p.type, p.value)
+    })
+    console.log('Filtered url:', newUrl.toString())
+    return newUrl
+  }
 
   // обнуление массива фильтров при смене контента
   useEffect(() => {
-    setArrFilters([])
+    setFilters([])
   }, [url.pathname])
 
   // применение фильтров
   const submit = () => {
     // если фильтры не пустые или если удаляем из url старые
-    if (arrFilters.length || (!arrFilters.length && url.search.length)) {
-      urlDispatch({
-        type: 'addFilter',
-        payload: arrFilters,
-      })
+    if (Filters.length || (!Filters.length && window.location.search.length)) {
+      // urlDispatch({
+      //   type: 'addFilter',
+      //   payload: Filters,
+      // })
+      console.log('---submit filters')
+
+      sendRequest(addFilter(Filters))
     }
   }
 
@@ -45,7 +59,7 @@ export default function Filters({ url }) {
                       <InputFilter
                         filter={filter}
                         key={id}
-                        setArrFilters={setArrFilters}
+                        setFilters={setFilters}
                       />
                     )
                   case 'Enum':
@@ -53,7 +67,7 @@ export default function Filters({ url }) {
                       <EnumFilter
                         filter={filter}
                         key={id}
-                        setArrFilters={setArrFilters}
+                        setFilters={setFilters}
                       />
                     )
                   case 'Integer':
@@ -61,7 +75,7 @@ export default function Filters({ url }) {
                       <InputFilter
                         filter={filter}
                         key={id}
-                        setArrFilters={setArrFilters}
+                        setFilters={setFilters}
                       />
                     )
                 }
@@ -71,9 +85,14 @@ export default function Filters({ url }) {
         }
       })}
 
-      <button type="button" className="filters__button" onClick={submit}>
+      <Link
+        to={`${url}`}
+        type="button"
+        className="filters__button"
+        onClick={submit}
+      >
         Применить
-      </button>
+      </Link>
     </form>
   )
 }

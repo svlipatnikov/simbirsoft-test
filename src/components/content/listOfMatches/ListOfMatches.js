@@ -11,9 +11,9 @@ export default function ListOfMatches({ count, matches }) {
     <div className="content">
       <div className="content__count">Найдено: {count}</div>
 
-      {matches.map((match, key) => {
+      {matches.map((match) => {
         return (
-          <div className="match__item">
+          <div className="match__item" key={match.id}>
             <div className="match__inner">
               <div className="team__header">
                 <div className="match__teams">{match.homeTeam.name}</div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputFilter({ filter, setArrFilters }) {
+export default function InputFilter({ filter, setFilters }) {
   return (
     <div className="filters__item">
       <div>{filter.name}</div>
@@ -9,7 +9,7 @@ export default function InputFilter({ filter, setArrFilters }) {
         placeholder={filter.comment}
         pattern={filter.pattern}
         onBlur={(e) => {
-          setArrFilters((arr) => {
+          setFilters((arr) => {
             if (e.target.value) {
               return [
                 ...arr.filter((p) => p.type !== filter.name),

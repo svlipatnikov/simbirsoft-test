@@ -1,48 +1,88 @@
 import React, { useContext } from 'react'
 import { Context } from '../../../context.js'
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import './listOfCompetitions.css'
+import Competition from '../competition/Competition'
 
-export default function ListOfCompetitions({ count, competitions }) {
-  const { urlDispatch, setDataType } = useContext(Context)
+export default function ListOfCompetitions({ data }) {
+  const { urlDispatch } = useContext(Context)
 
-  let match = useRouteMatch()
+  let { path, url } = useRouteMatch()
+  console.log('---ListOfCompetitions url:', url)
+  console.log('---ListOfCompetitions path:', path)
+  console.log('---window.location.path:', window.location.pathname)
 
   // проверка на undefined
-  if (!count || !competitions) {
-    count = 0
-    competitions = []
+  if (!data.count || !data.competitions) {
+    return null
   }
 
   return (
-    <div className="content">
-      <div className="content__count">Найдено: {count}</div>
+    <Switch>
+      <Route path={`${path}/:id`}>
+        <Competition info={data} />
+      </Route>
 
-      {competitions.map((competition) => (
-        <Link
-          to={`${match.url}/${competition.id}`}
-          className="competition-item"
-          key={competition.id}
-          onClick={() => {
-            urlDispatch({
-              type: 'makeUrl',
-              payload: ['competitions', competition.id.toString()],
-            })
-            setDataType('competition')
-          }}
-        >
-          <div className="competition-item__inner interactive">
-            <div className="competition-item__name">{competition.name}</div>
+      <Route exact path={path}>
+        <div className="content">
+          <div className="content__count">Найдено: {data.count}</div>
 
-            <div className="competition-item__info">
-              <div>
-                Area: {competition.area.countryCode} ({competition.area.name})
+          {data.competitions.map((competition) => (
+            <Link
+              to={`${url}/${competition.id}`}
+              className="competition-item"
+              key={competition.id}
+              onClick={() => {
+                urlDispatch({
+                  type: 'makeUrl',
+                  payload: ['competitions', competition.id.toString()],
+                })
+              }}
+            >
+              <div className="competition-item__inner interactive">
+                <div className="competition-item__name">{competition.name}</div>
+
+                <div className="competition-item__info">
+                  <div>
+                    Area: {competition.area.countryCode} (
+                    {competition.area.name})
+                  </div>
+                  <div>id: {competition.id}</div>
+                </div>
               </div>
-              <div>id: {competition.id}</div>
-            </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+            </Link>
+          ))}
+        </div>
+      </Route>
+    </Switch>
+
+    // <div className="content">
+    //   <div className="content__count">Найдено: {count}</div>
+
+    //   {competitions.map((competition) => (
+    //     <Link
+    //       to={`${url}/${competition.id}`}
+    //       className="competition-item"
+    //       key={competition.id}
+    //       onClick={() => {
+    //         urlDispatch({
+    //           type: 'makeUrl',
+    //           payload: ['competitions', competition.id.toString()],
+    //         })
+    //       }}
+    //     >
+    //       <div className="competition-item__inner interactive">
+    //         <div className="competition-item__name">{competition.name}</div>
+
+    //         <div className="competition-item__info">
+    //           <div>
+    //             Area: {competition.area.countryCode} ({competition.area.name})
+    //           </div>
+    //           <div>id: {competition.id}</div>
+    //         </div>
+    //       </div>
+    //     </Link>
+    //   ))}
+    // </div>
   )
 }

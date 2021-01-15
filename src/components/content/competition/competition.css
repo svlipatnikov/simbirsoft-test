@@ -32,7 +32,7 @@
 .competition__buttons-block {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .competition__button {
@@ -51,6 +51,7 @@
   line-height: 1rem;
   color: #ffffff;
   text-transform: uppercase;
+  text-decoration: none;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
 }
 
