@@ -5,12 +5,19 @@ import './listOfCompetitions.css'
 import Competition from '../competition/Competition'
 
 export default function ListOfCompetitions({ data }) {
-  const { urlDispatch } = useContext(Context)
+  const { sendRequest } = useContext(Context)
 
   let { path, url } = useRouteMatch()
   console.log('---ListOfCompetitions url:', url)
   console.log('---ListOfCompetitions path:', path)
   console.log('---window.location.path:', window.location.pathname)
+
+  // function addPath(path) {
+  //   const host = 'https://api.football-data.org/'
+  //   const newUrl = new URL(window.location.pathname + '/' + path, host)
+  //   console.log('addPath url:', newUrl.toString())
+  //   return newUrl
+  // }
 
   // проверка на undefined
   if (!data.count || !data.competitions) {
@@ -33,10 +40,13 @@ export default function ListOfCompetitions({ data }) {
               className="competition-item"
               key={competition.id}
               onClick={() => {
-                urlDispatch({
-                  type: 'makeUrl',
-                  payload: ['competitions', competition.id.toString()],
-                })
+                sendRequest(
+                  addPath(['competitions', competition.id.toString()])
+                )
+                // urlDispatch({
+                //   type: 'makeUrl',
+                //   payload: ['competitions', competition.id.toString()],
+                // })
               }}
             >
               <div className="competition-item__inner interactive">

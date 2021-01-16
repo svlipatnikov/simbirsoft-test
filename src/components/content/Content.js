@@ -8,6 +8,10 @@ import Competition from './competition/Competition'
 import './content.css'
 
 export default function Content({ data }) {
+  console.log('--Content | data:', data)
+  const path = window.location.pathname
+  console.log('--Content | path:', path)
+
   if (data === undefined) {
     return null
   }

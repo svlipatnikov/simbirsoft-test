@@ -19,7 +19,7 @@ export default function ListOfMatches({ count, matches }) {
                 <div className="match__teams">{match.homeTeam.name}</div>
                 <div className="match__score">
                   {match.score.fullTime.homeTeam}
-                  {match.status === 'SCHEDULED' ? ' vs ' : ' : '}
+                  {match.status !== 'FINISHED' ? ' vs ' : ' : '}
                   {match.score.fullTime.awayTeam}
                 </div>
                 <div className="match__teams" style={{ textAlign: 'right' }}>

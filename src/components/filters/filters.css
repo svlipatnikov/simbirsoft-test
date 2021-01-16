@@ -47,6 +47,8 @@ input {
   font-weight: 700;
   text-transform: uppercase;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  text-align: center;
 
   margin-top: 10px;
   padding: 5px;
@@ -56,4 +58,5 @@ input {
 
 .filters__button:hover {
   background: #7475c5;
+  cursor: default;
 }

@@ -4,10 +4,10 @@ import { Context } from '../../context.js'
 import { Link } from 'react-router-dom'
 
 export default function TopMenu() {
-  const { urlDispatch, sendRequest } = useContext(Context)
-  const host = 'https://api.football-data.org/'
+  const { sendRequest } = useContext(Context)
 
   function makeUrl(urlArr) {
+    const host = 'https://api.football-data.org/'
     const newUrl = new URL('v2/' + urlArr.join('/'), host)
     console.log('makeUrl:', newUrl.toString())
     return newUrl
@@ -18,10 +18,7 @@ export default function TopMenu() {
       <Link
         to="/competitions"
         className="nav-menu__item"
-        onClick={() => {
-          // urlDispatch({ type: 'makeUrl', payload: ['competitions'] })
-          sendRequest(makeUrl(['competitions']))
-        }}
+        onClick={() => sendRequest(makeUrl(['competitions']))}
       >
         Competitions
       </Link>
@@ -29,10 +26,7 @@ export default function TopMenu() {
       <Link
         to="/matches"
         className="nav-menu__item"
-        onClick={() => {
-          // urlDispatch({ type: 'makeUrl', payload: ['matches'] })
-          sendRequest(makeUrl(['matches']))
-        }}
+        onClick={() => sendRequest(makeUrl(['matches']))}
       >
         Matches
       </Link>
@@ -40,10 +34,7 @@ export default function TopMenu() {
       <Link
         to="/teams"
         className="nav-menu__item"
-        onClick={() => {
-          // urlDispatch({ type: 'makeUrl', payload: ['teams'] })
-          sendRequest(makeUrl(['teams']))
-        }}
+        onClick={() => sendRequest(makeUrl(['teams']))}
       >
         Teams
       </Link>
@@ -51,10 +42,7 @@ export default function TopMenu() {
       <Link
         to="/areas"
         className="nav-menu__item"
-        onClick={() => {
-          // urlDispatch({ type: 'makeUrl', payload: ['areas'] })
-          sendRequest(makeUrl(['areas']))
-        }}
+        onClick={() => sendRequest(makeUrl(['areas']))}
       >
         Areas
       </Link>

@@ -1,77 +1,57 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import FiltersBlock from '../filtersBlock/FiltersBlock.js'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
 import NavMenu from '../navMenu/NavMenu.js'
-import UrlBlock from '../urlBlock/UrlBlock.js'
-
 import './dataBlock.css'
-import urlReducer from '../../urlReducer.js'
 import { Context } from '../../context.js'
 
-import { BrowserRouter, Route } from 'react-router-dom'
-
 export default function DataBlock() {
-  const startUrl = new URL('http://api.football-data.org/v2/matches')
-  const [url, urlDispatch] = useReducer(urlReducer, startUrl)
+  // const [url, urlDispatch] = useReducer(urlReducer, startUrl)
   const [jsonData, setJsonData] = useState({})
 
   function sendRequest(url) {
     console.log('sendRequest:', url.toString())
+    // очистка контента, ожидание нового
     setJsonData({ message: 'Waiting server response...' })
+    // отправка запроса на сервер
     return fetch(url.toString(), {
       headers: { 'X-Auth-Token': '8c4f30d4f4354979ac043901839c7664' },
       dataType: 'json',
       type: 'GET',
     })
       .then((response) => response.json())
-      .catch((err) => setJsonData({ message: 'Error in sendRequest:' + err }))
-      .then((data) => {
-        setJsonData(() => data)
-      })
+      .then((data) => setJsonData(data))
+      .catch((err) => setJsonData({ message: err.toString() }))
   }
 
   // function addPath(path) {
-  //   const newUrl = new URL(
-  //     window.location.pathname + '/' + path,
-  //     window.location.origin
-  //   )
+  //   const host = 'https://api.football-data.org/'
+  //   const newUrl = new URL(window.location.pathname + '/' + path, host)
   //   console.log('addPath url:', newUrl.toString())
-  //   return newUrl
-  // }
-
-  // function addFilter(filterArr) {
-  //   const newUrl = new URL(window.location.pathname, window.location.origin)
-  //   filterArr.forEach((p) => {
-  //     newUrl.searchParams.set(p.type, p.value)
-  //   })
-  //   console.log('Filtered url:', newUrl.toString())
   //   return newUrl
   // }
 
   // componentDidMount
   useEffect(() => {
-    console.log('!!! START url:', window.location.pathname)
+    const host = 'https://api.football-data.org/'
+    const startUrl = new URL(
+      '/v2' + window.location.pathname + window.location.search,
+      host
+    )
+    console.log('!!! componentDidMount url:', startUrl.toString())
+    sendRequest(startUrl)
   }, [])
 
-  // useEffect(() => {
-  //   console.log('useEffect url:', url)
-  //   // очистка контента, ожидание нового
-  //   setJsonData({ message: 'Waiting server response...' })
-  //   sendRequest(url)
-  //     .catch((err) => setJsonData({ message: 'Error in sendRequest:' + err }))
-  //     .then((data) => {
-  //       setJsonData(() => data)
-  //     })
-  // }, [window.location.pathname])
-
   return (
-    <Context.Provider value={{ urlDispatch, sendRequest }}>
+    <Context.Provider value={{ sendRequest }}>
       <BrowserRouter>
         <div className="data-block">
           <NavMenu />
-          {/* <UrlBlock url={url} /> */}
-          <FiltersBlock url={url} />
-          <Content data={jsonData} />
+          <Route path="/:path">
+            <Filters />
+            <Content data={jsonData} />
+          </Route>
         </div>
       </BrowserRouter>
     </Context.Provider>

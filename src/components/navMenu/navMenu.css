@@ -12,7 +12,7 @@
   min-width: max-content;
   width: 20%;
   height: 30px;
-  background: #adecc0;
+  background: #ade0bd;
   text-align: center;
   align-items: center;
   padding: 6px 10px;
@@ -22,12 +22,12 @@
   line-height: 1rem;
   color: #ffffff;
   text-transform: uppercase;
+  text-decoration: none;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
 }
 
 .nav-menu__item:hover {
-  background: #c4d39b;
-  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
+  background: #c7e9d1;
+  cursor: default;
   user-select: none;
 }
