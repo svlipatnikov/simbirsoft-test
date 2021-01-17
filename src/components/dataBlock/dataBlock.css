@@ -7,3 +7,7 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.filter-search-block {
+  width: 40%;
+}

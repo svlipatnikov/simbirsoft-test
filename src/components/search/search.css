@@ -1,4 +1,4 @@
-.filters {
+.search {
   width: 100%;
   background: rgb(157, 222, 224);
   padding: 10px;
@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-.filters__header {
+.search__header {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 800;
@@ -16,32 +16,11 @@
   margin: 5px 0;
 }
 
-.filters__item {
-  margin: 5px 0;
-  padding: 5px;
-  background: #5c5ec2;
-  border: 1px solid #eff5f7;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
+.search__input {
+  width: 100%;
 }
 
-.filters__item div {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  min-width: max-content;
-  padding-right: 10px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
-}
-
-.filters__item select,
-input {
-  width: 60%;
-}
-
-.filters__button {
+.search__button {
   color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
@@ -56,7 +35,7 @@ input {
   border-radius: 10px;
 }
 
-.filters__button:hover {
+.search__button:hover {
   background: #7475c5;
   cursor: default;
 }

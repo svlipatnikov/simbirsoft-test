@@ -8,9 +8,8 @@ import Competition from './competition/Competition'
 import './content.css'
 
 export default function Content({ data }) {
-  console.log('--Content | data:', data)
   const path = window.location.pathname
-  console.log('--Content | path:', path)
+  console.log('--Content | path:', path, ' | data: ', data)
 
   if (data === undefined) {
     return null
@@ -26,12 +25,24 @@ export default function Content({ data }) {
 
   return (
     <Switch>
-      <Route exact path="/competitions">
-        <ListOfCompetitions data={data} />
+      <Route path={`/competitions/:id/teams`}>
+        <ListOfTeams count={data.count} teams={data.teams} />
       </Route>
 
-      <Route path={`/competitions/:id`}>
+      {/* <Route path={`/competitions/:id/standings`}>
+        <ListOfTeams count={data.count} teams={data.teams} />
+      </Route> */}
+
+      <Route path={`/competitions/:id/matches`}>
+        <ListOfMatches count={data.count} matches={data.matches} />
+      </Route>
+
+      <Route exact path={`/competitions/:id`}>
         <Competition info={data} />
+      </Route>
+
+      <Route exact path="/competitions">
+        <ListOfCompetitions data={data} />
       </Route>
 
       <Route path="/teams">

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Link, useRouteMatch, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './filters.css'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
@@ -94,7 +94,7 @@ export default function Filters() {
               .map((p) => p.type.toString() + '=' + p.value.toString())
               .join('&'),
         }}
-        type="button"
+        // type="button"
         className="filters__button"
         onClick={submit}
       >

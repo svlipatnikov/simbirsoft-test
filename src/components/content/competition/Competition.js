@@ -4,15 +4,10 @@ import { Link, useRouteMatch, useParams } from 'react-router-dom'
 import './competition.css'
 
 export default function Competition({ info }) {
-  const { urlDispatch } = useContext(Context)
+  const { sendRequest, addPath } = useContext(Context)
 
   let { url } = useRouteMatch()
-  console.log('------Competition url:', url)
-
-  let { id } = useParams()
-  console.log('------Competition id:', id)
-
-  console.log('------window.location.path:', window.location.pathname)
+  console.log('----Competition url:', url)
 
   // проверка на undefined
   if (info.name === undefined || info === {}) {
@@ -33,9 +28,7 @@ export default function Competition({ info }) {
             <Link
               to={`${url}/teams`}
               className="competition__button"
-              onClick={() => {
-                urlDispatch({ type: 'addPath', payload: 'teams' })
-              }}
+              onClick={() => sendRequest(addPath('teams'))}
             >
               Teams
             </Link>
@@ -43,18 +36,14 @@ export default function Competition({ info }) {
             <Link
               to={`${url}/standings`}
               className="competition__button"
-              onClick={() => {
-                urlDispatch({ type: 'addPath', payload: 'standings' })
-              }}
+              onClick={() => sendRequest(addPath('standings'))}
             >
               Standings
             </Link>
             <Link
               to={`${url}/matches`}
               className="competition__button"
-              onClick={() => {
-                urlDispatch({ type: 'addPath', payload: 'matches' })
-              }}
+              onClick={() => sendRequest(addPath('matches'))}
             >
               Matches
             </Link>

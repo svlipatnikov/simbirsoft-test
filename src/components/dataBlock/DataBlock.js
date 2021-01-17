@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
 import NavMenu from '../navMenu/NavMenu.js'
 import './dataBlock.css'
 import { Context } from '../../context.js'
+import Search from '../search/Search.js'
 
 export default function DataBlock() {
-  // const [url, urlDispatch] = useReducer(urlReducer, startUrl)
   const [jsonData, setJsonData] = useState({})
 
   function sendRequest(url) {
@@ -25,12 +25,15 @@ export default function DataBlock() {
       .catch((err) => setJsonData({ message: err.toString() }))
   }
 
-  // function addPath(path) {
-  //   const host = 'https://api.football-data.org/'
-  //   const newUrl = new URL(window.location.pathname + '/' + path, host)
-  //   console.log('addPath url:', newUrl.toString())
-  //   return newUrl
-  // }
+  function addPath(pathAdd) {
+    const host = 'https://api.football-data.org/'
+    const newUrl = new URL(
+      'v2' + window.location.pathname + '/' + pathAdd,
+      host
+    )
+    console.log('addPath url:', newUrl.toString())
+    return newUrl
+  }
 
   // componentDidMount
   useEffect(() => {
@@ -44,12 +47,15 @@ export default function DataBlock() {
   }, [])
 
   return (
-    <Context.Provider value={{ sendRequest }}>
+    <Context.Provider value={{ sendRequest, addPath }}>
       <BrowserRouter>
         <div className="data-block">
           <NavMenu />
           <Route path="/:path">
-            <Filters />
+            <div className="filter-search-block">
+              <Filters />
+              <Search />
+            </div>
             <Content data={jsonData} />
           </Route>
         </div>
