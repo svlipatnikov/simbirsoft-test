@@ -11,32 +11,33 @@ export default function Filters() {
   const [filters, setFilters] = useState([])
   const { sendRequest } = useContext(Context)
 
-  const path = window.location.pathname
-  // console.log('--Filters | path:', path)
-
   function addFilter(filterArr) {
     const host = 'https://api.football-data.org/'
     const newUrl = new URL('/v2' + window.location.pathname, host)
-    filterArr.forEach((p) => {
-      newUrl.searchParams.set(p.type, p.value)
-    })
-    console.log('Filtered url:', newUrl.toString())
+    filterArr.forEach((p) => newUrl.searchParams.set(p.type, p.value))
+    // console.log('Filtered url:', newUrl.toString())
     return newUrl
   }
 
   // обнуление массива фильтров при смене контента
   useEffect(() => {
-    console.log('--Filters clear on url:', path)
+    console.log('--Filters clear on url:', window.location.pathname)
     setFilters([])
-  }, [path])
+  }, [window.location.pathname])
 
-  // применение фильтров
+  // применение фильтров (отправка запроса)
   const submit = () => {
     // если фильтры не пустые или если удаляем из url старые
     if (filters.length || (!filters.length && window.location.search.length)) {
       console.log('---submit filters:', filters)
       sendRequest(addFilter(filters))
     }
+  }
+
+  const setFilterParams = () => {
+    let curentUrl = new URL(window.location)
+    filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
+    return curentUrl.search
   }
 
   return (
@@ -46,7 +47,7 @@ export default function Filters() {
       {/* цикл по массиву ресурсов для поиска доступных фильтров */}
       {resources.map((res) => {
         // если нашли совпадение
-        if (res.pathname === path) {
+        if (res.pathname === window.location.pathname) {
           // проход по найденным для ресурса фильтрам
           return res.filters.map((fItem, id) =>
             // цикл по массиву всех возможных фильтров
@@ -87,14 +88,9 @@ export default function Filters() {
 
       <Link
         to={{
-          pathname: path,
-          search:
-            '?' +
-            filters
-              .map((p) => p.type.toString() + '=' + p.value.toString())
-              .join('&'),
+          pathname: window.location.pathname,
+          search: filters.length ? setFilterParams() : window.location.search,
         }}
-        // type="button"
         className="filters__button"
         onClick={submit}
       >

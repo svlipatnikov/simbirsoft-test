@@ -9,6 +9,7 @@ import Search from '../search/Search.js'
 
 export default function DataBlock() {
   const [jsonData, setJsonData] = useState({})
+  const [search, setSearch] = useState('')
 
   function sendRequest(url) {
     console.log('sendRequest:', url.toString())
@@ -54,9 +55,9 @@ export default function DataBlock() {
           <Route path="/:path">
             <div className="filter-search-block">
               <Filters />
-              <Search />
+              <Search setSearch={setSearch} />
             </div>
-            <Content data={jsonData} />
+            <Content data={jsonData} search={search} />
           </Route>
         </div>
       </BrowserRouter>
