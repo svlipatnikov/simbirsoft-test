@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './listOfMatches.css'
 import '../content.css'
+import { Context } from '../../../context.js'
 
 export default function ListOfMatches({ count, matches }) {
+  const { search } = useContext(Context)
+  console.log('---ListOfMatches search:', search)
+
   if (!count || !matches) {
     return null
   }

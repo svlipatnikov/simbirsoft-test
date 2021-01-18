@@ -43,12 +43,17 @@ export default function DataBlock() {
       '/v2' + window.location.pathname + window.location.search,
       host
     )
+
+    if (startUrl.searchParams.has('search'))
+      setSearch(startUrl.searchParams.get('search'))
+
+    startUrl.searchParams.delete('search')
     console.log('!!! componentDidMount url:', startUrl.toString())
     sendRequest(startUrl)
   }, [])
 
   return (
-    <Context.Provider value={{ sendRequest, addPath }}>
+    <Context.Provider value={{ sendRequest, addPath, search }}>
       <BrowserRouter>
         <div className="data-block">
           <NavMenu />
@@ -57,7 +62,7 @@ export default function DataBlock() {
               <Filters />
               <Search setSearch={setSearch} />
             </div>
-            <Content data={jsonData} search={search} />
+            <Content data={jsonData} />
           </Route>
         </div>
       </BrowserRouter>

@@ -7,8 +7,8 @@ import ListOfAreas from './listOfAreas/ListOfAreas'
 import Competition from './competition/Competition'
 import './content.css'
 
-export default function Content({ data, search }) {
-  console.log('--Content | data:', data, ' | search:', search)
+export default function Content({ data }) {
+  console.log('--Content | data:', data)
 
   if (data === undefined) {
     return null

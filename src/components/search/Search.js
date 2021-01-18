@@ -3,23 +3,28 @@ import { Link } from 'react-router-dom'
 import './search.css'
 
 export default function Search({ setSearch }) {
+  console.log('--Search')
   const [inputText, setInputText] = useState('')
 
   const setSearchParam = () => {
-    console.log('setSearchParam')
     let curentUrl = new URL(window.location)
     curentUrl.searchParams.set('search', inputText)
-    setSearch(inputText)
     return curentUrl.search
+  }
+
+  const submit = () => {
+    console.log('submit')
+    setSearch(inputText)
+    setInputText('')
   }
 
   return (
     <form className="search">
       <h2 className="search__header">Поиск</h2>
       <input
+        value={inputText}
         className="search__input"
         onChange={(e) => setInputText(e.target.value)}
-        value={inputText}
       ></input>
       <Link
         to={{
@@ -27,7 +32,7 @@ export default function Search({ setSearch }) {
           search: inputText ? setSearchParam() : window.location.search,
         }}
         className="search__button"
-        onClick={() => setInputText('')}
+        onClick={submit}
       >
         Найти
       </Link>
