@@ -5,6 +5,7 @@ import ListOfTeams from './listOfTeams/ListOfTeams'
 import ListOfMatches from './listOfMatches/ListOfMatches'
 import ListOfAreas from './listOfAreas/ListOfAreas'
 import Competition from './competition/Competition'
+import Team from './team/Team'
 import './content.css'
 
 export default function Content({ data }) {
@@ -44,15 +45,19 @@ export default function Content({ data }) {
         <ListOfCompetitions data={data} />
       </Route>
 
-      <Route path="/teams">
+      <Route path="/teams/:id">
+        <Team info={data} />
+      </Route>
+
+      <Route exact path="/teams">
         <ListOfTeams count={data.count} teams={data.teams} />
       </Route>
 
-      <Route path="/matches">
+      <Route exact path="/matches">
         <ListOfMatches count={data.count} matches={data.matches} />
       </Route>
 
-      <Route path="/areas">
+      <Route exact path="/areas">
         <ListOfAreas count={data.count} areas={data.areas} />
       </Route>
 

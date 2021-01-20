@@ -14,8 +14,8 @@ export default function ListOfAreas({ count, areas }) {
 
       {areas.map((area, key) => {
         return (
-          <div className="area__item" key={key}>
-            <div className="area__inner">
+          <div className="content-item area__item" key={key}>
+            <div className="content-item__inner">
               <div className="area__header">{area.name}</div>
               <div className="area__info">
                 <div>CountryCode: {area.countryCode}</div>

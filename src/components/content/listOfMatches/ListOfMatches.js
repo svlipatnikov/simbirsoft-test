@@ -17,8 +17,8 @@ export default function ListOfMatches({ count, matches }) {
 
       {matches.map((match) => {
         return (
-          <div className="match__item" key={match.id}>
-            <div className="match__inner">
+          <div className="content-item match__item" key={match.id}>
+            <div className="content-item__inner">
               <div className="team__header">
                 <div className="match__teams">{match.homeTeam.name}</div>
                 <div className="match__score">

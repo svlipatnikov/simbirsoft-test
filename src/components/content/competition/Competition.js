@@ -17,7 +17,7 @@ export default function Competition({ info }) {
   return (
     <div className="content">
       <div className="competition">
-        <div className="competition__inner">
+        <div className="content-item__inner competition__inner">
           <div className="competition__name">{info.name}</div>
           <div className="competition__info">
             <div>Code: {info.code}</div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './search.css'
 
 export default function Search({ setSearch }) {
-  console.log('--Search')
+  // console.log('--Search')
   const [inputText, setInputText] = useState('')
 
   const setSearchParam = () => {

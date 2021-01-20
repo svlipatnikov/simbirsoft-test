@@ -36,6 +36,13 @@ export default function DataBlock() {
     return newUrl
   }
 
+  function makeUrl(urlArr) {
+    const host = 'https://api.football-data.org/'
+    const newUrl = new URL('v2/' + urlArr.join('/'), host)
+    console.log('makeUrl:', newUrl.toString())
+    return newUrl
+  }
+
   // componentDidMount
   useEffect(() => {
     const host = 'https://api.football-data.org/'
@@ -53,7 +60,7 @@ export default function DataBlock() {
   }, [])
 
   return (
-    <Context.Provider value={{ sendRequest, addPath, search }}>
+    <Context.Provider value={{ sendRequest, addPath, makeUrl, search }}>
       <BrowserRouter>
         <div className="data-block">
           <NavMenu />

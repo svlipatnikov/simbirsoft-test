@@ -19,11 +19,11 @@ export default function ListOfCompetitions({ data }) {
       {data.competitions.map((competition) => (
         <Link
           to={`${url}/${competition.id}`}
-          className="competition-item"
           key={competition.id}
+          className="content-item competition-item"
           onClick={() => sendRequest(addPath(competition.id.toString()))}
         >
-          <div className="competition-item__inner interactive">
+          <div className="content-item__inner interactive">
             <div className="competition-item__name">{competition.name}</div>
             <div className="competition-item__info">
               <div>

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../../context.js'
+import { Link, useRouteMatch } from 'react-router-dom'
 import './listOfTeams.css'
 
 export default function ListOfTeams({ count, teams }) {
   console.log('---ListOfTeams')
+  const { sendRequest, addPath } = useContext(Context)
+  let { url } = useRouteMatch()
 
   if (!count || !teams) {
     count = 0
@@ -13,58 +17,64 @@ export default function ListOfTeams({ count, teams }) {
     <div className="content">
       <div className="content__count">Найдено: {count}</div>
 
-      {teams.map((team, key) => {
-        return (
-          <div className="team-item" key={key}>
-            <div className="team-item__inner">
+      {teams.map((team) => (
+        <Link
+          to={`${url}/${team.id}`}
+          key={team.id}
+          className="content-item team-item"
+          onClick={() => sendRequest(addPath(team.id.toString()))}
+        >
+          <div className="content-item__inner interactive">
+            <div className="team-item__title">
               <img className="team-item__img" src={team.crestUrl} />
               <div className="team-item__name">{team.shortName}</div>
-              <div className="team-item__info">
-                <div>
-                  <b>Name: </b>
-                  {team.name}
-                </div>
-                <div>
-                  <b>Area: </b>
-                  {team.area.name}
-                </div>
-                <div>
-                  <b>tla: </b>
-                  {team.tla}
-                </div>
-                <div>
-                  <b>Address: </b>
-                  {team.address}
-                </div>
-                <div>
-                  <b>Phone: </b>
-                  {team.phone}
-                </div>
-                <div>
-                  <b>Website: </b>
-                  {team.website}
-                </div>
-                <div>
-                  <b>email: </b>
-                  {team.email}
-                </div>
-                <div>
-                  <b>Founded: </b>
-                  {team.founded}
-                </div>
-                <div>
-                  <b>ClubColors: </b>
-                  {team.clubColors}
-                </div>
-                <div>
-                  <b>Venue: </b>
-                  {team.venue}
-                </div>
+            </div>
+
+            <div className="team-item__info">
+              <div>
+                <b>Name: </b>
+                {team.name}
+              </div>
+              <div>
+                <b>Area: </b>
+                {team.area.name}
+              </div>
+              <div>
+                <b>tla: </b>
+                {team.tla}
+              </div>
+              <div>
+                <b>Address: </b>
+                {team.address}
+              </div>
+              <div>
+                <b>Phone: </b>
+                {team.phone}
+              </div>
+              <div>
+                <b>Website: </b>
+                {team.website}
+              </div>
+              <div>
+                <b>email: </b>
+                {team.email}
+              </div>
+              <div>
+                <b>Founded: </b>
+                {team.founded}
+              </div>
+              <div>
+                <b>ClubColors: </b>
+                {team.clubColors}
+              </div>
+              <div>
+                <b>Venue: </b>
+                {team.venue}
               </div>
             </div>
           </div>
-        )
-      })}
+        </Link>
+      ))}
     </div>
   )
 }

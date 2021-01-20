@@ -1,0 +1,51 @@
+.team {
+  width: 100%;
+}
+
+.team__inner {
+  height: max-content;
+}
+
+.team__header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.team__img {
+  height: 150px;
+  margin: 10px;
+}
+
+.team__name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 10px 0;
+  text-transform: uppercase;
+}
+
+.team__info {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.team__competitions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.team__competition-item {
+  width: 30%;
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  background-color: #ccb679;
+  border-radius: 5px;
+}
+
+.team__squad {
+}

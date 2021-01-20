@@ -1,18 +1,5 @@
 .match__item {
   width: 100%;
-  padding: 5px;
-}
-
-.match__inner {
-  width: 100%;
-  background: #e7b3b3;
-  padding: 10px;
-  border: 1px solid #2c6e24;
-  border-radius: 5px;
-
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
 }
 
 .match__info {
@@ -34,14 +21,13 @@
 }
 
 .match__teams {
-  width: 49%;
-  /* max-width: max-content; */
+  width: 50%;
   font-size: 1rem;
-  color: #e8fcff;
+  color: #ffffff;
   font-weight: 700;
   text-transform: uppercase;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-  background: #e49f9f;
+  background: rgb(214, 182, 93);
   border-radius: 5px;
   padding: 5px;
 }

@@ -3,14 +3,7 @@
 }
 
 .competition__inner {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #2c6e24;
-  border-radius: 5px;
-  background-color: #ebd18c;
-
-  display: flex;
-  flex-direction: column;
+  height: max-content;
 }
 
 .competition__name {

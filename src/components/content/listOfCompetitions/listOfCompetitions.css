@@ -1,22 +1,5 @@
 .competition-item {
   width: 50%;
-  padding: 5px;
-
-  color: #000000;
-  cursor: default;
-  text-decoration: none;
-}
-
-.competition-item__inner {
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  border: 1px solid #2c6e24;
-  border-radius: 5px;
-  background-color: #ebd18c;
-
-  display: flex;
-  flex-direction: column;
 }
 
 .competition-item__name {
