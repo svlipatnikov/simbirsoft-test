@@ -7,8 +7,8 @@ import './dataBlock.css'
 import { Context } from '../../context.js'
 import Search from '../search/Search.js'
 
-export default function DataBlock() {
-  const [jsonData, setJsonData] = useState({})
+export default function DataBlock({ path }) {
+  const [jsonData, setJsonData] = useState(undefined)
   const [search, setSearch] = useState('')
 
   function sendRequest(url) {
@@ -58,6 +58,12 @@ export default function DataBlock() {
     console.log('!!! componentDidMount url:', startUrl.toString())
     sendRequest(startUrl)
   }, [])
+
+  //очистка данных при смене url
+  useEffect(() => {
+    console.log('!!!!Clear jsonData')
+    setJsonData(undefined)
+  }, [window.location.pathname])
 
   return (
     <Context.Provider value={{ sendRequest, addPath, makeUrl, search }}>

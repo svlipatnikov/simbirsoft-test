@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Switch, useParams } from 'react-router-dom'
 import ListOfCompetitions from './listOfCompetitions/ListOfCompetitions'
 import ListOfTeams from './listOfTeams/ListOfTeams'
 import ListOfMatches from './listOfMatches/ListOfMatches'
@@ -11,9 +11,7 @@ import './content.css'
 export default function Content({ data }) {
   console.log('--Content | data:', data)
 
-  if (data === undefined) {
-    return null
-  }
+  if (data === undefined) return null
 
   if (data.message) {
     return (

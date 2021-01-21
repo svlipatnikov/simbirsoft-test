@@ -34,7 +34,7 @@
 
 .team__competitions {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 
@@ -45,7 +45,42 @@
   text-decoration: none;
   background-color: #ccb679;
   border-radius: 5px;
+
+  color: #000000;
+}
+
+.team__competition-item__name {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.team__competition-item__info {
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .team__squad {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.team__player {
+  padding: 5px;
+  width: 33%;
+
+  background-color: #ccb679;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.team__player-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.team__player-info {
+  font-size: 0.7rem;
+  font-weight: 400;
 }

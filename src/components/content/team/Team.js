@@ -2,14 +2,13 @@ import React, { useContext } from 'react'
 import { Context } from '../../../context.js'
 import { Link } from 'react-router-dom'
 import './team.css'
+import Player from './Player.js'
 
 export default function Team({ info }) {
-  console.log('----Team')
+  console.log('----Team:', info)
   const { sendRequest, makeUrl } = useContext(Context)
 
-  if (info === undefined || !info) return null
-
-  if (!info.activeCompetitions) info.activeCompetitions = []
+  if (info === undefined) return null
 
   return (
     <div className="content">
@@ -52,18 +51,33 @@ export default function Team({ info }) {
             {info.activeCompetitions.map((competition) => (
               <Link
                 to={`/competitions/${competition.id}`}
-                className="team__competition-item"
+                key={competition.id}
+                className="team__competition-item interactive"
                 onClick={() =>
                   sendRequest(makeUrl(['competitions', competition.id]))
                 }
               >
-                <div>{competition.name}</div>
-                <div>Area: {competition.area.name}</div>
-                <div>Plan: {competition.plan}</div>
+                <div className="team__competition-item__name">
+                  {competition.name}
+                </div>
+                <div className="team__competition-item__info">
+                  Area: {competition.area.name}
+                </div>
+                <div className="team__competition-item__info">
+                  Plan: {competition.plan}
+                </div>
               </Link>
             ))}
           </div>
-          <div className="team__squad">squad</div>
+          <hr />
+          <div>
+            <b>Squad:</b>
+          </div>
+          <div className="team__squad">
+            {info.squad.map((player) => (
+              <Player player={player} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

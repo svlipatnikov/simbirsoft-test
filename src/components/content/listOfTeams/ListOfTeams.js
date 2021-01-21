@@ -5,7 +5,7 @@ import './listOfTeams.css'
 
 export default function ListOfTeams({ count, teams }) {
   console.log('---ListOfTeams')
-  const { sendRequest, addPath } = useContext(Context)
+  const { sendRequest, makeUrl } = useContext(Context)
   let { url } = useRouteMatch()
 
   if (!count || !teams) {
@@ -19,10 +19,10 @@ export default function ListOfTeams({ count, teams }) {
 
       {teams.map((team) => (
         <Link
-          to={`${url}/${team.id}`}
+          to={`/teams/${team.id}`}
           key={team.id}
           className="content-item team-item"
-          onClick={() => sendRequest(addPath(team.id.toString()))}
+          onClick={() => sendRequest(makeUrl(['teams', team.id]))}
         >
           <div className="content-item__inner interactive">
             <div className="team-item__title">
