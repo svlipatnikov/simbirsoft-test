@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Context } from '../../../context.js'
 import { Link } from 'react-router-dom'
 import './team.css'
-import Player from './Player.js'
 
 export default function Team({ info }) {
   console.log('----Team:', info)
@@ -19,7 +18,13 @@ export default function Team({ info }) {
             <div className="team__info">
               <div className="team__name">{info.name}</div>
               <div>
-                <b>Area:</b> {info.area.name}
+                <b>Area: </b>
+                <Link
+                  to={`/areas/${info.area.id}`}
+                  onClick={() => sendRequest(makeUrl(['areas', info.area.id]))}
+                >
+                  {info.area.name}
+                </Link>
               </div>
               <div>
                 <b>Address:</b> {info.address}
@@ -44,38 +49,58 @@ export default function Team({ info }) {
               </div>
             </div>
           </div>
-          <div>
-            <b>Active Competitions:</b>
-          </div>
-          <div className="team__competitions">
+          <div>Active Competitions:</div>
+          <div className="team__active-competitions">
             {info.activeCompetitions.map((competition) => (
               <Link
                 to={`/competitions/${competition.id}`}
                 key={competition.id}
-                className="team__competition-item interactive"
+                className="team__competition interactive"
                 onClick={() =>
                   sendRequest(makeUrl(['competitions', competition.id]))
                 }
               >
-                <div className="team__competition-item__name">
+                <div className="team__competition__name">
                   {competition.name}
                 </div>
-                <div className="team__competition-item__info">
+                <div className="team__competition__info">
                   Area: {competition.area.name}
                 </div>
-                <div className="team__competition-item__info">
+                <div className="team__competition__info">
                   Plan: {competition.plan}
                 </div>
               </Link>
             ))}
           </div>
           <hr />
-          <div>
-            <b>Squad:</b>
-          </div>
+          <div>Squad:</div>
           <div className="team__squad">
             {info.squad.map((player) => (
-              <Player player={player} />
+              <Link
+                to={`/players/${player.id}`}
+                key={player.id}
+                className="team__player interactive"
+                onClick={() => sendRequest(makeUrl(['players', player.id]))}
+              >
+                <div className="team__player-name">{player.name}</div>
+                <div className="team__player-info">
+                  Position: {player.position}
+                </div>
+                <div className="team__player-info">
+                  Date of birth:{' '}
+                  {new Date(player.dateOfBirth).toLocaleDateString()}
+                </div>
+                <div className="team__player-info">
+                  Country of birth: {player.countryOfBirth}
+                </div>
+                <div className="team__player-info">
+                  Nationality: {player.nationality}
+                </div>
+                <div className="team__player-info">
+                  Shirt number: {player.shirtNumber}
+                </div>
+                <div className="team__player-info">Role: {player.role}</div>
+              </Link>
             ))}
           </div>
         </div>
