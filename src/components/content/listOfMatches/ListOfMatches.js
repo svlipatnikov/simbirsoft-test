@@ -19,7 +19,7 @@ export default function ListOfMatches({ count, matches }) {
         return (
           <div className="content-item match__item" key={match.id}>
             <div className="content-item__inner">
-              <div className="team__header">
+              <div className="match__header">
                 <div className="match__teams">{match.homeTeam.name}</div>
                 <div className="match__score">
                   {match.score.fullTime.homeTeam}
@@ -31,7 +31,7 @@ export default function ListOfMatches({ count, matches }) {
                 </div>
               </div>
 
-              <div className="team__header">
+              <div className="match__header">
                 <div>
                   Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
                 </div>
