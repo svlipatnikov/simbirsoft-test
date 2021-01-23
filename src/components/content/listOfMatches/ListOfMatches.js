@@ -1,59 +1,52 @@
 import React, { useContext } from 'react'
 import './listOfMatches.css'
-import '../content.css'
 import { Context } from '../../../context.js'
 
-export default function ListOfMatches({ count, matches }) {
+export default function ListOfMatches({ matches }) {
   const { search } = useContext(Context)
   console.log('---ListOfMatches search:', search)
 
-  if (!count || !matches) {
-    return null
-  }
+  if (!matches) return null
 
   return (
-    <div className="content">
-      <div className="content__count">Найдено: {count}</div>
-
-      {matches.map((match) => {
-        return (
-          <div className="content-item match__item" key={match.id}>
-            <div className="content-item__inner">
-              <div className="match__header">
-                <div className="match__teams">{match.homeTeam.name}</div>
-                <div className="match__score">
-                  {match.score.fullTime.homeTeam}
-                  {match.status !== 'FINISHED' ? ' vs ' : ' : '}
-                  {match.score.fullTime.awayTeam}
-                </div>
-                <div className="match__teams" style={{ textAlign: 'right' }}>
-                  {match.awayTeam.name}
-                </div>
+    <>
+      {matches.map((match) => (
+        <div className="content-item match__item" key={match.id}>
+          <div className="content-item__inner">
+            <div className="match__header">
+              <div className="match__teams">{match.homeTeam.name}</div>
+              <div className="match__score">
+                {match.score.fullTime.homeTeam}
+                {match.status !== 'FINISHED' ? ' vs ' : ' : '}
+                {match.score.fullTime.awayTeam}
               </div>
-
-              <div className="match__header">
-                <div>
-                  Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
-                </div>
-                <div>
-                  Status: <b>{match.status}</b>
-                </div>
-              </div>
-
-              <div className="match__info">
-                <div>
-                  {match.competition !== undefined
-                    ? 'Competition: ' + match.competition.name
-                    : null}
-                </div>
-                <div>Stage: {match.stage}</div>
-                <div>Group: {match.group}</div>
+              <div className="match__teams" style={{ textAlign: 'right' }}>
+                {match.awayTeam.name}
               </div>
             </div>
+
+            <div className="match__header">
+              <div>
+                Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
+              </div>
+              <div>
+                Status: <b>{match.status}</b>
+              </div>
+            </div>
+
+            <div className="match__info">
+              <div>
+                {match.competition !== undefined
+                  ? 'Competition: ' + match.competition.name
+                  : null}
+              </div>
+              <div>Stage: {match.stage}</div>
+              <div>Group: {match.group}</div>
+            </div>
           </div>
-        )
-      })}
-    </div>
+        </div>
+      ))}
+    </>
   )
 }
 

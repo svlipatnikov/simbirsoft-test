@@ -1,22 +1,16 @@
 import React, { useContext } from 'react'
 import { Context } from '../../../context.js'
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './listOfTeams.css'
 
-export default function ListOfTeams({ count, teams }) {
+export default function ListOfTeams({ teams }) {
   console.log('---ListOfTeams')
   const { sendRequest, makeUrl } = useContext(Context)
-  let { url } = useRouteMatch()
 
-  if (!count || !teams) {
-    count = 0
-    teams = []
-  }
+  if (!teams) teams = []
 
   return (
-    <div className="content">
-      <div className="content__count">Найдено: {count}</div>
-
+    <>
       {teams.map((team) => (
         <Link
           to={`/teams/${team.id}`}
@@ -75,7 +69,7 @@ export default function ListOfTeams({ count, teams }) {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   )
 }
 

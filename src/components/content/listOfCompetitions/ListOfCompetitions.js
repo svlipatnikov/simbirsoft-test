@@ -3,20 +3,15 @@ import { Context } from '../../../context.js'
 import { Link, useRouteMatch } from 'react-router-dom'
 import './listOfCompetitions.css'
 
-export default function ListOfCompetitions({ data }) {
+export default function ListOfCompetitions({ competitions }) {
   const { sendRequest, addPath } = useContext(Context)
   let { url } = useRouteMatch()
 
-  // проверка на undefined
-  if (!data.count || !data.competitions) {
-    return null
-  }
+  if (!competitions) return null
 
   return (
-    <div className="content">
-      <div className="content__count">Найдено: {data.count}</div>
-
-      {data.competitions.map((competition) => (
+    <>
+      {competitions.map((competition) => (
         <Link
           to={`${url}/${competition.id}`}
           key={competition.id}
@@ -34,6 +29,6 @@ export default function ListOfCompetitions({ data }) {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   )
 }

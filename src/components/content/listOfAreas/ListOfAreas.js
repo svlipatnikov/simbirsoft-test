@@ -3,19 +3,14 @@ import { Link } from 'react-router-dom'
 import { Context } from '../../../context.js'
 import './listOfAreas.css'
 
-export default function ListOfAreas({ count, areas }) {
+export default function ListOfAreas({ areas }) {
   console.log('---ListOfAreas')
   const { sendRequest, makeUrl } = useContext(Context)
 
-  if (!count || !areas) {
-    count = 0
-    areas = []
-  }
+  if (!areas) areas = []
 
   return (
-    <div className="content">
-      <div className="content__count">Найдено: {count}</div>
-
+    <>
       {areas.map((area) => (
         <Link
           to={`/areas/${area.id}`}
@@ -32,7 +27,7 @@ export default function ListOfAreas({ count, areas }) {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   )
 }
 

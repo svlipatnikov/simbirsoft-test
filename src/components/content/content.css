@@ -11,8 +11,18 @@
   flex-wrap: wrap;
 }
 
-* {
-  box-sizing: border-box;
+.content__message {
+  width: 100%;
+  padding: 5px;
+
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .content__count {
@@ -50,18 +60,4 @@
 
 .interactive:hover {
   background-color: #eedfb5;
-}
-
-.content__message {
-  width: 100%;
-  padding: 5px;
-
-  font-size: 1.2rem;
-  font-weight: 400;
-  font-style: italic;
-  line-height: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  text-align: center;
 }

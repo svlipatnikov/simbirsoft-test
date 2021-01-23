@@ -73,6 +73,15 @@ export default function Team({ info }) {
             ))}
           </div>
           <hr />
+          <div>Matches:</div>
+          <Link
+            to={`${info.id}/matches`}
+            className="team__competition interactive"
+            onClick={() => sendRequest(makeUrl(['teams', info.id, 'matches']))}
+          >
+            Click to show list of matches
+          </Link>
+          <hr />
           <div>Squad:</div>
           <div className="team__squad">
             {info.squad.map((player) => (
