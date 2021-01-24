@@ -3,18 +3,24 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
 import NavMenu from '../navMenu/NavMenu.js'
+import Search from '../search/Search.js'
 import './dataBlock.css'
 import { Context } from '../../context.js'
-import Search from '../search/Search.js'
 
 export default function DataBlock({ path }) {
-  const [jsonData, setJsonData] = useState(undefined)
+  const [data, setData] = useState({
+    jsonData: undefined,
+    status: 'noData',
+    type: '',
+  })
   const [search, setSearch] = useState('')
 
   function sendRequest(url) {
     console.log('sendRequest:', url.toString())
-    // очистка контента, ожидание нового
-    setJsonData({ message: 'Waiting server response...' })
+    setData({
+      jsonData: { message: 'Waiting server response...' },
+      status: 'sendRequest',
+    })
     // отправка запроса на сервер
     return fetch(url.toString(), {
       headers: { 'X-Auth-Token': '8c4f30d4f4354979ac043901839c7664' },
@@ -22,8 +28,8 @@ export default function DataBlock({ path }) {
       type: 'GET',
     })
       .then((response) => response.json())
-      .then((data) => setJsonData(data))
-      .catch((err) => setJsonData({ message: err.toString() }))
+      .then((data) => setData({ jsonData: data, status: 'ok' }))
+      .catch((err) => setData({ jsonData: { message: err }, status: 'err' }))
   }
 
   function addPath(pathAdd) {
@@ -60,10 +66,10 @@ export default function DataBlock({ path }) {
   }, [])
 
   //очистка данных при смене url
-  useEffect(() => {
-    console.log('!!!!Clear jsonData')
-    setJsonData(undefined)
-  }, [window.location.pathname])
+  // useEffect(() => {
+  //   console.log('!!!!Clear jsonData')
+  //   setData({ jsonData: undefined, status: 'sendRequest' })
+  // }, [window.location.pathname])
 
   return (
     <Context.Provider value={{ sendRequest, addPath, makeUrl, search }}>
@@ -75,7 +81,9 @@ export default function DataBlock({ path }) {
               <Filters />
               <Search setSearch={setSearch} />
             </div>
-            <Content data={jsonData} />
+            <div className="content">
+              <Content data={data} />
+            </div>
           </Route>
         </div>
       </BrowserRouter>

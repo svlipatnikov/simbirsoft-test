@@ -1,53 +1,14 @@
 .competition {
   width: 100%;
-}
-
-.competition__inner {
   height: max-content;
 }
 
-.competition__name {
-  font-size: 1rem;
-  font-weight: 700;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.competition__info {
-  font-size: 0.7rem;
-  font-weight: 400;
-  line-height: 1.4rem;
-
+.competition__button-block {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.competition__buttons-block {
-  display: flex;
-  justify-content: space-between;
-  /* padding: 5px; */
 }
 
 .competition__button {
-  border: none;
-  border-radius: 5px;
-  min-width: max-content;
-  width: 30%;
-  height: 30px;
-  background: #92692c;
-  text-align: center;
-  align-items: center;
-  padding: 6px 10px;
-
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1rem;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-}
-
-.competition__button:hover {
-  background: #af884c;
+  width: 100%;
 }

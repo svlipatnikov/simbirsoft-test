@@ -15,3 +15,33 @@ code {
 * {
   box-sizing: border-box;
 }
+
+.button {
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  background: #d4c292;
+  border-radius: 5px;
+
+  color: #000000;
+}
+
+.button__name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.button__info {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.button__info-small {
+  font-size: 0.6rem;
+  font-weight: 400;
+}
+
+.button:hover {
+  background: #c0ad7d;
+}

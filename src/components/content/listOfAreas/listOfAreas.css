@@ -1,15 +1,15 @@
-.area__item {
+.area-item {
   width: 33.3333%;
 }
 
-.area__header {
+.area-item__header {
   width: 100%;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.area__info {
+.area-item__info {
   font-size: 0.7rem;
   font-weight: 400;
 }

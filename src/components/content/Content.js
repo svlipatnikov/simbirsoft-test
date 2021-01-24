@@ -11,73 +11,63 @@ import './content.css'
 export default function Content({ data }) {
   console.log('--Content | data:', data)
 
-  if (data === undefined) return null
-
-  if (data.message) {
-    return (
-      <div className="content">
-        <div className="content__message">{data.message}</div>
-      </div>
-    )
-  }
+  if (data.status === undefined || !data.jsonData) return null
+  else if (data.jsonData.message)
+    return <div className="content__message">{data.jsonData.message}</div>
 
   return (
-    <div className="content">
-      <Switch>
-        <Route path={`/competitions/:id/teams`}>
-          <ListOfTeams teams={data.teams} />
-        </Route>
+    <Switch>
+      <Route path={`/competitions/:id/teams`}>
+        <ListOfTeams teams={data.jsonData.teams} />
+      </Route>
 
-        {/* <Route path={`/competitions/:id/standings`}>
+      {/* <Route path={`/competitions/:id/standings`}>
         <ListOfTeams count={data.count} teams={data.teams} />
       </Route> */}
 
-        <Route path={`/competitions/:id/matches`}>
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfMatches matches={data.matches} />
-        </Route>
+      <Route path={`/competitions/:id/matches`}>
+        <div className="content__count">Найдено: {data.jsonData.count}</div>
+        <ListOfMatches matches={data.jsonData.matches} />
+      </Route>
 
-        <Route exact path={`/competitions/:id`}>
-          <Competition info={data} />
-        </Route>
+      <Route exact path={`/competitions/:id`}>
+        <Competition info={data.jsonData} />
+      </Route>
 
-        <Route exact path="/competitions">
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfCompetitions competitions={data.competitions} />
-        </Route>
+      <Route exact path="/competitions">
+        <div className="content__count">Найдено: {data.count}</div>
+        <ListOfCompetitions competitions={data.jsonData.competitions} />
+      </Route>
 
-        <Route path="/teams/:id/matches">
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfMatches matches={data.matches} />
-        </Route>
+      <Route path="/teams/:id/matches">
+        <div className="content__count">Найдено: {data.jsonData.count}</div>
+        <ListOfMatches matches={data.jsonData.matches} />
+      </Route>
 
-        <Route path="/teams/:id">
-          <Team info={data} />
-        </Route>
+      <Route path="/teams/:id">
+        <Team info={data.jsonData} />
+      </Route>
 
-        <Route exact path="/teams">
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfTeams teams={data.teams} />
-        </Route>
+      <Route exact path="/teams">
+        <div className="content__count">Найдено: {data.jsonData.count}</div>
+        <ListOfTeams teams={data.jsonData.teams} />
+      </Route>
 
-        <Route exact path="/matches">
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfMatches matches={data.matches} />
-        </Route>
+      <Route exact path="/matches">
+        <div className="content__count">Найдено: {data.jsonData.count}</div>
+        <ListOfMatches matches={data.jsonData.matches} />
+      </Route>
 
-        <Route exact path="/areas">
-          <div className="content__count">Найдено: {data.count}</div>
-          <ListOfAreas areas={data.areas} />
-        </Route>
+      <Route exact path="/areas">
+        <div className="content__count">Найдено: {data.jsonData.count}</div>
+        <ListOfAreas areas={data.jsonData.areas} />
+      </Route>
 
-        <Route>
-          <div className="content">
-            <pre className="json-text">
-              {JSON.stringify(data, null, '    ')}
-            </pre>
-          </div>
-        </Route>
-      </Switch>
-    </div>
+      <Route>
+        <div className="content">
+          <pre className="json-text">{JSON.stringify(data, null, '    ')}</pre>
+        </div>
+      </Route>
+    </Switch>
   )
 }

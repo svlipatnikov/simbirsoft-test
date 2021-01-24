@@ -15,39 +15,37 @@ export default function Competition({ info }) {
   }
 
   return (
-    <div className="content">
-      <div className="competition">
-        <div className="content-item__inner competition__inner">
-          <div className="competition__name">{info.name}</div>
-          <div className="competition__info">
-            <div>Code: {info.code}</div>
-            <div>Area: {info.area.name}</div>
-            <div>Plan: {info.plan}</div>
-          </div>
-          <div className="competition__buttons-block">
-            <Link
-              to={`${url}/teams`}
-              className="competition__button"
-              onClick={() => sendRequest(addPath('teams'))}
-            >
-              Teams
-            </Link>
+    <div className="content-item competition">
+      <div className="content-item__inner">
+        <div className="content-item__name">{info.name}</div>
+        <div className="content-item__info">
+          <div>Code: {info.code}</div>
+          <div>Area: {info.area.name}</div>
+          <div>Plan: {info.plan}</div>
+        </div>
+        <div className="competition__button-block">
+          <Link
+            to={`${url}/teams`}
+            className="button competition__button"
+            onClick={() => sendRequest(addPath('teams'))}
+          >
+            <div className="button__name">Teams</div>
+          </Link>
 
-            <Link
-              to={`${url}/standings`}
-              className="competition__button"
-              onClick={() => sendRequest(addPath('standings'))}
-            >
-              Standings
-            </Link>
-            <Link
-              to={`${url}/matches`}
-              className="competition__button"
-              onClick={() => sendRequest(addPath('matches'))}
-            >
-              Matches
-            </Link>
-          </div>
+          <Link
+            to={`${url}/standings`}
+            className="button competition__button"
+            onClick={() => sendRequest(addPath('standings'))}
+          >
+            <div className="button__name">Standings</div>
+          </Link>
+          <Link
+            to={`${url}/matches`}
+            className="button competition__button"
+            onClick={() => sendRequest(addPath('matches'))}
+          >
+            <div className="button__name">Matches</div>
+          </Link>
         </div>
       </div>
     </div>

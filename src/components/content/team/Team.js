@@ -10,108 +10,101 @@ export default function Team({ info }) {
   if (info === undefined) return null
 
   return (
-    <div className="content">
-      <div className="team">
-        <div className="content-item__inner team__inner">
-          <div className="team__header">
-            <img className="team__img" src={info.crestUrl} />
-            <div className="team__info">
-              <div className="team__name">{info.name}</div>
-              <div>
-                <b>Area: </b>
-                <Link
-                  to={`/areas/${info.area.id}`}
-                  onClick={() => sendRequest(makeUrl(['areas', info.area.id]))}
-                >
-                  {info.area.name}
-                </Link>
-              </div>
-              <div>
-                <b>Address:</b> {info.address}
-              </div>
-              <div>
-                <b>Phone:</b> {info.phone}
-              </div>
-              <div>
-                <b>Website:</b> {info.website}
-              </div>
-              <div>
-                <b>Email:</b> {info.email}
-              </div>
-              <div>
-                <b>Founded:</b> {info.founded}
-              </div>
-              <div>
-                <b>Club colors:</b> {info.clubColors}
-              </div>
-              <div>
-                <b>Venue:</b> {info.venue}
-              </div>
+    <div className="content-item team">
+      <div className="content-item__inner">
+        <div className="team__header">
+          <img className="team__img" src={info.crestUrl} />
+          <div className="content-item__info">
+            <div className="content-item__name">{info.name}</div>
+            <div>
+              <b>Area: </b>
+              <Link
+                to={`/areas/${info.area.id}`}
+                onClick={() => sendRequest(makeUrl(['areas', info.area.id]))}
+              >
+                {info.area.name}
+              </Link>
+            </div>
+            <div>
+              <b>Address:</b> {info.address}
+            </div>
+            <div>
+              <b>Phone:</b> {info.phone}
+            </div>
+            <div>
+              <b>Website:</b> {info.website}
+            </div>
+            <div>
+              <b>Email:</b> {info.email}
+            </div>
+            <div>
+              <b>Founded:</b> {info.founded}
+            </div>
+            <div>
+              <b>Club colors:</b> {info.clubColors}
+            </div>
+            <div>
+              <b>Venue:</b> {info.venue}
             </div>
           </div>
-          <div>Active Competitions:</div>
-          <div className="team__active-competitions">
-            {info.activeCompetitions.map((competition) => (
-              <Link
-                to={`/competitions/${competition.id}`}
-                key={competition.id}
-                className="team__competition interactive"
-                onClick={() =>
-                  sendRequest(makeUrl(['competitions', competition.id]))
-                }
-              >
-                <div className="team__competition__name">
-                  {competition.name}
-                </div>
-                <div className="team__competition__info">
-                  Area: {competition.area.name}
-                </div>
-                <div className="team__competition__info">
-                  Plan: {competition.plan}
-                </div>
-              </Link>
-            ))}
-          </div>
-          <hr />
-          <div>Matches:</div>
-          <Link
-            to={`${info.id}/matches`}
-            className="team__competition interactive"
-            onClick={() => sendRequest(makeUrl(['teams', info.id, 'matches']))}
-          >
-            Click to show list of matches
-          </Link>
-          <hr />
-          <div>Squad:</div>
-          <div className="team__squad">
-            {info.squad.map((player) => (
-              <Link
-                to={`/players/${player.id}`}
-                key={player.id}
-                className="team__player interactive"
-                onClick={() => sendRequest(makeUrl(['players', player.id]))}
-              >
-                <div className="team__player-name">{player.name}</div>
-                <div className="team__player-info">
-                  Position: {player.position}
-                </div>
-                <div className="team__player-info">
-                  Date of birth:{' '}
-                  {new Date(player.dateOfBirth).toLocaleDateString()}
-                </div>
-                <div className="team__player-info">
-                  Country of birth: {player.countryOfBirth}
-                </div>
-                <div className="team__player-info">
-                  Nationality: {player.nationality}
-                </div>
-                <div className="team__player-info">
-                  Shirt number: {player.shirtNumber}
-                </div>
-                <div className="team__player-info">Role: {player.role}</div>
-              </Link>
-            ))}
-          </div>
+        </div>
+        <hr />
+        <div>Active Competitions:</div>
+        <div className="team__active-competitions">
+          {info.activeCompetitions.map((competition) => (
+            <Link
+              to={`/competitions/${competition.id}`}
+              key={competition.id}
+              className="button team__competition"
+              onClick={() =>
+                sendRequest(makeUrl(['competitions', competition.id]))
+              }
+            >
+              <div className="button__name">{competition.name}</div>
+              <div className="button__info">Area: {competition.area.name}</div>
+              <div className="button__info">Plan: {competition.plan}</div>
+            </Link>
+          ))}
+        </div>
+        <hr />
+        <div>Matches:</div>
+        <Link
+          to={`${info.id}/matches`}
+          className="button"
+          onClick={() => sendRequest(makeUrl(['teams', info.id, 'matches']))}
+        >
+          <div className="button__name">Click to show list of matches</div>
+        </Link>
+        <hr />
+        <div>Squad:</div>
+        <div className="team__squad">
+          {info.squad.map((player) => (
+            <Link
+              to={`/players/${player.id}`}
+              key={player.id}
+              className="button team__player"
+              onClick={() => sendRequest(makeUrl(['players', player.id]))}
+            >
+              <div className="button__name">{player.name}</div>
+              <div className="button__info-small">
+                Position: {player.position}
+              </div>
+              <div className="button__info-small">
+                Date of birth:{' '}
+                {new Date(player.dateOfBirth).toLocaleDateString()}
+              </div>
+              <div className="button__info-small">
+                Country of birth: {player.countryOfBirth}
+              </div>
+              <div className="button__info-small">
+                Nationality: {player.nationality}
+              </div>
+              <div className="button__info-small">
+                Shirt number: {player.shirtNumber}
+              </div>
+              <div className="button__info-small">Role: {player.role}</div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

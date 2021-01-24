@@ -7,7 +7,7 @@ export default function ListOfAreas({ areas }) {
   console.log('---ListOfAreas')
   const { sendRequest, makeUrl } = useContext(Context)
 
-  if (!areas) areas = []
+  if (areas === undefined) return null
 
   return (
     <>
@@ -15,12 +15,12 @@ export default function ListOfAreas({ areas }) {
         <Link
           to={`/areas/${area.id}`}
           onClick={() => sendRequest(makeUrl(['areas', area.id]))}
-          className="content-item area__item"
+          className="content-item area-item"
           key={area.id}
         >
           <div className="content-item__inner interactive">
-            <div className="area__header">{area.name}</div>
-            <div className="area__info">
+            <div className="area-item__header">{area.name}</div>
+            <div className="area-item__info">
               <div>CountryCode: {area.countryCode}</div>
               <div>ParentArea: {area.parentArea}</div>
             </div>

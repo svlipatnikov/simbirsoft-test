@@ -1,8 +1,5 @@
 .team {
   width: 100%;
-}
-
-.team__inner {
   height: max-content;
 }
 
@@ -16,19 +13,6 @@
   margin: 10px 20px;
 }
 
-.team__name {
-  font-size: 1.3rem;
-  font-weight: 700;
-  padding: 10px 0;
-  text-transform: uppercase;
-}
-
-.team__info {
-  font-size: 0.8rem;
-  font-weight: 400;
-  line-height: 1rem;
-}
-
 .team__active-competitions {
   display: flex;
   justify-content: space-between;
@@ -37,54 +21,16 @@
 
 .team__competition {
   width: 100%;
-  padding: 5px;
-  margin: 5px;
-  text-decoration: none;
-  background-color: #ccb679;
-  border-radius: 5px;
-
-  color: #000000;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.team__competition__name {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.team__competition__info {
-  font-size: 0.8rem;
-  font-weight: 400;
+.team__player {
+  width: 31%;
 }
 
 .team__squad {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-}
-
-.team__player {
-  padding: 5px;
-  width: 32%;
-  margin: 3px;
-
-  background-color: #ccb679;
-  border-radius: 5px;
-  margin-bottom: 5px;
-
-  color: #000000;
-  text-decoration: none;
-}
-
-.team__player-name {
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.team__player-info {
-  font-size: 0.6rem;
-  font-weight: 400;
 }

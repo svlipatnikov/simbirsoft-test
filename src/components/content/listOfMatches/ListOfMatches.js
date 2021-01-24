@@ -4,14 +4,14 @@ import { Context } from '../../../context.js'
 
 export default function ListOfMatches({ matches }) {
   const { search } = useContext(Context)
-  console.log('---ListOfMatches search:', search)
+  console.log('---ListOfMatches matches:', matches)
 
   if (!matches) return null
 
   return (
     <>
       {matches.map((match) => (
-        <div className="content-item match__item" key={match.id}>
+        <div className="content-item match" key={match.id}>
           <div className="content-item__inner">
             <div className="match__header">
               <div className="match__teams">{match.homeTeam.name}</div>
