@@ -18,13 +18,13 @@ export default function ListOfTeams({ teams }) {
           className="content-item team-item"
           onClick={() => sendRequest(makeUrl(['teams', team.id]))}
         >
-          <div className="content-item__inner interactive">
+          <div className="content-item__inner content-item__link">
             <div className="team-item__title">
               <img className="team-item__img" src={team.crestUrl} />
-              <div className="team-item__name">{team.shortName}</div>
+              <div className="content-item__name">{team.shortName}</div>
             </div>
 
-            <div className="team-item__info">
+            <div className="content-item__info content-item__info--small">
               <div>
                 <b>Name: </b>
                 {team.name}

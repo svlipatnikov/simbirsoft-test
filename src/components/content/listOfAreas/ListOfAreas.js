@@ -18,9 +18,11 @@ export default function ListOfAreas({ areas }) {
           className="content-item area-item"
           key={area.id}
         >
-          <div className="content-item__inner interactive">
-            <div className="area-item__header">{area.name}</div>
-            <div className="area-item__info">
+          <div className="content-item__inner content-item__link">
+            <div className="content-item__name content-item__name--small">
+              {area.name}
+            </div>
+            <div className="content-item__info">
               <div>CountryCode: {area.countryCode}</div>
               <div>ParentArea: {area.parentArea}</div>
             </div>

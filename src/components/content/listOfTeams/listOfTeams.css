@@ -4,12 +4,13 @@
 
 .team-item__title {
   display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: 5px;
 }
 
 .team-item__img {
-  height: 30px;
+  height: 40px;
+  padding-right: 10px;
 }
 
 .team-item__name {

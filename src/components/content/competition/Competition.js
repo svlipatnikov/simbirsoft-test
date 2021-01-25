@@ -23,30 +23,35 @@ export default function Competition({ info }) {
           <div>Area: {info.area.name}</div>
           <div>Plan: {info.plan}</div>
         </div>
-        <div className="competition__button-block">
-          <Link
-            to={`${url}/teams`}
-            className="button competition__button"
-            onClick={() => sendRequest(addPath('teams'))}
-          >
-            <div className="button__name">Teams</div>
-          </Link>
+        <Link
+          to={`${url}/teams`}
+          className="button"
+          onClick={() => sendRequest(addPath('teams'))}
+        >
+          <div className="button__name">Teams</div>
+        </Link>
 
-          <Link
-            to={`${url}/standings`}
-            className="button competition__button"
-            onClick={() => sendRequest(addPath('standings'))}
-          >
-            <div className="button__name">Standings</div>
-          </Link>
-          <Link
-            to={`${url}/matches`}
-            className="button competition__button"
-            onClick={() => sendRequest(addPath('matches'))}
-          >
-            <div className="button__name">Matches</div>
-          </Link>
-        </div>
+        <Link
+          to={`${url}/standings`}
+          className="button"
+          onClick={() => sendRequest(addPath('standings'))}
+        >
+          <div className="button__name">Standings</div>
+        </Link>
+        <Link
+          to={`${url}/matches`}
+          className="button"
+          onClick={() => sendRequest(addPath('matches'))}
+        >
+          <div className="button__name">Matches</div>
+        </Link>
+        <Link
+          to={`${url}/scorers`}
+          className="button"
+          onClick={() => sendRequest(addPath('scorers'))}
+        >
+          <div className="button__name">Scorers</div>
+        </Link>
       </div>
     </div>
   )

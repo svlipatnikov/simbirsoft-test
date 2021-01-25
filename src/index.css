@@ -18,28 +18,29 @@ code {
 
 .button {
   padding: 5px;
-  margin: 5px;
   text-decoration: none;
   background: #d4c292;
   border-radius: 5px;
 
-  color: #000000;
+  display: flex;
+  align-items: center;
 }
 
 .button__name {
+  color: #000000;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .button__info {
+  color: #000000;
   font-size: 0.8rem;
   font-weight: 400;
 }
 
-.button__info-small {
+.button__info--small {
   font-size: 0.6rem;
-  font-weight: 400;
 }
 
 .button:hover {

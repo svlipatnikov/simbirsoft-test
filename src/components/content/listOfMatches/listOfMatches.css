@@ -2,40 +2,22 @@
   width: 100%;
 }
 
-.match__info {
-  width: 100%;
-  font-size: 0.8rem;
-  font-weight: 400;
-  padding-top: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-.match__header {
-  width: 100%;
-  padding-bottom: 5px;
+.match__section {
+  padding-bottom: 10px;
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .match__teams {
+  font-size: 1rem !important;
   width: 50%;
-  font-size: 1rem;
-  color: #ffffff;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-  background: rgb(214, 182, 93);
-  border-radius: 5px;
-  padding: 5px;
 }
+
 .match__score {
-  min-width: max-content;
+  min-width: 80px;
   padding: 0 10px;
-  font-size: 1.5rem;
-  color: #ffffff;
-  font-weight: 700;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-align: center;
 }

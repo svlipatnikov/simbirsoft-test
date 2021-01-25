@@ -2,13 +2,3 @@
   width: 100%;
   height: max-content;
 }
-
-.competition__button-block {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.competition__button {
-  width: 100%;
-}

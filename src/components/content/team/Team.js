@@ -86,23 +86,25 @@ export default function Team({ info }) {
               onClick={() => sendRequest(makeUrl(['players', player.id]))}
             >
               <div className="button__name">{player.name}</div>
-              <div className="button__info-small">
+              <div className="button__info button__info--small">
                 Position: {player.position}
               </div>
-              <div className="button__info-small">
+              <div className="button__info button__info--small">
                 Date of birth:{' '}
                 {new Date(player.dateOfBirth).toLocaleDateString()}
               </div>
-              <div className="button__info-small">
+              <div className="button__info button__info--small">
                 Country of birth: {player.countryOfBirth}
               </div>
-              <div className="button__info-small">
+              <div className="button__info button__info--small">
                 Nationality: {player.nationality}
               </div>
-              <div className="button__info-small">
+              <div className="button__info button__info--small">
                 Shirt number: {player.shirtNumber}
               </div>
-              <div className="button__info-small">Role: {player.role}</div>
+              <div className="button__info button__info--small">
+                Role: {player.role}
+              </div>
             </Link>
           ))}
         </div>

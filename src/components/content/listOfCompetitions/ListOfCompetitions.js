@@ -18,13 +18,14 @@ export default function ListOfCompetitions({ competitions }) {
           className="content-item competition-item"
           onClick={() => sendRequest(addPath(competition.id.toString()))}
         >
-          <div className="content-item__inner interactive">
-            <div className="competition-item__name">{competition.name}</div>
-            <div className="competition-item__info">
+          <div className="content-item__inner content-item__link">
+            <div className="content-item__name content-item__name--small">
+              {competition.name}
+            </div>
+            <div className="content-item__info">
               <div>
                 Area: {competition.area.countryCode} ({competition.area.name})
               </div>
-              <div>id: {competition.id}</div>
             </div>
           </div>
         </Link>

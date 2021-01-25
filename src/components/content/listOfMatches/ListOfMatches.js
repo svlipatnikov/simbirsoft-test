@@ -13,19 +13,24 @@ export default function ListOfMatches({ matches }) {
       {matches.map((match) => (
         <div className="content-item match" key={match.id}>
           <div className="content-item__inner">
-            <div className="match__header">
-              <div className="match__teams">{match.homeTeam.name}</div>
+            <div className="match__section">
+              <div className="button button__name match__teams">
+                {match.homeTeam.name}
+              </div>
               <div className="match__score">
                 {match.score.fullTime.homeTeam}
-                {match.status !== 'FINISHED' ? ' vs ' : ' : '}
+                {match.status !== 'FINISHED' ? ' - ' : ' : '}
                 {match.score.fullTime.awayTeam}
               </div>
-              <div className="match__teams" style={{ textAlign: 'right' }}>
+              <div
+                className="button button__name match__teams"
+                style={{ justifyContent: 'flex-end' }}
+              >
                 {match.awayTeam.name}
               </div>
             </div>
 
-            <div className="match__header">
+            <div className="match__section">
               <div>
                 Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
               </div>
@@ -34,7 +39,7 @@ export default function ListOfMatches({ matches }) {
               </div>
             </div>
 
-            <div className="match__info">
+            <div className="content-item__info">
               <div>
                 {match.competition !== undefined
                   ? 'Competition: ' + match.competition.name
