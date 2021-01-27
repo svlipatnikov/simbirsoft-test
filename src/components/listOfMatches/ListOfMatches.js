@@ -1,16 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
+import { sendRequest } from '../const'
 import './listOfMatches.css'
-import { Context } from '../../../context.js'
 
-export default function ListOfMatches({ matches }) {
-  const { search } = useContext(Context)
-  console.log('---ListOfMatches matches:', matches)
+export default function ListOfMatches() {
+  const [data, setData] = useState(undefined)
 
-  if (!matches) return null
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---ListOfMatches---')
+    sendRequest(setData)
+  }, [])
+
+  if (data === undefined || !data.matches) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
 
   return (
     <>
-      {matches.map((match) => (
+      <div className="content__count">Найдено: {data.count}</div>
+      {data.matches.map((match) => (
         <div className="content-item match" key={match.id}>
           <div className="content-item__inner">
             <div className="match__section">

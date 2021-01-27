@@ -28,6 +28,8 @@
 
 .team__player {
   width: 31%;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 }
 
 .team__squad {

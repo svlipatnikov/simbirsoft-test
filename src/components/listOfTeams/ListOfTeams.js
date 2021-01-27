@@ -1,26 +1,37 @@
-import React, { useContext } from 'react'
-import { Context } from '../../../context.js'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { sendRequest } from '../const'
 import './listOfTeams.css'
 
-export default function ListOfTeams({ teams }) {
-  console.log('---ListOfTeams')
-  const { sendRequest, makeUrl } = useContext(Context)
+export default function ListOfTeams() {
+  const [data, setData] = useState(undefined)
 
-  if (!teams) teams = []
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---ListOfTeams---')
+    sendRequest(setData)
+  }, [])
+
+  if (data === undefined || !data.teams) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
 
   return (
     <>
-      {teams.map((team) => (
+      <div className="content__count">Найдено: {data.count}</div>
+      {data.teams.map((team) => (
         <Link
           to={`/teams/${team.id}`}
           key={team.id}
           className="content-item team-item"
-          onClick={() => sendRequest(makeUrl(['teams', team.id]))}
         >
           <div className="content-item__inner content-item__link">
             <div className="team-item__title">
-              <img className="team-item__img" src={team.crestUrl} />
+              <img
+                className="team-item__img"
+                src={team.crestUrl}
+                alt={`${team.name} img`}
+              />
               <div className="content-item__name">{team.shortName}</div>
             </div>
 

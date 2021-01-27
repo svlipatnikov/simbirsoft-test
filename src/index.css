@@ -18,12 +18,17 @@ code {
 
 .button {
   padding: 5px;
+  margin: 5px;
   text-decoration: none;
   background: #d4c292;
   border-radius: 5px;
 
   display: flex;
   align-items: center;
+}
+
+.button--column {
+  flex-direction: column !important;
 }
 
 .button__name {

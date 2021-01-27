@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './search.css'
 
-export default function Search({ setSearch }) {
+export default function Search({ setParams }) {
   // console.log('--Search')
   const [inputText, setInputText] = useState('')
 
@@ -14,7 +14,7 @@ export default function Search({ setSearch }) {
 
   const submit = () => {
     console.log('submit')
-    setSearch(inputText)
+    setParams((curentFilters) => ({ ...curentFilters, search: inputText }))
     setInputText('')
   }
 

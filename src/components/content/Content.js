@@ -1,73 +1,39 @@
-import React, { useEffect } from 'react'
-import { Route, Switch, useParams } from 'react-router-dom'
-import ListOfCompetitions from './listOfCompetitions/ListOfCompetitions'
-import ListOfTeams from './listOfTeams/ListOfTeams'
-import ListOfMatches from './listOfMatches/ListOfMatches'
-import ListOfAreas from './listOfAreas/ListOfAreas'
-import Competition from './competition/Competition'
-import Team from './team/Team'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import ListOfCompetitions from '../listOfCompetitions/ListOfCompetitions'
+import ListOfMatches from '../listOfMatches/ListOfMatches'
+import ListOfTeams from '../listOfTeams/ListOfTeams'
+import ListOfAreas from '../listOfAreas/ListOfAreas'
+import Competition from '../competition/Competition'
+import Team from '../team/Team'
+import Json from '../json/Json'
 import './content.css'
 
-export default function Content({ data }) {
-  console.log('--Content | data:', data)
-
-  if (data.status === undefined || !data.jsonData) return null
-  else if (data.jsonData.message)
-    return <div className="content__message">{data.jsonData.message}</div>
-
+export default function Content() {
   return (
     <Switch>
-      <Route path={`/competitions/:id/teams`}>
-        <ListOfTeams teams={data.jsonData.teams} />
-      </Route>
-
-      {/* <Route path={`/competitions/:id/standings`}>
-        <ListOfTeams count={data.count} teams={data.teams} />
-      </Route> */}
-
-      <Route path={`/competitions/:id/matches`}>
-        <div className="content__count">Найдено: {data.jsonData.count}</div>
-        <ListOfMatches matches={data.jsonData.matches} />
-      </Route>
-
-      <Route exact path={`/competitions/:id`}>
-        <Competition info={data.jsonData} />
-      </Route>
-
-      <Route exact path="/competitions">
-        <div className="content__count">Найдено: {data.count}</div>
-        <ListOfCompetitions competitions={data.jsonData.competitions} />
-      </Route>
-
-      <Route path="/teams/:id/matches">
-        <div className="content__count">Найдено: {data.jsonData.count}</div>
-        <ListOfMatches matches={data.jsonData.matches} />
-      </Route>
-
-      <Route path="/teams/:id">
-        <Team info={data.jsonData} />
-      </Route>
-
-      <Route exact path="/teams">
-        <div className="content__count">Найдено: {data.jsonData.count}</div>
-        <ListOfTeams teams={data.jsonData.teams} />
-      </Route>
-
-      <Route exact path="/matches">
-        <div className="content__count">Найдено: {data.jsonData.count}</div>
-        <ListOfMatches matches={data.jsonData.matches} />
-      </Route>
-
-      <Route exact path="/areas">
-        <div className="content__count">Найдено: {data.jsonData.count}</div>
-        <ListOfAreas areas={data.jsonData.areas} />
-      </Route>
-
-      <Route>
-        <div className="content">
-          <pre className="json-text">{JSON.stringify(data, null, '    ')}</pre>
-        </div>
-      </Route>
+      <Route path="/competitions" component={Competitions} />
+      <Route path="/teams" component={Teams} />
+      <Route exact path="/matches" component={ListOfMatches} />
+      <Route exact path="/areas" component={ListOfAreas} />
+      <Route component={Json} />
     </Switch>
   )
 }
+
+const Competitions = () => (
+  <Switch>
+    <Route exact path="/competitions" component={ListOfCompetitions} />
+    <Route exact path="/competitions/:id" component={Competition} />
+    <Route path="/competitions/:id/teams" component={ListOfTeams} />
+    <Route path="/competitions/:id/matches" component={ListOfMatches} />
+  </Switch>
+)
+
+const Teams = () => (
+  <Switch>
+    <Route exact path="/teams" component={ListOfTeams} />
+    <Route exact path="/teams/:id" component={Team} />
+    <Route path="/teams/:id/matches" component={Competition} />
+  </Switch>
+)

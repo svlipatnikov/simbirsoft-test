@@ -1,42 +1,23 @@
-import React, { useContext } from 'react'
-import './navMenu.css'
-import { Context } from '../../context.js'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import './navMenu.css'
 
 export default function TopMenu() {
-  const { sendRequest, makeUrl } = useContext(Context)
-
   return (
     <div className="nav-menu">
-      <Link
-        to="/competitions"
-        className="nav-menu__item"
-        onClick={() => sendRequest(makeUrl(['competitions']))}
-      >
+      <Link to="/competitions" className="nav-menu__item">
         Competitions
       </Link>
 
-      <Link
-        to="/matches"
-        className="nav-menu__item"
-        onClick={() => sendRequest(makeUrl(['matches']))}
-      >
+      <Link to="/matches" className="nav-menu__item">
         Matches
       </Link>
 
-      <Link
-        to="/teams"
-        className="nav-menu__item"
-        onClick={() => sendRequest(makeUrl(['teams']))}
-      >
+      <Link to="/teams" className="nav-menu__item">
         Teams
       </Link>
 
-      <Link
-        to="/areas"
-        className="nav-menu__item"
-        onClick={() => sendRequest(makeUrl(['areas']))}
-      >
+      <Link to="/areas" className="nav-menu__item">
         Areas
       </Link>
     </div>

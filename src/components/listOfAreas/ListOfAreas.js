@@ -1,20 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Context } from '../../../context.js'
+import { sendRequest } from '../const'
 import './listOfAreas.css'
 
-export default function ListOfAreas({ areas }) {
-  console.log('---ListOfAreas')
-  const { sendRequest, makeUrl } = useContext(Context)
+export default function ListOfAreas() {
+  const [data, setData] = useState(undefined)
 
-  if (areas === undefined) return null
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---ListOfAreas---')
+    sendRequest(setData)
+  }, [])
+
+  if (data === undefined) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
 
   return (
     <>
-      {areas.map((area) => (
+      <div className="content__count">Найдено: {data.count}</div>
+      {data.areas.map((area) => (
         <Link
           to={`/areas/${area.id}`}
-          onClick={() => sendRequest(makeUrl(['areas', area.id]))}
           className="content-item area-item"
           key={area.id}
         >

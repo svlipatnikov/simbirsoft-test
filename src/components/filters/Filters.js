@@ -5,19 +5,19 @@ import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
-import { Context } from '../../context.js'
+// import { Context } from '../../context.js'
+import { sendRequest } from '../const'
 
-export default function Filters() {
+export default function Filters({ setParams }) {
   const [filters, setFilters] = useState([])
-  const { sendRequest } = useContext(Context)
+  // const { sendRequest } = useContext(Context)
 
-  function addFilter(filterArr) {
-    const host = 'https://api.football-data.org/'
-    const newUrl = new URL('/v2' + window.location.pathname, host)
-    filterArr.forEach((p) => newUrl.searchParams.set(p.type, p.value))
-    // console.log('Filtered url:', newUrl.toString())
-    return newUrl
-  }
+  // function addFilter(filterArr) {
+  //   const host = 'https://api.football-data.org/'
+  //   const newUrl = new URL('/v2' + window.location.pathname, host)
+  //   filterArr.forEach((p) => newUrl.searchParams.set(p.type, p.value))
+  //   return newUrl
+  // }
 
   // обнуление массива фильтров при смене контента
   useEffect(() => {
@@ -30,7 +30,8 @@ export default function Filters() {
     // если фильтры не пустые или если удаляем из url старые
     if (filters.length || (!filters.length && window.location.search.length)) {
       console.log('---submit filters:', filters)
-      sendRequest(addFilter(filters))
+      // sendRequest(addFilter(filters))
+      // window.location.reload()
     }
   }
 
@@ -49,6 +50,9 @@ export default function Filters() {
         // если нашли совпадение
         if (res.pathname === window.location.pathname) {
           // проход по найденным для ресурса фильтрам
+          {
+            console.log('!!! res.pathname === window.location.pathname !!!')
+          }
           return res.filters.map((fItem, id) =>
             // цикл по массиву всех возможных фильтров
             allFilters.map((filter) => {

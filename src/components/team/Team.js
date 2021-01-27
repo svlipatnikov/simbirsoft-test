@@ -1,64 +1,67 @@
-import React, { useContext } from 'react'
-import { Context } from '../../../context.js'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { sendRequest } from '../const'
 import './team.css'
 
-export default function Team({ info }) {
-  console.log('----Team:', info)
-  const { sendRequest, makeUrl } = useContext(Context)
+export default function Team() {
+  const [data, setData] = useState(undefined)
 
-  if (info === undefined) return null
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---Team---')
+    sendRequest(setData)
+  }, [])
+
+  if (data === undefined) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
 
   return (
     <div className="content-item team">
       <div className="content-item__inner">
         <div className="team__header">
-          <img className="team__img" src={info.crestUrl} />
+          <img
+            className="team__img"
+            src={data.crestUrl}
+            alt={`${data.name} img`}
+          />
           <div className="content-item__info">
-            <div className="content-item__name">{info.name}</div>
+            <div className="content-item__name">{data.name}</div>
             <div>
               <b>Area: </b>
-              <Link
-                to={`/areas/${info.area.id}`}
-                onClick={() => sendRequest(makeUrl(['areas', info.area.id]))}
-              >
-                {info.area.name}
-              </Link>
+              <Link to={`/areas/${data.area.id}`}>{data.area.name}</Link>
             </div>
             <div>
-              <b>Address:</b> {info.address}
+              <b>Address:</b> {data.address}
             </div>
             <div>
-              <b>Phone:</b> {info.phone}
+              <b>Phone:</b> {data.phone}
             </div>
             <div>
-              <b>Website:</b> {info.website}
+              <b>Website:</b> {data.website}
             </div>
             <div>
-              <b>Email:</b> {info.email}
+              <b>Email:</b> {data.email}
             </div>
             <div>
-              <b>Founded:</b> {info.founded}
+              <b>Founded:</b> {data.founded}
             </div>
             <div>
-              <b>Club colors:</b> {info.clubColors}
+              <b>Club colors:</b> {data.clubColors}
             </div>
             <div>
-              <b>Venue:</b> {info.venue}
+              <b>Venue:</b> {data.venue}
             </div>
           </div>
         </div>
         <hr />
         <div>Active Competitions:</div>
         <div className="team__active-competitions">
-          {info.activeCompetitions.map((competition) => (
+          {data.activeCompetitions.map((competition) => (
             <Link
               to={`/competitions/${competition.id}`}
               key={competition.id}
               className="button team__competition"
-              onClick={() =>
-                sendRequest(makeUrl(['competitions', competition.id]))
-              }
             >
               <div className="button__name">{competition.name}</div>
               <div className="button__info">Area: {competition.area.name}</div>
@@ -68,22 +71,17 @@ export default function Team({ info }) {
         </div>
         <hr />
         <div>Matches:</div>
-        <Link
-          to={`${info.id}/matches`}
-          className="button"
-          onClick={() => sendRequest(makeUrl(['teams', info.id, 'matches']))}
-        >
+        <Link to={`${data.id}/matches`} className="button">
           <div className="button__name">Click to show list of matches</div>
         </Link>
         <hr />
         <div>Squad:</div>
         <div className="team__squad">
-          {info.squad.map((player) => (
+          {data.squad.map((player) => (
             <Link
               to={`/players/${player.id}`}
               key={player.id}
               className="button team__player"
-              onClick={() => sendRequest(makeUrl(['players', player.id]))}
             >
               <div className="button__name">{player.name}</div>
               <div className="button__info button__info--small">

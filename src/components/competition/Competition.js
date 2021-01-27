@@ -1,55 +1,45 @@
-import React, { useContext } from 'react'
-import { Context } from '../../../context.js'
-import { Link, useRouteMatch, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
+import { sendRequest } from '../const'
 import './competition.css'
 
-export default function Competition({ info }) {
-  const { sendRequest, addPath } = useContext(Context)
+export default function Competition() {
+  const [data, setData] = useState(undefined)
+  const { url } = useRouteMatch()
 
-  let { url } = useRouteMatch()
-  console.log('----Competition url:', url)
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---Competition---')
+    sendRequest(setData)
+  }, [])
 
-  // проверка на undefined
-  if (info.name === undefined || info === {}) {
-    return null
-  }
+  if (data === undefined) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
 
   return (
     <div className="content-item competition">
       <div className="content-item__inner">
-        <div className="content-item__name">{info.name}</div>
+        <div className="content-item__name">{data.name}</div>
         <div className="content-item__info">
-          <div>Code: {info.code}</div>
-          <div>Area: {info.area.name}</div>
-          <div>Plan: {info.plan}</div>
+          <div>Code: {data.code}</div>
+          <div>Area: {data.area.name}</div>
+          <div>Plan: {data.plan}</div>
         </div>
-        <Link
-          to={`${url}/teams`}
-          className="button"
-          onClick={() => sendRequest(addPath('teams'))}
-        >
+
+        <Link to={`${url}/teams`} className="button">
           <div className="button__name">Teams</div>
         </Link>
 
-        <Link
-          to={`${url}/standings`}
-          className="button"
-          onClick={() => sendRequest(addPath('standings'))}
-        >
+        <Link to={`${url}/standings`} className="button">
           <div className="button__name">Standings</div>
         </Link>
-        <Link
-          to={`${url}/matches`}
-          className="button"
-          onClick={() => sendRequest(addPath('matches'))}
-        >
+
+        <Link to={`${url}/matches`} className="button">
           <div className="button__name">Matches</div>
         </Link>
-        <Link
-          to={`${url}/scorers`}
-          className="button"
-          onClick={() => sendRequest(addPath('scorers'))}
-        >
+
+        <Link to={`${url}/scorers`} className="button">
           <div className="button__name">Scorers</div>
         </Link>
       </div>
