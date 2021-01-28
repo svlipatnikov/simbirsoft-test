@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { Context } from '../../context.js'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
 import './listOfAreas.css'
 
 export default function ListOfAreas() {
   const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
+
+  useEffect(() => {
+    console.log('---ListOfAreas--- Change params')
+    sendRequest(setData)
+  }, [params])
 
   // Component Did Mount
-  useEffect(() => {
-    console.log('---ListOfAreas---')
-    sendRequest(setData)
-  }, [])
+  // useEffect(() => {
+  //   console.log('---ListOfAreas--- Component Did Mount')
+  //   sendRequest(setData)
+  // }, [])
 
   if (data === undefined) return null
   if (data.message)

@@ -1,44 +1,31 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './filters.css'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
-// import { Context } from '../../context.js'
-import { sendRequest } from '../const'
+import { Context } from '../../context.js'
 
-export default function Filters({ setParams }) {
+export default function Filters() {
+  console.log('---Filters')
   const [filters, setFilters] = useState([])
-  // const { sendRequest } = useContext(Context)
-
-  // function addFilter(filterArr) {
-  //   const host = 'https://api.football-data.org/'
-  //   const newUrl = new URL('/v2' + window.location.pathname, host)
-  //   filterArr.forEach((p) => newUrl.searchParams.set(p.type, p.value))
-  //   return newUrl
-  // }
-
-  // обнуление массива фильтров при смене контента
-  useEffect(() => {
-    console.log('--Filters clear on url:', window.location.pathname)
-    setFilters([])
-  }, [window.location.pathname])
+  const { setParams } = useContext(Context)
 
   // применение фильтров (отправка запроса)
   const submit = () => {
-    // если фильтры не пустые или если удаляем из url старые
-    if (filters.length || (!filters.length && window.location.search.length)) {
+    if (filters || (!filters && window.location.search)) {
       console.log('---submit filters:', filters)
-      // sendRequest(addFilter(filters))
-      // window.location.reload()
+      setParams(filters)
     }
   }
 
   const setFilterParams = () => {
     let curentUrl = new URL(window.location)
-    filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
-    return curentUrl.search
+    if (filters.length) {
+      filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
+      return curentUrl.search
+    } else return ''
   }
 
   return (
@@ -50,9 +37,6 @@ export default function Filters({ setParams }) {
         // если нашли совпадение
         if (res.pathname === window.location.pathname) {
           // проход по найденным для ресурса фильтрам
-          {
-            console.log('!!! res.pathname === window.location.pathname !!!')
-          }
           return res.filters.map((fItem, id) =>
             // цикл по массиву всех возможных фильтров
             allFilters.map((filter) => {
@@ -93,7 +77,7 @@ export default function Filters({ setParams }) {
       <Link
         to={{
           pathname: window.location.pathname,
-          search: filters.length ? setFilterParams() : window.location.search,
+          search: setFilterParams(),
         }}
         className="filters__button"
         onClick={submit}

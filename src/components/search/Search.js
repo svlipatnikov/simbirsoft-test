@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../../context.js'
 import './search.css'
 
-export default function Search({ setParams }) {
+export default function Search() {
   // console.log('--Search')
+  const { setParams } = useContext(Context)
   const [inputText, setInputText] = useState('')
 
   const setSearchParam = () => {
@@ -13,8 +15,12 @@ export default function Search({ setParams }) {
   }
 
   const submit = () => {
-    console.log('submit')
-    setParams((curentFilters) => ({ ...curentFilters, search: inputText }))
+    console.log('submit search')
+    setParams((curentParams) => {
+      return [...curentParams]
+        .filter((p) => p.type == !'search')
+        .concat({ type: 'search', value: inputText })
+    })
     setInputText('')
   }
 

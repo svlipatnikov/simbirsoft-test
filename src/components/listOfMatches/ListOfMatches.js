@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
 import './listOfMatches.css'
+import { Context } from '../../context.js'
 
 export default function ListOfMatches() {
   const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---ListOfMatches---')
+    console.log('---ListOfMatches---  params:', params)
     sendRequest(setData)
-  }, [])
+  }, [params])
 
   if (data === undefined || !data.matches) return null
   if (data.message)
@@ -22,20 +25,23 @@ export default function ListOfMatches() {
         <div className="content-item match" key={match.id}>
           <div className="content-item__inner">
             <div className="match__section">
-              <div className="button button__name match__teams">
-                {match.homeTeam.name}
-              </div>
-              <div className="match__score">
-                {match.score.fullTime.homeTeam}
-                {match.status !== 'FINISHED' ? ' - ' : ' : '}
-                {match.score.fullTime.awayTeam}
-              </div>
-              <div
+              <Link
+                to={`/teams/${match.homeTeam.id}`}
                 className="button button__name match__teams"
-                style={{ justifyContent: 'flex-end' }}
+              >
+                {match.homeTeam.name}
+              </Link>
+              <div className="match__score">
+                <div>{match.score.fullTime.homeTeam}</div>
+                <div>{match.status !== 'FINISHED' ? ' - ' : ' : '}</div>
+                <div>{match.score.fullTime.awayTeam}</div>
+              </div>
+              <Link
+                to={`/teams/${match.awayTeam.id}`}
+                className="button button__name match__teams match__teams--away"
               >
                 {match.awayTeam.name}
-              </div>
+              </Link>
             </div>
 
             <div className="match__section">

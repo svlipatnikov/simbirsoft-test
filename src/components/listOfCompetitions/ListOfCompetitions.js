@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
 import './listOfCompetitions.css'
+import { Context } from '../../context.js'
 
 export default function ListOfCompetitions() {
   const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---ListOfCompetitions---')
+    console.log('---ListOfCompetitions--- params:', params)
     sendRequest(setData)
-  }, [])
+  }, [params])
 
   if (data === undefined) return null
   if (data.message)

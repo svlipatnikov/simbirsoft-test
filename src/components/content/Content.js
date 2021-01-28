@@ -34,6 +34,6 @@ const Teams = () => (
   <Switch>
     <Route exact path="/teams" component={ListOfTeams} />
     <Route exact path="/teams/:id" component={Team} />
-    <Route path="/teams/:id/matches" component={Competition} />
+    <Route path="/teams/:id/matches" component={ListOfMatches} />
   </Switch>
 )

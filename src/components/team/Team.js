@@ -71,16 +71,16 @@ export default function Team() {
         </div>
         <hr />
         <div>Matches:</div>
-        <Link to={`${data.id}/matches`} className="button">
+        <Link to={`/teams/${data.id}/matches`} className="button">
           <div className="button__name">Click to show list of matches</div>
         </Link>
         <hr />
         <div>Squad:</div>
         <div className="team__squad">
-          {data.squad.map((player) => (
+          {data.squad.map((player, num) => (
             <Link
               to={`/players/${player.id}`}
-              key={player.id}
+              key={player.id + num} // c API приходят не уникальные player.id
               className="button team__player"
             >
               <div className="button__name">{player.name}</div>

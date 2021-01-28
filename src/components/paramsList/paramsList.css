@@ -1,0 +1,29 @@
+.params-list {
+  width: 100%;
+  background: rgb(157, 222, 224);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.params-list__item {
+  display: flex;
+  justify-content: space-between;
+  background: #d0e2e1;
+
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  padding: 5px;
+}
+
+.params-list__remove-button {
+  background: #f1baba;
+  padding: 5px;
+  margin: -5px;
+}
+
+.params-list__remove-button:hover {
+  background: #f1dada;
+  cursor: pointer;
+}

@@ -14,10 +14,18 @@
   width: 50%;
 }
 
+.match__teams--away {
+  display: flex;
+  justify-content: flex-end !important;
+  text-align: end;
+}
+
 .match__score {
   min-width: 80px;
   padding: 0 10px;
   font-size: 1.7rem;
   font-weight: 400;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
