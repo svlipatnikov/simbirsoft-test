@@ -1,31 +1,41 @@
-import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import './filters.css'
+import React, { useState, useContext, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
 import { Context } from '../../context.js'
+import './filters.css'
 
 export default function Filters() {
   console.log('---Filters')
   const [filters, setFilters] = useState([])
   const { setParams } = useContext(Context)
 
+  // очистка фильтров при смене контента
+  const { path } = useParams()
+  useEffect(() => {
+    console.log('---Filters clear params')
+    setParams([])
+  }, [path])
+
   // применение фильтров (отправка запроса)
   const submit = () => {
-    if (filters || (!filters && window.location.search)) {
+    if (filters.length) {
       console.log('---submit filters:', filters)
-      setParams(filters)
+      setParams((curentParams) => {
+        return [...curentParams]
+          .filter((p) => p.type === 'search')
+          .concat(filters)
+      })
+      setFilters([])
     }
   }
 
   const setFilterParams = () => {
     let curentUrl = new URL(window.location)
-    if (filters.length) {
-      filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
-      return curentUrl.search
-    } else return ''
+    filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
+    return curentUrl.search
   }
 
   return (
@@ -43,7 +53,7 @@ export default function Filters() {
               if (filter.name === fItem) {
                 // отображене фильтра в зависимости от filter.type
                 switch (filter.type) {
-                  case 'String':
+                  case 'String' || 'Integer':
                     return (
                       <InputFilter
                         filter={filter}
@@ -59,14 +69,6 @@ export default function Filters() {
                         setFilters={setFilters}
                       />
                     )
-                  case 'Integer':
-                    return (
-                      <InputFilter
-                        filter={filter}
-                        key={id}
-                        setFilters={setFilters}
-                      />
-                    )
                 }
               }
             })
@@ -77,7 +79,7 @@ export default function Filters() {
       <Link
         to={{
           pathname: window.location.pathname,
-          search: setFilterParams(),
+          search: filters.length ? setFilterParams() : window.location.search,
         }}
         className="filters__button"
         onClick={submit}

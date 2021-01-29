@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Route } from 'react-router-dom'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
 import NavMenu from '../navMenu/NavMenu.js'
@@ -12,13 +12,6 @@ export default function DataBlock() {
   const [params, setParams] = useState([])
   console.log('!DataBlock params:', params)
 
-  // обнуление массива фильтров при смене контента
-  // const location = useLocation()
-  useEffect(() => {
-    console.log('---DataBlock useLocation')
-    setParams([])
-  }, [])
-
   const removeParam = (pType) => {
     setParams((curentParams) =>
       [...curentParams].filter((p) => p.type !== pType)
@@ -30,11 +23,13 @@ export default function DataBlock() {
       <div className="data-block">
         <NavMenu />
 
-        <div className="filter-search-block">
-          <Filters />
-          <Search />
-          <ParamsList />
-        </div>
+        <Route path="/:path">
+          <div className="filter-search-block">
+            <ParamsList />
+            <Filters />
+            <Search />
+          </div>
+        </Route>
 
         <div className="content">
           <Content />

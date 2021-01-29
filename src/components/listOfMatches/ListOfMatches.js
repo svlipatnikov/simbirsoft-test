@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
-import './listOfMatches.css'
 import { Context } from '../../context.js'
+import './listOfMatches.css'
 
 export default function ListOfMatches() {
   const [data, setData] = useState(undefined)

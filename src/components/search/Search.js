@@ -8,20 +8,25 @@ export default function Search() {
   const { setParams } = useContext(Context)
   const [inputText, setInputText] = useState('')
 
+  const submit = () => {
+    if (inputText) {
+      console.log('submit search')
+      setParams((curentParams) => {
+        return [...curentParams]
+          .filter((p) => p.type !== 'search')
+          .concat({
+            type: 'search',
+            value: inputText.trim().toLocaleLowerCase(),
+          })
+      })
+      setInputText('')
+    }
+  }
+
   const setSearchParam = () => {
     let curentUrl = new URL(window.location)
     curentUrl.searchParams.set('search', inputText)
     return curentUrl.search
-  }
-
-  const submit = () => {
-    console.log('submit search')
-    setParams((curentParams) => {
-      return [...curentParams]
-        .filter((p) => p.type == !'search')
-        .concat({ type: 'search', value: inputText })
-    })
-    setInputText('')
   }
 
   return (

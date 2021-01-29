@@ -11,11 +11,13 @@
 
 .content__count {
   width: 100%;
+  height: max-content;
   padding: 5px;
   text-align: center;
 }
 
 .content-item {
+  /* height: max-content; */
   padding: 5px;
   color: #000000;
   cursor: default;
