@@ -10,9 +10,5 @@ export default function Json() {
     sendRequest(setData)
   }, [])
 
-  return (
-    <div className="content">
-      <pre className="json-text">{JSON.stringify(data, null, '    ')}</pre>
-    </div>
-  )
+  return <pre className="json-text">{JSON.stringify(data, null, '    ')}</pre>
 }

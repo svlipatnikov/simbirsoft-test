@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { sendRequest } from '../const'
+import { Context } from '../../context.js'
 import './competition.css'
 
 export default function Competition() {
   const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
   const { url } = useRouteMatch()
 
   // Component Did Mount
   useEffect(() => {
     console.log('---Competition---')
     sendRequest(setData)
-  }, [])
+  }, [params])
 
+  // Проверка на undefined
   if (data === undefined) return null
   if (data.message)
     return <div className="content__message">{data.message}</div>

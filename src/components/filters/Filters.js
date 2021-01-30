@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
 import InputFilter from './InputFilter.js'
@@ -13,11 +13,11 @@ export default function Filters() {
   const { setParams } = useContext(Context)
 
   // очистка фильтров при смене контента
-  const { path } = useParams()
+  let location = useLocation()
   useEffect(() => {
-    console.log('---Filters clear params')
+    console.log('---Filters clear params on url:', location.pathname)
     setParams([])
-  }, [path])
+  }, [location.pathname])
 
   // применение фильтров (отправка запроса)
   const submit = () => {
@@ -45,14 +45,16 @@ export default function Filters() {
       {/* цикл по массиву ресурсов для поиска доступных фильтров */}
       {resources.map((res) => {
         // если нашли совпадение
-        if (res.pathname === window.location.pathname) {
+        if (res.pathname === window.location.pathname)
           // проход по найденным для ресурса фильтрам
           return res.filters.map((fItem, id) =>
             // цикл по массиву всех возможных фильтров
             allFilters.map((filter) => {
-              if (filter.name === fItem) {
+              if (filter.name === fItem)
                 // отображене фильтра в зависимости от filter.type
                 switch (filter.type) {
+                  default:
+                    return null
                   case 'String' || 'Integer':
                     return (
                       <InputFilter
@@ -61,6 +63,7 @@ export default function Filters() {
                         setFilters={setFilters}
                       />
                     )
+
                   case 'Enum':
                     return (
                       <EnumFilter
@@ -70,10 +73,10 @@ export default function Filters() {
                       />
                     )
                 }
-              }
+              else return null
             })
           )
-        }
+        else return null
       })}
 
       <Link

@@ -14,57 +14,91 @@ export default function ListOfMatches() {
     sendRequest(setData)
   }, [params])
 
+  // Проверка на undefined
   if (data === undefined || !data.matches) return null
   if (data.message)
     return <div className="content__message">{data.message}</div>
 
+  // Получаем значение search
+  let search = ''
+  params.forEach((p) => {
+    if (p.type === 'search') search = p.value.toLocaleLowerCase()
+  })
+
+  // считаем count
+  const searchCount = () => {
+    let count = 0
+    data.matches.forEach((match) => {
+      if (
+        match.homeTeam.name.toLocaleLowerCase().indexOf(search) !== -1 ||
+        match.awayTeam.name.toLocaleLowerCase().indexOf(search) !== -1
+      )
+        ++count
+    })
+    return count
+  }
+
   return (
     <>
-      <div className="content__count">Найдено: {data.count}</div>
-      {data.matches.map((match) => (
-        <div className="content-item match" key={match.id}>
-          <div className="content-item__inner">
-            <div className="match__section">
-              <Link
-                to={`/teams/${match.homeTeam.id}`}
-                className="button button__name match__teams"
-              >
-                {match.homeTeam.name}
-              </Link>
-              <div className="match__score">
-                <div>{match.score.fullTime.homeTeam}</div>
-                <div>{match.status !== 'FINISHED' ? ' - ' : ' : '}</div>
-                <div>{match.score.fullTime.awayTeam}</div>
-              </div>
-              <Link
-                to={`/teams/${match.awayTeam.id}`}
-                className="button button__name match__teams match__teams--away"
-              >
-                {match.awayTeam.name}
-              </Link>
-            </div>
+      <div className="content__count">
+        Найдено: {search ? searchCount() : data.count}
+      </div>
+      {data.matches.map((match) => {
+        if (
+          match.homeTeam.name.toLocaleLowerCase().indexOf(search) !== -1 ||
+          match.awayTeam.name.toLocaleLowerCase().indexOf(search) !== -1
+        )
+          return (
+            <div className="content-item match" key={match.id}>
+              <div className="content-item__inner">
+                <div className="match__section">
+                  <Link
+                    to={`/teams/${match.homeTeam.id}`}
+                    className="button button__name match__teams"
+                  >
+                    {match.homeTeam.name}
+                  </Link>
+                  <div className="match__score">
+                    <div>{match.score.fullTime.homeTeam}</div>
+                    <div>{match.status !== 'FINISHED' ? ' - ' : ' : '}</div>
+                    <div>{match.score.fullTime.awayTeam}</div>
+                  </div>
+                  <Link
+                    to={`/teams/${match.awayTeam.id}`}
+                    className="button button__name match__teams match__teams--away"
+                  >
+                    {match.awayTeam.name}
+                  </Link>
+                </div>
 
-            <div className="match__section">
-              <div>
-                Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
-              </div>
-              <div>
-                Status: <b>{match.status}</b>
-              </div>
-            </div>
+                <div className="match__section">
+                  <div>
+                    Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
+                  </div>
+                  <div>
+                    Status: <b>{match.status}</b>
+                  </div>
+                </div>
 
-            <div className="content-item__info">
-              <div>
-                {match.competition !== undefined
-                  ? 'Competition: ' + match.competition.name
-                  : null}
+                <div className="match__section">
+                  <div className="content-item__info">
+                    <div>
+                      {match.competition !== undefined
+                        ? 'Competition: ' + match.competition.name
+                        : null}
+                    </div>
+                    <div>Stage: {match.stage}</div>
+                    <div>Group: {match.group}</div>
+                  </div>
+                  <Link to={`/matches/${match.id}`} className="match__details">
+                    Details {'>'}
+                  </Link>
+                </div>
               </div>
-              <div>Stage: {match.stage}</div>
-              <div>Group: {match.group}</div>
             </div>
-          </div>
-        </div>
-      ))}
+          )
+        else return null
+      })}
     </>
   )
 }

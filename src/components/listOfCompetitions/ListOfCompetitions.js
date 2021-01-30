@@ -22,22 +22,25 @@ export default function ListOfCompetitions() {
   // Получаем значение search
   let search = ''
   params.forEach((p) => {
-    if (p.type === 'search') search = p.value
+    if (p.type === 'search') search = p.value.toLocaleLowerCase()
   })
 
   // считаем count
-  let count = 0
-  data.competitions.forEach((competition) => {
-    if (competition.name.toLocaleLowerCase().indexOf(search) !== -1) ++count
-  })
+  const searchCount = () => {
+    let count = 0
+    data.competitions.forEach((competition) => {
+      if (competition.name.toLocaleLowerCase().indexOf(search) !== -1) ++count
+    })
+    return count
+  }
 
   return (
     <>
-      {/* <div className="content__count">Найдено: {data.count}</div> */}
-      <div className="content__count">Найдено: {count}</div>
+      <div className="content__count">
+        Найдено: {search ? searchCount() : data.count}
+      </div>
       {data.competitions.map((competition) => {
-        if (competition.name.toLocaleLowerCase().indexOf(search) !== -1) {
-          count++
+        if (competition.name.toLocaleLowerCase().indexOf(search) !== -1)
           return (
             <Link
               to={`competitions/${competition.id}`}
@@ -57,7 +60,7 @@ export default function ListOfCompetitions() {
               </div>
             </Link>
           )
-        }
+        else return null
       })}
     </>
   )

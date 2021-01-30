@@ -16,7 +16,7 @@ export default function Search() {
           .filter((p) => p.type !== 'search')
           .concat({
             type: 'search',
-            value: inputText.trim().toLocaleLowerCase(),
+            value: inputText.trim(),
           })
       })
       setInputText('')

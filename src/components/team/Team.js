@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context.js'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
 import './team.css'
 
 export default function Team() {
   const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
 
   // Component Did Mount
   useEffect(() => {
     console.log('---Team---')
     sendRequest(setData)
-  }, [])
+  }, [params])
 
+  // Проверка на undefined
   if (data === undefined) return null
   if (data.message)
     return <div className="content__message">{data.message}</div>

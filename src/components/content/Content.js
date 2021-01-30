@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import ListOfCompetitions from '../listOfCompetitions/ListOfCompetitions'
 import ListOfMatches from '../listOfMatches/ListOfMatches'
 import ListOfTeams from '../listOfTeams/ListOfTeams'
@@ -12,6 +12,7 @@ import './content.css'
 export default function Content() {
   return (
     <Switch>
+      <Redirect exact from="/" to="/matches" />
       <Route path="/competitions" component={Competitions} />
       <Route path="/teams" component={Teams} />
       <Route exact path="/matches" component={ListOfMatches} />

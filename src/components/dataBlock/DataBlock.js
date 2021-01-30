@@ -23,7 +23,7 @@ export default function DataBlock() {
       <div className="data-block">
         <NavMenu />
 
-        <Route path="/:path">
+        <Route>
           <div className="filter-search-block">
             <ParamsList />
             <Filters />
