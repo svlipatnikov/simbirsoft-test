@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../../context.js'
 
-export default function InputFilter({ filter, setFilters }) {
+export default function TextFilter({ filter, setFilters }) {
   const { params } = useContext(Context)
   const [input, setInput] = useState('')
 

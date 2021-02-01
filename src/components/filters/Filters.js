@@ -2,15 +2,16 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { resources } from '../resources.js'
 import { allFilters } from '../allFilters.js'
-import InputFilter from './InputFilter.js'
+import TextFilter from './TextFilter.js'
 import EnumFilter from './EnumFilter.js'
+import AppliedFilter from './AppliedFilter.js'
 import { Context } from '../../context.js'
 import './filters.css'
 
 export default function Filters() {
-  console.log('---Filters')
   const [filters, setFilters] = useState([])
-  const { setParams } = useContext(Context)
+  const { setParams, params } = useContext(Context)
+  // console.log('---Filters param:', params)
 
   // очистка фильтров при смене контента
   let location = useLocation()
@@ -19,13 +20,17 @@ export default function Filters() {
     setParams([])
   }, [location.pathname])
 
-  // применение фильтров (отправка запроса)
+  // применение фильтров
   const submit = () => {
     if (filters.length) {
-      console.log('---submit filters:', filters)
+      console.log('---Filters submit:', filters)
       setParams((curentParams) => {
         return [...curentParams]
-          .filter((p) => p.type === 'search')
+          .filter((p) => {
+            let i = filters.findIndex((f) => f.type === p.type)
+            if (i === -1) return true
+            else return false
+          })
           .concat(filters)
       })
       setFilters([])
@@ -42,6 +47,14 @@ export default function Filters() {
     <form className="filters">
       <h2 className="filters__header">Filters</h2>
 
+      <div className="params-list">
+        {params.map((param) => (
+          <AppliedFilter key={param.type} param={param} />
+        ))}
+      </div>
+
+      <hr />
+
       {/* цикл по массиву ресурсов для поиска доступных фильтров */}
       {resources.map((res) => {
         // если нашли совпадение
@@ -57,18 +70,17 @@ export default function Filters() {
                     return null
                   case 'String' || 'Integer':
                     return (
-                      <InputFilter
+                      <TextFilter
                         filter={filter}
-                        key={id}
+                        key={filter.id}
                         setFilters={setFilters}
                       />
                     )
-
                   case 'Enum':
                     return (
                       <EnumFilter
                         filter={filter}
-                        key={id}
+                        key={filter.id}
                         setFilters={setFilters}
                       />
                     )
@@ -79,16 +91,32 @@ export default function Filters() {
         else return null
       })}
 
-      <Link
-        to={{
-          pathname: window.location.pathname,
-          search: filters.length ? setFilterParams() : window.location.search,
-        }}
-        className="filters__button"
-        onClick={submit}
-      >
-        Применить
-      </Link>
+      <hr />
+
+      <div className="filters__button-section">
+        <Link
+          to={{
+            pathname: window.location.pathname,
+            search: filters.length ? setFilterParams() : window.location.search,
+          }}
+          className="filters__button-section__button"
+          onClick={submit}
+        >
+          Apply
+        </Link>
+
+        <Link
+          to={{
+            pathname: window.location.pathname,
+          }}
+          className="filters__button-section__button"
+          onClick={() => {
+            if (params.length) setParams([])
+          }}
+        >
+          Clear
+        </Link>
+      </div>
     </form>
   )
 }

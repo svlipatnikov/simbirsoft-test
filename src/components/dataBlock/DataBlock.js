@@ -1,35 +1,25 @@
 import React, { useState } from 'react'
-import { Route } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
+import { Context } from '../../context.js'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
 import NavMenu from '../navMenu/NavMenu.js'
-import Search from '../search/Search.js'
 import './dataBlock.css'
-import { Context } from '../../context.js'
-import ParamsList from '../paramsList/ParamsList.js'
 
 export default function DataBlock() {
   const [params, setParams] = useState([])
-  console.log('!DataBlock params:', params)
-
-  const removeParam = (pType) => {
-    setParams((curentParams) =>
-      [...curentParams].filter((p) => p.type !== pType)
-    )
-  }
+  // console.log('!DataBlock params:', params)
 
   return (
-    <Context.Provider value={{ params, setParams, removeParam }}>
+    <Context.Provider value={{ params, setParams }}>
       <div className="data-block">
         <NavMenu />
 
-        <Route>
-          <div className="filter-search-block">
-            <ParamsList />
-            <Filters />
-            <Search />
-          </div>
-        </Route>
+        {/* <Route> */}
+        <div className="filter-search-block">
+          <Filters />
+        </div>
+        {/* </Route> */}
 
         <div className="content">
           <Content />

@@ -24,7 +24,12 @@ export default function Content() {
 
 const Competitions = () => (
   <Switch>
-    <Route exact path="/competitions" component={ListOfCompetitions} />
+    <Route
+      exact
+      path="/competitions"
+      component={ListOfCompetitions}
+      availableFilters={[1, 2, 3]}
+    />
     <Route exact path="/competitions/:id" component={Competition} />
     <Route path="/competitions/:id/teams" component={ListOfTeams} />
     <Route path="/competitions/:id/matches" component={ListOfMatches} />

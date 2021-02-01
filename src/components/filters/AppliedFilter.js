@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context.js'
 
-export default function ParamItem({ param }) {
-  const { removeParam } = useContext(Context)
+export default function AppliedFilter({ param }) {
+  const { setParams } = useContext(Context)
 
   const delParam = () => {
     let curentUrl = new URL(window.location)
@@ -14,7 +14,7 @@ export default function ParamItem({ param }) {
   return (
     <>
       <hr />
-      <div className="params-list__item">
+      <div className="filters__applied-item">
         <div>
           {param.type}: {param.value}
         </div>
@@ -24,9 +24,11 @@ export default function ParamItem({ param }) {
             pathname: window.location.pathname,
             search: delParam(),
           }}
-          className="params-list__remove-button"
+          className="filters__applied-item__remove-button"
           onClick={() => {
-            removeParam(param.type)
+            setParams((curentParams) =>
+              [...curentParams].filter((p) => p.type !== param.type)
+            )
           }}
         >
           X

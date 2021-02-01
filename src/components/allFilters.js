@@ -100,4 +100,11 @@ export const allFilters = [
     comment: 'TOTAL (default) | HOME | AWAY',
     pattern: '[A-Z]+',
   },
+  {
+    name: 'search',
+    type: 'String',
+    list: null,
+    comment: '',
+    pattern: '[0-9A-Z]+',
+  },
 ]

@@ -2,8 +2,6 @@
   width: 100%;
   background: rgb(157, 222, 224);
   padding: 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 .filters__header {
@@ -19,29 +17,32 @@
 .filters__item {
   margin: 5px 0;
   padding: 5px;
-  background: #5c5ec2;
-  border: 1px solid #eff5f7;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
 }
 
 .filters__item div {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 500;
   text-transform: uppercase;
   min-width: max-content;
   padding-right: 10px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
 }
 
 .filters__item select,
 input {
-  width: 60%;
+  width: 65%;
 }
 
-.filters__button {
+.filters__button-section {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters__button-section__button {
+  width: 45%;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
@@ -50,7 +51,6 @@ input {
   text-decoration: none;
   text-align: center;
 
-  margin-top: 10px;
   padding: 5px;
   background: #5c5ec2;
   border-radius: 10px;
@@ -59,4 +59,27 @@ input {
 .filters__button:hover {
   background: #7475c5;
   cursor: default;
+}
+
+.filters__applied-item {
+  display: flex;
+  justify-content: space-between;
+  background: #d0e2e1;
+
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  padding: 5px;
+}
+
+.filters__applied-item__remove-button {
+  background: #f1baba;
+  padding: 5px 10px;
+  margin: -5px;
+}
+
+.filters__applied-item__remove-button:hover {
+  color: red;
+  background: #f1dada;
+  cursor: pointer;
 }
