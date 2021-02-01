@@ -27,7 +27,7 @@ export default function AppliedFilter({ param }) {
           className="filters__applied-item__remove-button"
           onClick={() => {
             setParams((curentParams) =>
-              [...curentParams].filter((p) => p.type !== param.type)
+              curentParams.filter((p) => p.type !== param.type)
             )
           }}
         >

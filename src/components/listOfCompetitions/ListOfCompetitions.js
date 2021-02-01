@@ -25,7 +25,7 @@ export default function ListOfCompetitions() {
     if (p.type === 'search') search = p.value.toLocaleLowerCase()
   })
 
-  // считаем count
+  // Cчитаем count
   const searchCount = () => {
     let count = 0
     data.competitions.forEach((competition) => {

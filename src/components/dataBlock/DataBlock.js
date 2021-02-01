@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { Route } from 'react-router-dom'
 import { Context } from '../../context.js'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
@@ -15,15 +14,9 @@ export default function DataBlock() {
       <div className="data-block">
         <NavMenu />
 
-        {/* <Route> */}
-        <div className="filter-search-block">
-          <Filters />
-        </div>
-        {/* </Route> */}
+        <Filters />
 
-        <div className="content">
-          <Content />
-        </div>
+        <Content />
       </div>
     </Context.Provider>
   )
