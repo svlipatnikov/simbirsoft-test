@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { sendRequest } from '../const'
 import { Context } from '../../context.js'
-import './competition.css'
+import './competitionInfo.css'
 
-export default function Competition() {
+export default function CompetitionInfo() {
   const [data, setData] = useState(undefined)
   const { params } = useContext(Context)
   const { url } = useRouteMatch()

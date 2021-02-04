@@ -17,7 +17,7 @@ export default function Filters() {
   let location = useLocation()
   useEffect(() => {
     console.log('---Filters clear params on url:', location.pathname)
-    setParams([])
+    setParams([]) // нужно переделать! параметры брать из URL, иначе после F5 все теряется
   }, [location.pathname])
 
   // применение фильтров

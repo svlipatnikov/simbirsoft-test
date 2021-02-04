@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context.js'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
-import './team.css'
+import './teamInfo.css'
 
-export default function Team() {
+export default function TeamInfo() {
   const [data, setData] = useState(undefined)
   const { params } = useContext(Context)
 

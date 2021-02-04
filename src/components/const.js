@@ -16,5 +16,8 @@ export function sendRequest(setDataFn) {
   )
     .then((response) => response.json())
     .then((data) => setDataFn(data))
-    .catch((err) => setDataFn({ message: err }))
+    .catch((err) => {
+      console.log(' !!!ERROR!!! ', err)
+      return setDataFn({ message: err.toString() })
+    })
 }
