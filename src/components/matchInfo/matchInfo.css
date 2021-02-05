@@ -1,3 +1,44 @@
 .match {
   width: 100%;
 }
+
+.match__section {
+  padding-bottom: 10px;
+  display: block;
+}
+
+.match__section--score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.match__section---score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.match__teams {
+  font-size: 1rem !important;
+  width: 50%;
+}
+
+.match__teams--away {
+  display: flex;
+  justify-content: flex-end !important;
+  text-align: end;
+}
+
+.match__score {
+  min-width: 80px;
+  padding: 0 10px;
+  font-size: 1.7rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.match__details {
+  display: flex;
+  align-items: flex-end;
+}

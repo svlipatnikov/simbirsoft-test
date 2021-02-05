@@ -51,7 +51,7 @@ export default function ListOfMatches() {
           return (
             <div className="content-item match" key={match.id}>
               <div className="content-item__inner">
-                <div className="match__section">
+                <div className="match__section match__section--score">
                   <Link
                     to={`/teams/${match.homeTeam.id}`}
                     className="button button__name match__teams"

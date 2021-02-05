@@ -1,12 +1,10 @@
+/*
 .match {
   width: 100%;
 }
 
 .match__section {
   padding-bottom: 10px;
-
-  display: flex;
-  justify-content: space-between;
 }
 
 .match__teams {
@@ -34,3 +32,5 @@
   display: flex;
   align-items: flex-end;
 }
+
+*/

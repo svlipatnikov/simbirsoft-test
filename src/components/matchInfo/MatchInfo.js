@@ -1,10 +1,137 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { sendRequest } from '../const'
+import { Context } from '../../context.js'
 import './matchInfo.css'
 
 export default function MatchInfo() {
+  const [data, setData] = useState(undefined)
+  const { params } = useContext(Context)
+
+  // Component Did Mount
+  useEffect(() => {
+    console.log('---Match Info--- data:', data)
+    sendRequest(setData)
+  }, [params])
+
+  // Проверка на undefined
+  if (data === undefined) return null
+  if (data.message)
+    return <div className="content__message">{data.message}</div>
+
   return (
     <div className="content-item match">
-      <div cn="content-item__inner">MatchInfo</div>
+      <div className="content-item__inner">
+        <div className="match__section match__section---score">
+          <Link
+            to={`/teams/${data.match.homeTeam.id}`}
+            className="button button__name match__teams"
+          >
+            {data.match.homeTeam.name}
+          </Link>
+          <div className="match__score">
+            <div>{data.match.score.fullTime.homeTeam}</div>
+            <div>{data.match.status !== 'FINISHED' ? ' - ' : ' : '}</div>
+            <div>{data.match.score.fullTime.awayTeam}</div>
+          </div>
+          <Link
+            to={`/teams/${data.match.awayTeam.id}`}
+            className="button button__name match__teams match__teams--away"
+          >
+            {data.match.awayTeam.name}
+          </Link>
+        </div>
+
+        <div className="match__section">
+          <b>Match info</b>
+          <table className="content-item__info">
+            <tr>
+              <td>Date</td>
+              <td>{new Date(data.match.utcDate).toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>{data.match.status}</td>
+            </tr>
+            <tr>
+              <td>Competition</td>
+              <td>
+                {data.match.competition !== undefined
+                  ? data.match.competition.name
+                  : ''}
+              </td>
+            </tr>
+            <tr>
+              <td>Venue:</td>
+              <td>{data.match.venue}</td>
+            </tr>
+            <tr>
+              <td>Stage:</td>
+              <td>{data.match.stage}</td>
+            </tr>
+            <tr>
+              <td>Group:</td>
+              <td> {data.match.group}</td>
+            </tr>
+          </table>
+
+          <div className="content-item__info">
+            Referees:
+            <table>
+              <tr>
+                <td>Role</td>
+                <td>Name</td>
+                <td>Nationality</td>
+              </tr>
+              {data.match.referees.map((ref) => (
+                <tr className="content-item__info content-item__info--small ">
+                  <td>{ref.role}</td>
+                  <td>{ref.name}</td>
+                  <td>{ref.nationality}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
+        </div>
+
+        <div className="match__section">
+          <b>Head to head info</b>
+          <table className="content-item__info">
+            <tr>
+              <td>Matches:</td>
+              <td>{data.head2head.numberOfMatches}</td>
+            </tr>
+            <tr>
+              <td>Total Goals:</td>
+              <td>{data.head2head.totalGoals}</td>
+            </tr>
+            <tr>
+              <td>Wins:</td>
+              <td>
+                {data.head2head.homeTeam.wins}
+                {' - '}
+                {data.head2head.awayTeam.wins}
+              </td>
+            </tr>
+            <tr>
+              <td>Draws:</td>
+              <td>
+                {data.head2head.homeTeam.draws}
+                {' - '}
+                {data.head2head.awayTeam.draws}
+              </td>
+            </tr>
+            <tr>
+              <td>Losses:</td>
+              <td>
+                {data.head2head.homeTeam.losses}
+                {' - '}
+                {data.head2head.awayTeam.losses}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
