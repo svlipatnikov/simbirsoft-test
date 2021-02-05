@@ -13,12 +13,22 @@ export default function Filters() {
   const { setParams, params } = useContext(Context)
   // console.log('---Filters param:', params)
 
-  // очистка фильтров при смене контента
   let location = useLocation()
+  const url = new URL(window.location)
+
+  // очистка фильтров при смене контента
   useEffect(() => {
     console.log('---Filters clear params on url:', location.pathname)
-    setParams([]) // нужно переделать! параметры брать из URL, иначе после F5 все теряется
+    setParams([])
   }, [location.pathname])
+
+  // добавление фильтров из url
+  useEffect(() => {
+    console.log('---Filters add from url:', url)
+    for (let [name, val] of url.searchParams) {
+      setParams((params) => [...params, { type: name, value: val }])
+    }
+  }, [])
 
   // применение фильтров
   const submit = () => {
@@ -37,9 +47,9 @@ export default function Filters() {
   }
 
   const setFilterParams = () => {
-    let curentUrl = new URL(window.location)
-    filters.forEach((p) => curentUrl.searchParams.set(p.type, p.value))
-    return curentUrl.search
+    // let curentUrl = new URL(window.location)
+    filters.forEach((p) => url.searchParams.set(p.type, p.value))
+    return url.search
   }
 
   return (

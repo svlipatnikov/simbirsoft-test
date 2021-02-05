@@ -44,6 +44,7 @@ export const resources = [
     filters: ['dateFrom', 'dateTo', 'status', 'venue', 'limit', 'search'],
     dataType: 'listOfMatches',
   },
+  { pathname: '/teams', filters: ['search'], dataType: 'listOfTeams' }, // нет в api
   { pathname: '/teams/:id', filters: [], dataType: 'team' },
   { pathname: '/areas', filters: ['search'], dataType: 'listOfAreas' },
   { pathname: '/areas/:id', filters: [], dataType: 'area' },

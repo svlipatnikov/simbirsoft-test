@@ -13,9 +13,7 @@ export default function DataBlock() {
     <Context.Provider value={{ params, setParams }}>
       <div className="data-block">
         <NavMenu />
-
         <Filters />
-
         <Content />
       </div>
     </Context.Provider>
