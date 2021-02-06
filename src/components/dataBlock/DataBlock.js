@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Context } from '../../context.js'
 import Filters from '../filters/Filters.js'
 import Content from '../content/Content.js'
-import NavMenu from '../navMenu/NavMenu.js'
 import './dataBlock.css'
 
 export default function DataBlock() {
@@ -12,7 +11,6 @@ export default function DataBlock() {
   return (
     <Context.Provider value={{ params, setParams }}>
       <div className="data-block">
-        <NavMenu />
         <Filters />
         <Content />
       </div>
