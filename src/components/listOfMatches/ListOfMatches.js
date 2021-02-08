@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { sendRequest } from '../const'
 import { Context } from '../../context.js'
-import './listOfMatches.css'
+// import './listOfMatches.css'
 
 export default function ListOfMatches() {
   const [data, setData] = useState(undefined)
@@ -10,12 +10,13 @@ export default function ListOfMatches() {
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---ListOfMatches---  params:', params)
     sendRequest(setData)
   }, [params])
 
   // Проверка на undefined
-  if (data === undefined || !data.matches) return null
+  if (data === undefined) return null
+
+  // Ошибка
   if (data.message)
     return <div className="content__message">{data.message}</div>
 
@@ -51,7 +52,7 @@ export default function ListOfMatches() {
           return (
             <div className="content-item match" key={match.id}>
               <div className="content-item__inner">
-                <div className="match__section match__section--score">
+                <div className="match__section match__section--flex">
                   <Link
                     to={`/teams/${match.homeTeam.id}`}
                     className="button button__name match__teams"
@@ -71,7 +72,7 @@ export default function ListOfMatches() {
                   </Link>
                 </div>
 
-                <div className="match__section">
+                <div className="match__section match__section--flex">
                   <div>
                     Date: <b>{new Date(match.utcDate).toLocaleString()}</b>
                   </div>
@@ -80,7 +81,7 @@ export default function ListOfMatches() {
                   </div>
                 </div>
 
-                <div className="match__section">
+                <div className="match__section match__section--flex">
                   <div className="content-item__info">
                     <div>
                       {match.competition !== undefined

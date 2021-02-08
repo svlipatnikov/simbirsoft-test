@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation, matchPath } from 'react-router-dom'
-import { resources } from '../resources.js'
-import { allFilters } from '../allFilters.js'
-import TextFilter from './TextFilter.js'
+import { resources } from './resources.js'
+import { allFilters } from './allFilters.js'
+import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
 import AppliedFilter from './AppliedFilter.js'
 import { Context } from '../../context.js'
@@ -18,17 +18,17 @@ export default function Filters() {
 
   // очистка фильтров при смене контента
   useEffect(() => {
-    console.log('---Filters clear params on url:', location.pathname)
+    // console.log('---Filters clear params on url:', location.pathname)
     setParams([])
-  }, [location.pathname])
+  }, [location]) //.pathname
 
   // добавление фильтров из url
   useEffect(() => {
-    console.log('---Filters add from url:', url)
+    // console.log('---Filters add from url:', url)
     for (let [name, val] of url.searchParams) {
       setParams((params) => [...params, { type: name, value: val }])
     }
-  }, [])
+  }, [location.search])
 
   // применение фильтров
   const submit = () => {
@@ -76,7 +76,7 @@ export default function Filters() {
             })
           )
             // проход по найденным для ресурса фильтрам
-            return res.filters.map((fItem, id) =>
+            return res.filters.map((fItem) =>
               // цикл по массиву всех возможных фильтров
               allFilters.map((filter) => {
                 if (filter.name === fItem)
@@ -84,11 +84,11 @@ export default function Filters() {
                   switch (filter.type) {
                     default:
                       return null
-                    case 'String' || 'Integer':
+                    case 'Input':
                       return (
-                        <TextFilter
+                        <InputFilter
                           filter={filter}
-                          key={filter.id}
+                          key={filter.name}
                           setFilters={setFilters}
                         />
                       )
@@ -96,7 +96,7 @@ export default function Filters() {
                       return (
                         <EnumFilter
                           filter={filter}
-                          key={filter.id}
+                          key={filter.name}
                           setFilters={setFilters}
                         />
                       )

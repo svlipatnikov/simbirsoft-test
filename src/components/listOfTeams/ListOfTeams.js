@@ -10,12 +10,13 @@ export default function ListOfTeams() {
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---ListOfTeams---')
     sendRequest(setData)
   }, [params])
 
   // Проверка на undefined
-  if (data === undefined || !data.teams) return null
+  if (data === undefined) return null
+
+  // Ошибка
   if (data.message)
     return <div className="content__message">{data.message}</div>
 

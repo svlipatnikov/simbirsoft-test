@@ -11,10 +11,10 @@ export default function EnumFilter({ filter, setFilters }) {
 
   return (
     <div className="filters__item">
-      <div>{filter.name}</div>
+      <div className="filter__item__name">{filter.name}</div>
       <select
+        className="filter__item__value"
         value={selectedValue}
-        defaultValue="null"
         onChange={(e) => setSelectedValue(e.target.value)}
         onBlur={(e) => {
           setFilters((arr) => {
@@ -29,7 +29,7 @@ export default function EnumFilter({ filter, setFilters }) {
       >
         <option value="null"></option>
         {filter.list.map((item) => (
-          <option key={item.id} value={item}>
+          <option key={item} value={item}>
             {item}
           </option>
         ))}

@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './header.css'
+import logo from '../../img/ball.png'
 
 export default function Header() {
   return (
     <header className="header">
-      <h1 className="header__text">Football leagues statistics</h1>
+      <div className="header__site-logo">
+        <img className="header__site-logo__img" alt="Logo" src={logo} />
+        <h1 className="header__site-logo__text">Football leagues statistics</h1>
+      </div>
+
       <div className="header__nav-menu">
         <Link to="/competitions" className="header__nav-menu__item">
           Competitions

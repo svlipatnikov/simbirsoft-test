@@ -11,8 +11,9 @@ import PlayerInfo from '../playerInfo/PlayerInfo'
 import AreaInfo from '../areaInfo/AreaInfo'
 import MatchInfo from '../matchInfo/MatchInfo'
 import TeamInfo from '../teamInfo/TeamInfo'
+import ScorersInfo from '../scorersInfo/ScorersInfo'
+import Standings from '../standings/Standings'
 
-import Json from '../json/Json'
 import './content.css'
 
 export default function Content() {
@@ -25,7 +26,6 @@ export default function Content() {
         <Route path="/matches" component={Matches} />
         <Route path="/areas" component={Areas} />
         <Route path="/players/:id" component={Players} />
-        <Route component={Json} />
       </Switch>
     </div>
   )
@@ -36,8 +36,7 @@ export default function Content() {
 const Competitions = () => (
   <Switch>
     <Route exact path="/competitions" component={ListOfCompetitions} />
-    <Route exact path="/competitions/:id" component={CompetitionId} />
-    <Route component={Json} />
+    <Route path="/competitions/:id" component={CompetitionId} />
   </Switch>
 )
 
@@ -46,7 +45,8 @@ const CompetitionId = () => (
     <Route exact path="/competitions/:id" component={CompetitionInfo} />
     <Route path="/competitions/:id/teams" component={ListOfTeams} />
     <Route path="/competitions/:id/matches" component={ListOfMatches} />
-    <Route component={Json} />
+    <Route path="/competitions/:id/scorers" component={ScorersInfo} />
+    <Route path="/competitions/:id/standings" component={Standings} />
   </Switch>
 )
 
@@ -56,7 +56,6 @@ const Teams = () => (
   <Switch>
     <Route exact path="/teams" component={ListOfTeams} />
     <Route path="/teams/:id" component={TeamsId} />
-    <Route component={Json} />
   </Switch>
 )
 
@@ -64,7 +63,6 @@ const TeamsId = () => (
   <Switch>
     <Route exact path="/teams/:id" component={TeamInfo} />
     <Route path="/teams/:id/matches" component={ListOfMatches} />
-    <Route component={Json} />
   </Switch>
 )
 
@@ -74,7 +72,6 @@ const Matches = () => (
   <Switch>
     <Route exact path="/matches" component={ListOfMatches} />
     <Route path="/matches/:id" component={MatchInfo} />
-    <Route component={Json} />
   </Switch>
 )
 
@@ -84,7 +81,6 @@ const Players = () => (
   <Switch>
     <Route exact path="/players/:id" component={PlayerInfo} />
     <Route path="/players/:id/matches" component={ListOfMatches} />
-    <Route component={Json} />
   </Switch>
 )
 
@@ -94,6 +90,5 @@ const Areas = () => (
   <Switch>
     <Route exact path="/areas" component={ListOfAreas} />
     <Route path="/areas/:id" component={AreaInfo} />
-    <Route component={Json} />
   </Switch>
 )

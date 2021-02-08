@@ -10,19 +10,20 @@ export default function MatchInfo() {
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---Match Info--- data:', data)
     sendRequest(setData)
   }, [params])
 
   // Проверка на undefined
   if (data === undefined) return null
+
+  // Ошибка
   if (data.message)
     return <div className="content__message">{data.message}</div>
 
   return (
     <div className="content-item match">
       <div className="content-item__inner">
-        <div className="match__section match__section---score">
+        <div className="match__section match__section--flex">
           <Link
             to={`/teams/${data.match.homeTeam.id}`}
             className="button button__name match__teams"

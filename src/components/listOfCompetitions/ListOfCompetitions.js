@@ -10,12 +10,13 @@ export default function ListOfCompetitions() {
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---ListOfCompetitions--- params:', params)
     sendRequest(setData)
   }, [params])
 
   // Проверка на undefined
   if (data === undefined) return null
+
+  // Ошибка
   if (data.message)
     return <div className="content__message">{data.message}</div>
 

@@ -1,16 +1,27 @@
-import DataBlock from './components/dataBlock/DataBlock'
+import React, { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Context } from './context'
+
+import Filters from './components/filters/Filters.js'
+import Content from './components/content/Content.js'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
-import { BrowserRouter } from 'react-router-dom'
 
 export default function App() {
+  const [params, setParams] = useState([])
+
   return (
-    <div className="app">
+    <Context.Provider value={{ params, setParams }}>
       <BrowserRouter>
         <Header />
-        <DataBlock />
+
+        <div className="data-block">
+          <Filters />
+          <Content />
+        </div>
+
         <Footer />
       </BrowserRouter>
-    </div>
+    </Context.Provider>
   )
 }

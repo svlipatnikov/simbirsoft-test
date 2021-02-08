@@ -1,37 +1,36 @@
 .filters {
   width: 100%;
-  background: rgb(157, 222, 224);
-  padding: 10px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #5c821a;
 }
 
 .filters__header {
-  font-family: 'Roboto', sans-serif;
+  color: #32382e;
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 2px;
   text-align: center;
-  color: #2c3268;
-  margin: 5px 0;
+  margin: 0;
 }
 
 .filters__item {
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 4px;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
 }
 
-.filters__item div {
+.filter__item__name {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
   min-width: max-content;
   padding-right: 10px;
 }
 
-.filters__item select,
-input {
+.filter__item__value {
   width: 65%;
 }
 
@@ -42,44 +41,53 @@ input {
 }
 
 .filters__button-section__button {
-  width: 45%;
-  color: #ffffff;
-  font-size: 1rem;
+  color: #32382e;
+  font-size: 0.9rem;
   font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
   text-decoration: none;
   text-align: center;
 
+  width: 45%;
   padding: 5px;
-  background: #5c5ec2;
   border-radius: 10px;
+  background: #c6d166;
 }
 
-.filters__button:hover {
-  background: #7475c5;
-  cursor: default;
+.filters__button-section__button:hover {
+  color: #ffffff;
+  background-color: #5c821a;
 }
 
 .filters__applied-item {
   display: flex;
   justify-content: space-between;
-  background: #d0e2e1;
-
-  font-size: 1rem;
-  line-height: 1rem;
-  text-align: center;
+  background: #c6d166;
   padding: 5px;
+  margin: 10px 0;
+}
+
+.filters__applied-item__name {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-right: 10px;
+}
+
+.filters__applied-item__value {
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .filters__applied-item__remove-button {
-  background: #f1baba;
+  color: #32382e;
+  text-decoration: none;
   padding: 5px 10px;
   margin: -5px;
 }
 
 .filters__applied-item__remove-button:hover {
-  color: red;
-  background: #f1dada;
+  color: #ffffff;
+  background: #5c821a;
   cursor: pointer;
 }

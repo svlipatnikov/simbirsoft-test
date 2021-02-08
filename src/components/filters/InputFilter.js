@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../../context.js'
 
-export default function TextFilter({ filter, setFilters }) {
+export default function InputFilter({ filter, setFilters }) {
   const { params } = useContext(Context)
   const [input, setInput] = useState('')
 
@@ -11,8 +11,9 @@ export default function TextFilter({ filter, setFilters }) {
 
   return (
     <div className="filters__item">
-      <div>{filter.name}</div>
+      <div className="filter__item__name">{filter.name}</div>
       <input
+        className="filter__item__value"
         type="text"
         placeholder={filter.comment}
         pattern={filter.pattern}

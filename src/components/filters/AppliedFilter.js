@@ -12,28 +12,26 @@ export default function AppliedFilter({ param }) {
   }
 
   return (
-    <>
-      <hr />
-      <div className="filters__applied-item">
-        <div>
-          {param.type}: {param.value}
-        </div>
-
-        <Link
-          to={{
-            pathname: window.location.pathname,
-            search: delParam(),
-          }}
-          className="filters__applied-item__remove-button"
-          onClick={() => {
-            setParams((curentParams) =>
-              curentParams.filter((p) => p.type !== param.type)
-            )
-          }}
-        >
-          X
-        </Link>
+    <div className="filters__applied-item">
+      <div>
+        <span className="filters__applied-item__name">{param.type} :</span>
+        <span className="filters__applied-item__value">{param.value}</span>
       </div>
-    </>
+
+      <Link
+        to={{
+          pathname: window.location.pathname,
+          search: delParam(),
+        }}
+        className="filters__applied-item__remove-button"
+        onClick={() => {
+          setParams((curentParams) =>
+            curentParams.filter((p) => p.type !== param.type)
+          )
+        }}
+      >
+        &times;
+      </Link>
+    </div>
   )
 }

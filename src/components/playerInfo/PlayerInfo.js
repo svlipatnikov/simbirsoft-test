@@ -10,11 +10,13 @@ export default function PlayerInfo() {
 
   // Component Did Mount
   useEffect(() => {
-    console.log('---Player---')
     sendRequest(setData)
   }, [params])
 
+  // Проверка на undefined
   if (data === undefined) return null
+
+  // Ошибка
   if (data.message)
     return <div className="content__message">{data.message}</div>
 

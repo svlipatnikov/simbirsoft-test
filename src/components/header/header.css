@@ -1,56 +1,53 @@
 .header {
-  width: 100%;
-  background: rgb(23, 148, 32);
-  background-image: url(../../img/green-grass-soccer.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto;
-
+  background: #5c821a;
   display: flex;
   justify-content: space-between;
+  /* flex-wrap: wrap; */
 }
 
-.header__text {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.6rem;
+.header__site-logo {
+  min-width: max-content;
+  display: flex;
+  height: auto;
+  padding: 15px;
+}
+
+.header__site-logo__img {
+  max-height: 4.4rem;
+}
+
+.header__site-logo__text {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
   font-weight: 700;
+  line-height: 2.2rem;
   color: #ffffff;
 
-  margin: 0;
-  padding: 15px 5%;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  width: 260px;
+  margin: 0 10px;
 }
 
 .header__nav-menu {
-  padding: 10px;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .header__nav-menu__item {
-  border: none;
-  border-radius: 5px;
-  min-width: max-content;
-  width: 20%;
-  height: 30px;
-  background: #ade0bd;
   text-align: center;
-  align-items: center;
-  padding: 6px 10px;
-  margin: 0 10px;
-
   font-size: 1rem;
-  font-weight: 800;
-  line-height: 1rem;
+  font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+
+  padding: 0 5px;
+  margin: 5px;
 }
 
 .header__nav-menu__item:hover {
-  background: #c7e9d1;
-  cursor: default;
+  text-decoration: underline;
   user-select: none;
 }

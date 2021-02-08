@@ -1,0 +1,46 @@
+.standings {
+  width: 100%;
+}
+
+.standings__item {
+  margin-top: 15px;
+  border: 1px solid #5c821a;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.standings__table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.standings__table th,
+.standings__table td {
+  font-size: 0.8rem;
+  padding: 5px;
+  text-align: center;
+}
+
+.standings__table tr {
+  border-top: 1px solid #d6d6d6;
+}
+
+.standings__table__team {
+  display: flex;
+  align-items: center;
+}
+
+.standings__table__team-img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.standings__table__team-name {
+  color: #32382e;
+  text-decoration: none;
+  text-align: left;
+}
+
+.standings__table__team-name:hover {
+  text-decoration: underline;
+}
