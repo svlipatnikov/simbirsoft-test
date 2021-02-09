@@ -1,17 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { sendRequest } from '../const'
-import { Context } from '../../context.js'
 import './matchInfo.css'
 
 export default function MatchInfo() {
   const [data, setData] = useState(undefined)
-  const { params } = useContext(Context)
+  const location = useLocation()
 
-  // Component Did Mount
+  // Обновление контента при смене url
   useEffect(() => {
     sendRequest(setData)
-  }, [params])
+  }, [location])
 
   // Проверка на undefined
   if (data === undefined) return null
@@ -46,51 +45,60 @@ export default function MatchInfo() {
         <div className="match__section">
           <b>Match info</b>
           <table className="content-item__info">
-            <tr>
-              <td>Date</td>
-              <td>{new Date(data.match.utcDate).toLocaleString()}</td>
-            </tr>
-            <tr>
-              <td>Status</td>
-              <td>{data.match.status}</td>
-            </tr>
-            <tr>
-              <td>Competition</td>
-              <td>
-                {data.match.competition !== undefined
-                  ? data.match.competition.name
-                  : ''}
-              </td>
-            </tr>
-            <tr>
-              <td>Venue:</td>
-              <td>{data.match.venue}</td>
-            </tr>
-            <tr>
-              <td>Stage:</td>
-              <td>{data.match.stage}</td>
-            </tr>
-            <tr>
-              <td>Group:</td>
-              <td> {data.match.group}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Date</td>
+                <td>{new Date(data.match.utcDate).toLocaleString()}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>{data.match.status}</td>
+              </tr>
+              <tr>
+                <td>Competition</td>
+                <td>
+                  {data.match.competition !== undefined
+                    ? data.match.competition.name
+                    : ''}
+                </td>
+              </tr>
+              <tr>
+                <td>Venue:</td>
+                <td>{data.match.venue}</td>
+              </tr>
+              <tr>
+                <td>Stage:</td>
+                <td>{data.match.stage}</td>
+              </tr>
+              <tr>
+                <td>Group:</td>
+                <td> {data.match.group}</td>
+              </tr>
+            </tbody>
           </table>
 
           <div className="content-item__info">
             Referees:
             <table>
-              <tr>
-                <td>Role</td>
-                <td>Name</td>
-                <td>Nationality</td>
-              </tr>
-              {data.match.referees.map((ref) => (
-                <tr className="content-item__info content-item__info--small ">
-                  <td>{ref.role}</td>
-                  <td>{ref.name}</td>
-                  <td>{ref.nationality}</td>
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Name</th>
+                  <th>Nationality</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {data.match.referees.map((ref) => (
+                  <tr
+                    className="content-item__info content-item__info--small"
+                    key={ref.name}
+                  >
+                    <td>{ref.role}</td>
+                    <td>{ref.name}</td>
+                    <td>{ref.nationality}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

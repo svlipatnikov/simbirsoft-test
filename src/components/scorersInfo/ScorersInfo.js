@@ -1,18 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { sendRequest } from '../const'
-import { Context } from '../../context.js'
 import './scorersInfo.css'
 import Scorer from './Scorer'
 
 export default function ScorersInfo() {
   const [data, setData] = useState(undefined)
-  const { params } = useContext(Context)
+  const location = useLocation()
 
-  // Component Did Mount
+  // Обновление контента при смене url
   useEffect(() => {
     sendRequest(setData)
-  }, [params])
+  }, [location])
 
   // Проверка на undefined
   if (data === undefined) return null

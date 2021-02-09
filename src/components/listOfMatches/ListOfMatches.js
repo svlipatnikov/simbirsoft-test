@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { sendRequest } from '../const'
 import { Context } from '../../context.js'
 // import './listOfMatches.css'
@@ -7,11 +7,12 @@ import { Context } from '../../context.js'
 export default function ListOfMatches() {
   const [data, setData] = useState(undefined)
   const { params } = useContext(Context)
+  const location = useLocation()
 
-  // Component Did Mount
+  // Обновление контента при смене url
   useEffect(() => {
     sendRequest(setData)
-  }, [params])
+  }, [location])
 
   // Проверка на undefined
   if (data === undefined) return null

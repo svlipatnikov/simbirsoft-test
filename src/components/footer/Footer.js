@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__info-block">
         <div className="footer__item">
-          <img className="footer__item__icon" src={user} />
+          <img className="footer__item__icon" src={user} alt="user" />
           <span className="footer__item__text">Lipatnikov Sergey</span>
         </div>
 
@@ -18,14 +18,14 @@ export default function Footer() {
           href="mailto:sv.lipatnikov@mail.com"
           title="Написать"
         >
-          <img className="footer__item__icon" src={mail} />
+          <img className="footer__item__icon" src={mail} alt="mail" />
           <span className="footer__item__text footer__item__link">
             sv.lipatnikov@gmail.com
           </span>
         </a>
 
         <a className="footer__item" href="tel:+79603737340" title="Позвонить">
-          <img className="footer__item__icon" src={phone} />
+          <img className="footer__item__icon" src={phone} alt="phone" />
           <span className="footer__item__text footer__item__link">
             +7(960)373-73-40
           </span>

@@ -11,45 +11,40 @@ import './filters.css'
 export default function Filters() {
   const [filters, setFilters] = useState([])
   const { setParams, params } = useContext(Context)
-  // console.log('---Filters param:', params)
+  const location = useLocation()
 
-  let location = useLocation()
-  const url = new URL(window.location)
-
-  // очистка фильтров при смене контента
+  // Загрузка фильтров из url после обновления страницы или смены контента
   useEffect(() => {
-    // console.log('---Filters clear params on url:', location.pathname)
-    setParams([])
-  }, [location]) //.pathname
-
-  // добавление фильтров из url
-  useEffect(() => {
-    // console.log('---Filters add from url:', url)
+    const url = new URL(window.location)
+    let curentParams = []
     for (let [name, val] of url.searchParams) {
-      setParams((params) => [...params, { type: name, value: val }])
+      curentParams = [...curentParams, { type: name, value: val }]
     }
-  }, [location.search])
+    setParams(curentParams)
+  }, [location.pathname])
 
-  // применение фильтров
-  const submit = () => {
+  // Применение фильтров
+  const filtersSubmit = () => {
     if (filters.length) {
-      console.log('---Filters submit:', filters)
-      setParams((curentParams) => {
-        return curentParams
+      setParams((curentParams) =>
+        curentParams
+          // удаляем параметры, которые будем сабмитить
           .filter((p) => {
             if (filters.findIndex((f) => f.type === p.type) === -1) return true
             else return false
           })
+          // добавляем текущие выбранные
           .concat(filters)
-      })
+      )
       setFilters([])
     }
   }
 
+  // учтановка параметров в url
   const setFilterParams = () => {
-    // let curentUrl = new URL(window.location)
-    filters.forEach((p) => url.searchParams.set(p.type, p.value))
-    return url.search
+    const newUrl = new URL(window.location)
+    filters.forEach((p) => newUrl.searchParams.set(p.type, p.value))
+    return newUrl.search
   }
 
   return (
@@ -67,13 +62,12 @@ export default function Filters() {
 
         {/* цикл по массиву ресурсов для поиска доступных фильтров */}
         {resources.map((res) => {
-          // если совпадает путь
           if (
             matchPath(location.pathname, {
               path: res.pathname,
               exact: true,
               strict: false,
-            })
+            }) // если совпадает путь
           )
             // проход по найденным для ресурса фильтрам
             return res.filters.map((fItem) =>
@@ -118,7 +112,7 @@ export default function Filters() {
                 : window.location.search,
             }}
             className="filters__button-section__button"
-            onClick={submit}
+            onClick={filtersSubmit}
           >
             Apply
           </Link>
