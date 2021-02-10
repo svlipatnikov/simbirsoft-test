@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/simbirsoft-test/static/css/main.d993ddf1.chunk.css",
-    "main.js": "/simbirsoft-test/static/js/main.12bce735.chunk.js",
-    "main.js.map": "/simbirsoft-test/static/js/main.12bce735.chunk.js.map",
+    "main.js": "/simbirsoft-test/static/js/main.bd29b70e.chunk.js",
+    "main.js.map": "/simbirsoft-test/static/js/main.bd29b70e.chunk.js.map",
     "runtime-main.js": "/simbirsoft-test/static/js/runtime-main.87a185b6.js",
     "runtime-main.js.map": "/simbirsoft-test/static/js/runtime-main.87a185b6.js.map",
     "static/js/2.063437d4.chunk.js": "/simbirsoft-test/static/js/2.063437d4.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.87a185b6.js",
     "static/js/2.063437d4.chunk.js",
     "static/css/main.d993ddf1.chunk.css",
-    "static/js/main.12bce735.chunk.js"
+    "static/js/main.bd29b70e.chunk.js"
   ]
 }
