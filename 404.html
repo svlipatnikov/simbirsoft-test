@@ -24,6 +24,7 @@
       // Otherwise, leave segmentCount as 0.
       var segmentCount = 1
       var l = window.location
+      console.log('after:', l)
       l.replace(
         l.protocol +
           '//' +
@@ -43,6 +44,7 @@
           (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
           l.hash
       )
+      console.log('before:', l)
     </script>
   </head>
   <body></body>
