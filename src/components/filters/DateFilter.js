@@ -8,6 +8,7 @@ export default function DateFilter({ filter, setFilters }) {
   const [OpenState, setOpenState] = useState(false)
   const [date, setDate] = useState(undefined)
 
+  // после получения даты
   useEffect(() => {
     // Закрытия календаря с задержкой
     setTimeout(() => setOpenState(false), 300)
@@ -41,8 +42,9 @@ export default function DateFilter({ filter, setFilters }) {
   return (
     <div className="filters__item">
       <div className="filter__item__name">{filter.name}</div>
+
       {OpenState === true ? (
-        <Calendar selectRange={true} returnValue="end" onChange={setDate} />
+        <Calendar selectRange={true} returnValue="end" onChange={setDate} on />
       ) : (
         <input
           className="filter__item__value"

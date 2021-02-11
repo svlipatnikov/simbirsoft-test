@@ -2,7 +2,7 @@
   background: #5c821a;
   display: flex;
   justify-content: space-between;
-  /* flex-wrap: wrap; */
+  padding: 10px;
 }
 
 .header__site-logo {
@@ -10,7 +10,7 @@
   min-width: max-content;
   display: flex;
   height: auto;
-  padding: 15px;
+  padding: 5px;
 }
 
 .header__site-logo__img {
@@ -34,6 +34,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 10px;
 }
 
 .header__nav-menu__item {

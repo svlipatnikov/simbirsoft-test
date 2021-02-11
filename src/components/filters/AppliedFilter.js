@@ -8,7 +8,6 @@ export default function AppliedFilter({ param }) {
 
   const delParam = () => {
     let curentUrl = new URL(window.location)
-    console.log('param.type', param.type)
     if (param.type.indexOf('date') !== -1) {
       curentUrl.searchParams.delete('dateTo')
       curentUrl.searchParams.delete('dateFrom')
