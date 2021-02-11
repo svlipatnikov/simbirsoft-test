@@ -10,7 +10,7 @@ export default function ScorersInfo() {
 
   // Обновление контента при смене url
   useEffect(() => {
-    sendRequest(setData)
+    sendRequest(setData, location)
   }, [location])
 
   // Проверка на undefined

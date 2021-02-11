@@ -1,0 +1,43 @@
+.home-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 !important;
+}
+
+.home-page__text {
+  text-align: center;
+  margin: 20px;
+}
+
+.home-page__input {
+  width: 330px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.home-page__button {
+  font-size: 1rem;
+}
+
+.home-page__curent-token {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #5c821a;
+}
+
+.home-page__autor-token {
+}
+
+.home-page__autor-token:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+h4 {
+  line-height: 1.5rem;
+}

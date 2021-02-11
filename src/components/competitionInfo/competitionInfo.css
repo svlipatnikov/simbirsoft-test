@@ -2,3 +2,14 @@
   width: 100%;
   height: max-content;
 }
+
+.competition__container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.competition__img {
+  height: 100px;
+  margin-right: 15px;
+}

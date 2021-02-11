@@ -104,7 +104,7 @@ export const allFilters = [
     name: 'search',
     type: 'Input',
     list: null,
-    comment: '',
+    comment: 'Text search in input data',
     pattern: '[0-9A-Z]+',
   },
 ]

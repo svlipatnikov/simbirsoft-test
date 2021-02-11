@@ -1,3 +1,13 @@
 .area-item {
   width: 33.3333%;
 }
+
+.area__container {
+  display: flex;
+  align-items: center;
+}
+
+.area__img {
+  width: 25px;
+  margin-right: 10px;
+}

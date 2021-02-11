@@ -15,9 +15,9 @@ export default function Filters() {
 
   // Загрузка фильтров из url после обновления страницы или смены контента
   useEffect(() => {
-    const url = new URL(window.location)
+    const curentURL = new URL(window.location)
     let curentParams = []
-    for (let [name, val] of url.searchParams) {
+    for (let [name, val] of curentURL.searchParams) {
       curentParams = [...curentParams, { type: name, value: val }]
     }
     setParams(curentParams)
@@ -106,7 +106,7 @@ export default function Filters() {
         <div className="filters__button-section">
           <Link
             to={{
-              pathname: window.location.pathname,
+              pathname: location.pathname,
               search: filters.length
                 ? setFilterParams()
                 : window.location.search,
@@ -119,7 +119,7 @@ export default function Filters() {
 
           <Link
             to={{
-              pathname: window.location.pathname,
+              pathname: location.pathname,
             }}
             className="filters__button-section__button"
             onClick={() => {

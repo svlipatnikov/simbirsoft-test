@@ -11,7 +11,7 @@ export default function ListOfAreas() {
 
   // Обновление контента при смене url
   useEffect(() => {
-    sendRequest(setData)
+    sendRequest(setData, location)
   }, [location])
 
   // Проверка на undefined
@@ -51,8 +51,13 @@ export default function ListOfAreas() {
               key={area.id}
             >
               <div className="content-item__inner content-item__link">
-                <div className="content-item__name content-item__name--small">
-                  {area.name}
+                <div className="area__container">
+                  {area.ensignUrl ? (
+                    <img className="area__img" src={area.ensignUrl} alt="img" />
+                  ) : null}
+                  <div className="content-item__name content-item__name--small">
+                    {area.name}
+                  </div>
                 </div>
                 <div className="content-item__info">
                   <div>CountryCode: {area.countryCode}</div>

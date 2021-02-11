@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useRouteMatch, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { sendRequest } from '../const'
 import './competitionInfo.css'
 
 export default function CompetitionInfo() {
   const [data, setData] = useState(undefined)
-  const { url } = useRouteMatch()
   const location = useLocation()
+
+  // Обновление контента при смене url
+  useEffect(() => {
+    sendRequest(setData, location)
+  }, [location])
 
   // Обновление контента при смене url
   useEffect(() => {
@@ -23,26 +27,37 @@ export default function CompetitionInfo() {
   return (
     <div className="content-item competition">
       <div className="content-item__inner">
-        <div className="content-item__name">{data.name}</div>
-        <div className="content-item__info">
-          <div>Code: {data.code}</div>
-          <div>Area: {data.area.name}</div>
-          <div>Plan: {data.plan}</div>
+        <div className="competition__container">
+          {data.emblemUrl ? (
+            <img className="competition__img" src={data.emblemUrl} alt="img" />
+          ) : null}
+          <div>
+            <div className="content-item__name">{data.name}</div>
+            <div className="content-item__info">Code: {data.code}</div>
+            <div className="content-item__info">Area: {data.area.name}</div>
+            <div className="content-item__info">Plan: {data.plan}</div>
+          </div>
         </div>
 
-        <Link to={`${url}/teams`} className="button">
+        <Link to={`/competitions/${data.id}/teams`} className="button">
           <div className="button__name">Teams</div>
         </Link>
 
-        <Link to={`${url}/standings`} className="button">
+        <Link
+          to={{
+            pathname: `/competitions/${data.id}/standings`,
+            search: 'standingType=TOTAL',
+          }}
+          className="button"
+        >
           <div className="button__name">Standings</div>
         </Link>
 
-        <Link to={`${url}/matches`} className="button">
+        <Link to={`/competitions/${data.id}/matches`} className="button">
           <div className="button__name">Matches</div>
         </Link>
 
-        <Link to={`${url}/scorers`} className="button">
+        <Link to={`/competitions/${data.id}/scorers`} className="button">
           <div className="button__name">Scorers</div>
         </Link>
       </div>

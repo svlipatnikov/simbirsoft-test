@@ -9,7 +9,7 @@ export default function AreaInfo() {
 
   // Обновление контента при смене url
   useEffect(() => {
-    sendRequest(setData)
+    sendRequest(setData, location)
   }, [location])
 
   // Проверка на undefined
@@ -22,14 +22,15 @@ export default function AreaInfo() {
   return (
     <div className="content-item area">
       <div className="content-item__inner">
-        <div className="content-item__name">{data.name}</div>
-
-        <div className="content-item__info">
-          CountryCode: {data.countryCode}
+        <div className="area-info__container">
+          {data.ensignUrl ? (
+            <img className="area-info__img" src={data.ensignUrl} alt="img" />
+          ) : null}
+          <div className="content-item__name">{data.name}</div>
         </div>
 
         <div className="content-item__info">
-          EnsignUrl: {data.ensignUrl ? data.ensignUrl : ''}
+          CountryCode: {data.countryCode}
         </div>
 
         <div className="content-item__info">ParentArea:</div>

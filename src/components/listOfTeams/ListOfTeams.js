@@ -11,7 +11,7 @@ export default function ListOfTeams() {
 
   // Обновление контента при смене url
   useEffect(() => {
-    sendRequest(setData)
+    sendRequest(setData, location)
   }, [location])
 
   // Проверка на undefined

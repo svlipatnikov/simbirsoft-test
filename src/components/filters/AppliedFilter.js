@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Context } from '../../context.js'
 
 export default function AppliedFilter({ param }) {
   const { setParams } = useContext(Context)
+  const location = useLocation()
 
   const delParam = () => {
     let curentUrl = new URL(window.location)
@@ -20,7 +21,7 @@ export default function AppliedFilter({ param }) {
 
       <Link
         to={{
-          pathname: window.location.pathname,
+          pathname: location.pathname,
           search: delParam(),
         }}
         className="filters__applied-item__remove-button"

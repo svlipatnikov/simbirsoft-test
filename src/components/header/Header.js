@@ -6,10 +6,10 @@ import logo from '../../img/ball.png'
 export default function Header() {
   return (
     <header className="header">
-      <div className="header__site-logo">
+      <Link to="/" className="header__site-logo">
         <img className="header__site-logo__img" alt="Logo" src={logo} />
         <h1 className="header__site-logo__text">Football leagues statistics</h1>
-      </div>
+      </Link>
 
       <div className="header__nav-menu">
         <Link to="/competitions" className="header__nav-menu__item">

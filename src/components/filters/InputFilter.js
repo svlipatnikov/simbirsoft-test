@@ -15,7 +15,9 @@ export default function InputFilter({ filter, setFilters }) {
       <input
         className="filter__item__value"
         type="text"
+        maxlength="20"
         placeholder={filter.comment}
+        title={filter.comment}
         pattern={filter.pattern}
         onChange={(e) => {
           setInput(e.target.value)

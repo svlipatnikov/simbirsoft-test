@@ -6,6 +6,7 @@
 }
 
 .header__site-logo {
+  text-decoration: none;
   min-width: max-content;
   display: flex;
   height: auto;

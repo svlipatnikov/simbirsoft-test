@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 import ListOfCompetitions from '../listOfCompetitions/ListOfCompetitions'
 import ListOfMatches from '../listOfMatches/ListOfMatches'
@@ -13,19 +13,19 @@ import MatchInfo from '../matchInfo/MatchInfo'
 import TeamInfo from '../teamInfo/TeamInfo'
 import ScorersInfo from '../scorersInfo/ScorersInfo'
 import Standings from '../standings/Standings'
-
-import './content.css'
+import HomePage from '../homePage/HomePage'
 
 export default function Content() {
   return (
     <div className="content">
       <Switch>
-        <Redirect exact from="/" to="/matches" />
+        <Route exact path="/" component={HomePage} />
         <Route path="/competitions" component={Competitions} />
-        <Route path="/teams" component={Teams} />
         <Route path="/matches" component={Matches} />
+        <Route path="/teams" component={Teams} />
         <Route path="/areas" component={Areas} />
         <Route path="/players/:id" component={Players} />
+        <Redirect to="/" />
       </Switch>
     </div>
   )
