@@ -4,6 +4,7 @@ import { resources } from './resources.js'
 import { allFilters } from './allFilters.js'
 import InputFilter from './InputFilter.js'
 import EnumFilter from './EnumFilter.js'
+import DateFilter from './DateFilter.js'
 import AppliedFilter from './AppliedFilter.js'
 import { Context } from '../../context.js'
 import './filters.css'
@@ -89,6 +90,14 @@ export default function Filters() {
                     case 'Enum':
                       return (
                         <EnumFilter
+                          filter={filter}
+                          key={filter.name}
+                          setFilters={setFilters}
+                        />
+                      )
+                    case 'Date':
+                      return (
+                        <DateFilter
                           filter={filter}
                           key={filter.name}
                           setFilters={setFilters}

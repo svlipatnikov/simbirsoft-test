@@ -107,4 +107,12 @@ export const allFilters = [
     comment: 'Text search in input data',
     pattern: '[0-9A-Z]+',
   },
+  ///////////////////
+  {
+    name: 'date',
+    type: 'Date',
+    list: null,
+    comment: 'calendar input',
+    pattern: 'YYYY-MM-dd',
+  },
 ]

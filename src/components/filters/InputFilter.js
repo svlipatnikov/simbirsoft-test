@@ -5,6 +5,7 @@ export default function InputFilter({ filter, setFilters }) {
   const { params } = useContext(Context)
   const [input, setInput] = useState('')
 
+  // Очистка поля после применения фильтров
   useEffect(() => {
     setInput('')
   }, [params])

@@ -18,8 +18,7 @@ export const resources = [
   {
     pathname: '/competitions/:id/matches',
     filters: [
-      'dateFrom',
-      'dateTo',
+      'date',
       'stage',
       'status',
       'matchday',
@@ -36,12 +35,13 @@ export const resources = [
   },
   {
     pathname: '/matches',
-    filters: ['competitions', 'dateFrom', 'dateTo', 'status', 'search'],
+    // filters: ['competitions', 'dateFrom', 'dateTo', 'status', 'search'],
+    filters: ['competitions', 'date', 'status', 'search'],
     dataType: 'listOfMatches',
   },
   {
     pathname: '/teams/:id/matches',
-    filters: ['dateFrom', 'dateTo', 'status', 'venue', 'limit', 'search'],
+    filters: ['date', 'status', 'venue', 'limit', 'search'],
     dataType: 'listOfMatches',
   },
   { pathname: '/teams', filters: ['search'], dataType: 'listOfTeams' }, // нет в api
@@ -51,14 +51,7 @@ export const resources = [
   { pathname: '/players/:id', filters: [], dataType: 'player' },
   {
     pathname: '/players/:id/matches',
-    filters: [
-      'dateFrom',
-      'dateTo',
-      'status',
-      'competitions',
-      'limit',
-      'search',
-    ],
+    filters: ['date', 'status', 'competitions', 'limit', 'search'],
     dataType: 'listOfMatches',
   },
 ]

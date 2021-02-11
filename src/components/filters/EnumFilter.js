@@ -5,6 +5,7 @@ export default function EnumFilter({ filter, setFilters }) {
   const [selectedValue, setSelectedValue] = useState('null')
   const { params } = useContext(Context)
 
+  // Очистка поля после применения фильтров
   useEffect(() => {
     setSelectedValue('null')
   }, [params])

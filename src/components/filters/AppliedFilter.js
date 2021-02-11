@@ -8,7 +8,11 @@ export default function AppliedFilter({ param }) {
 
   const delParam = () => {
     let curentUrl = new URL(window.location)
-    curentUrl.searchParams.delete(param.type)
+    console.log('param.type', param.type)
+    if (param.type.indexOf('date') !== -1) {
+      curentUrl.searchParams.delete('dateTo')
+      curentUrl.searchParams.delete('dateFrom')
+    } else curentUrl.searchParams.delete(param.type)
     return curentUrl.search
   }
 
@@ -26,9 +30,11 @@ export default function AppliedFilter({ param }) {
         }}
         className="filters__applied-item__remove-button"
         onClick={() => {
-          setParams((curentParams) =>
-            curentParams.filter((p) => p.type !== param.type)
-          )
+          setParams((curentParams) => {
+            if (param.type.indexOf('date') !== -1) {
+              return curentParams.filter((p) => p.type.indexOf('date') === -1)
+            } else return curentParams.filter((p) => p.type !== param.type)
+          })
         }}
       >
         &times;
