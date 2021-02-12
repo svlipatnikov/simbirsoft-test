@@ -19,12 +19,8 @@ export default function InputFilter({ filter, setFilters }) {
         maxlength="20"
         placeholder={filter.comment}
         title={filter.comment}
-        pattern={filter.pattern}
         onChange={(e) => {
           setInput(e.target.value)
-        }}
-        value={input}
-        onBlur={(e) => {
           setFilters((arr) => {
             if (e.target.value) {
               return [
@@ -36,6 +32,7 @@ export default function InputFilter({ filter, setFilters }) {
             }
           })
         }}
+        value={input}
       ></input>
     </div>
   )

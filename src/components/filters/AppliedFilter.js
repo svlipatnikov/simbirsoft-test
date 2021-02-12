@@ -19,7 +19,9 @@ export default function AppliedFilter({ param }) {
     <div className="filters__applied-item">
       <div>
         <span className="filters__applied-item__name">{param.type} :</span>
-        <span className="filters__applied-item__value">{param.value}</span>
+        <span className="filters__applied-item__value">
+          {param.value.slice(0, 25)}
+        </span>
       </div>
 
       <Link

@@ -14,6 +14,18 @@ export default function Filters() {
   const { setParams, params } = useContext(Context)
   const location = useLocation()
 
+  // Активность кнопки Apply
+  let classApplyBtn = 'filters__button-section__button'
+  if (!filters.length)
+    classApplyBtn =
+      'filters__button-section__button filters__button-section__button--disabled'
+
+  // Активность кнопки Clear
+  let classClearBtn = 'filters__button-section__button'
+  if (!params.length)
+    classClearBtn =
+      'filters__button-section__button filters__button-section__button--disabled'
+
   // Загрузка фильтров из url после обновления страницы или смены контента
   useEffect(() => {
     const curentURL = new URL(window.location)
@@ -48,6 +60,22 @@ export default function Filters() {
     return newUrl.search
   }
 
+  // Наличие доступных фильтров для контента
+  const hasFilters = () => {
+    let hasFiltersFlag = false
+    resources.forEach((res) => {
+      if (
+        matchPath(location.pathname, {
+          path: res.pathname,
+          exact: true,
+          strict: false,
+        })
+      )
+        if (res.filters.length) hasFiltersFlag = true
+    })
+    return hasFiltersFlag
+  }
+
   return (
     <div className="filter-search-block">
       <form className="filters">
@@ -61,6 +89,11 @@ export default function Filters() {
 
         <hr />
 
+        {!hasFilters() ? (
+          <div className="filters__item filters__no-resources">
+            Filters not found for curent resource
+          </div>
+        ) : null}
         {/* цикл по массиву ресурсов для поиска доступных фильтров */}
         {resources.map((res) => {
           if (
@@ -112,7 +145,7 @@ export default function Filters() {
 
         <hr />
 
-        <div className="filters__button-section">
+        <div className="filters__button-section ">
           <Link
             to={{
               pathname: location.pathname,
@@ -120,7 +153,7 @@ export default function Filters() {
                 ? setFilterParams()
                 : window.location.search,
             }}
-            className="filters__button-section__button"
+            className={classApplyBtn}
             onClick={filtersSubmit}
           >
             Apply
@@ -130,7 +163,7 @@ export default function Filters() {
             to={{
               pathname: location.pathname,
             }}
-            className="filters__button-section__button"
+            className={classClearBtn}
             onClick={() => {
               if (params.length) setParams([])
             }}

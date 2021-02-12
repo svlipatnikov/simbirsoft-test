@@ -16,8 +16,8 @@ export default function EnumFilter({ filter, setFilters }) {
       <select
         className="filter__item__value"
         value={selectedValue}
-        onChange={(e) => setSelectedValue(e.target.value)}
-        onBlur={(e) => {
+        onChange={(e) => {
+          setSelectedValue(e.target.value)
           setFilters((arr) => {
             if (e.target.value !== 'null')
               return [

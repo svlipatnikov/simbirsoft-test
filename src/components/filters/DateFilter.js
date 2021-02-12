@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Context } from '../../context.js'
 import Calendar from 'react-calendar'
 import './dateFilter.css'
@@ -7,6 +7,7 @@ export default function DateFilter({ filter, setFilters }) {
   const { params } = useContext(Context)
   const [OpenState, setOpenState] = useState(false)
   const [date, setDate] = useState(undefined)
+  const calendarRef = useRef(null)
 
   // после получения даты
   useEffect(() => {
@@ -28,6 +29,24 @@ export default function DateFilter({ filter, setFilters }) {
     setDate(undefined)
   }, [params])
 
+  // ComponentDidMount
+  useEffect(() => {
+    console.log('addEventListener')
+    document.addEventListener('mousedown', mouseHanleClick)
+    return () => {
+      console.log('removeEventListener')
+      document.removeEventListener('mousedown', mouseHanleClick)
+    }
+  }, [])
+
+  // Обработка клика мыши вне календаря
+  const mouseHanleClick = (e) => {
+    if (!calendarRef.current.contains(e.target)) {
+      setDate(undefined)
+      setOpenState(false)
+    }
+  }
+
   // Получение строки даты в формате YYYY-MM-DD
   const getDateStr = (objDate) => {
     return (
@@ -40,7 +59,7 @@ export default function DateFilter({ filter, setFilters }) {
   }
 
   return (
-    <div className="filters__item">
+    <div className="filters__item" ref={calendarRef}>
       <div className="filter__item__name">{filter.name}</div>
 
       {OpenState === true ? (
@@ -51,6 +70,7 @@ export default function DateFilter({ filter, setFilters }) {
           pattern={filter.pattern}
           onClick={() => setOpenState(true)}
           value={date ? getDateStr(date[0]) + ', ' + getDateStr(date[1]) : ''}
+          readOnly={true}
         />
       )}
     </div>

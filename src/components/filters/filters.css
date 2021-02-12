@@ -51,6 +51,14 @@
   padding: 5px;
   border-radius: 10px;
   background: #c6d166;
+  user-select: none;
+}
+
+.filters__button-section__button--disabled {
+  pointer-events: none;
+  cursor: default;
+  background: #f2f7c5;
+  color: #c6d166;
 }
 
 .filters__button-section__button:hover {
@@ -64,6 +72,7 @@
   background: #c6d166;
   padding: 5px;
   margin: 10px 0;
+  overflow: hidden;
 }
 
 .filters__applied-item__name {
@@ -88,4 +97,9 @@
   color: #ffffff;
   background: #5c821a;
   cursor: pointer;
+}
+
+.filters__no-resources {
+  color: #c6d166;
+  font-style: italic;
 }
