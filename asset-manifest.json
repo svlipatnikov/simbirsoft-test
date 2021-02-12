@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/simbirsoft-test/static/css/main.bea106f7.chunk.css",
-    "main.js": "/simbirsoft-test/static/js/main.959d0304.chunk.js",
-    "main.js.map": "/simbirsoft-test/static/js/main.959d0304.chunk.js.map",
+    "main.css": "/simbirsoft-test/static/css/main.fde77912.chunk.css",
+    "main.js": "/simbirsoft-test/static/js/main.65d783bc.chunk.js",
+    "main.js.map": "/simbirsoft-test/static/js/main.65d783bc.chunk.js.map",
     "runtime-main.js": "/simbirsoft-test/static/js/runtime-main.87a185b6.js",
     "runtime-main.js.map": "/simbirsoft-test/static/js/runtime-main.87a185b6.js.map",
     "static/js/2.23b54444.chunk.js": "/simbirsoft-test/static/js/2.23b54444.chunk.js",
     "static/js/2.23b54444.chunk.js.map": "/simbirsoft-test/static/js/2.23b54444.chunk.js.map",
     "index.html": "/simbirsoft-test/index.html",
-    "static/css/main.bea106f7.chunk.css.map": "/simbirsoft-test/static/css/main.bea106f7.chunk.css.map",
+    "static/css/main.fde77912.chunk.css.map": "/simbirsoft-test/static/css/main.fde77912.chunk.css.map",
     "static/js/2.23b54444.chunk.js.LICENSE.txt": "/simbirsoft-test/static/js/2.23b54444.chunk.js.LICENSE.txt",
     "static/media/ball.050653a5.png": "/simbirsoft-test/static/media/ball.050653a5.png",
     "static/media/mail.a49efc5e.svg": "/simbirsoft-test/static/media/mail.a49efc5e.svg",
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.87a185b6.js",
     "static/js/2.23b54444.chunk.js",
-    "static/css/main.bea106f7.chunk.css",
-    "static/js/main.959d0304.chunk.js"
+    "static/css/main.fde77912.chunk.css",
+    "static/js/main.65d783bc.chunk.js"
   ]
 }
