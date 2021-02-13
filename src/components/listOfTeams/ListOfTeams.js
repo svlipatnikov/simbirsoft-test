@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { sendRequest } from '../const'
+import { sendRequest } from '../../fetch.js'
 import { Context } from '../../context.js'
 import './listOfTeams.css'
 
@@ -110,22 +110,75 @@ export default function ListOfTeams() {
   )
 }
 
-// {
-//   "id": 57,
-//   "area": {
-//       "id": 2072,
-//       "name": "England"
-//   },
-//   "name": "Arsenal FC",
-//   "shortName": "Arsenal",
-//   "tla": "ARS",
-//   "crestUrl": "https://crests.football-data.org/57.svg",
-//   "address": "75 Drayton Park London N5 1BU",
-//   "phone": "+44 (020) 76195003",
-//   "website": "http://www.arsenal.com",
-//   "email": "info@arsenal.co.uk",
-//   "founded": 1886,
-//   "clubColors": "Red / White",
-//   "venue": "Emirates Stadium",
-//   "lastUpdated": "2020-11-26T02:15:20Z"
-// }
+/*
+{
+  count: 50,
+  filters: { areas: [2072], permission: 'TIER_ONE' },
+  teams: [
+    {
+      id: 57,
+      area: { id: 2072, name: 'England' },
+      name: 'Arsenal FC',
+      shortName: 'Arsenal',
+      tla: 'ARS',
+      crestUrl: 'https://crests.football-data.org/57.svg',
+      address: '75 Drayton Park London N5 1BU',
+      phone: '+44 (020) 76195003',
+      website: 'http://www.arsenal.com',
+      email: 'info@arsenal.co.uk',
+      founded: 1886,
+      clubColors: 'Red / White',
+      venue: 'Emirates Stadium',
+      lastUpdated: '2020-11-26T02:15:20Z',
+    },
+    {
+      id: 58,
+      area: { id: 2072, name: 'England' },
+      name: 'Aston Villa FC',
+      shortName: 'Aston Villa',
+      tla: 'AST',
+      crestUrl: 'https://crests.football-data.org/58.svg',
+      address: 'Villa Park Birmingham B6 6HE',
+      phone: '+44 (0121) 3272299',
+      website: 'http://www.avfc.co.uk',
+      email: null,
+      founded: 1872,
+      clubColors: 'Claret / Sky Blue',
+      venue: 'Villa Park',
+      lastUpdated: '2020-11-26T02:20:23Z',
+    },
+    {
+      id: 59,
+      area: { id: 2072, name: 'England' },
+      name: 'Blackburn Rovers FC',
+      shortName: 'Blackburn',
+      tla: 'BBR',
+      crestUrl: 'https://crests.football-data.org/59.svg',
+      address: 'Ewood Park Blackburn BB2 4JF',
+      phone: '+44 (0871) 7021875',
+      website: 'http://www.rovers.co.uk',
+      email: null,
+      founded: 1874,
+      clubColors: 'Blue / White',
+      venue: 'Ewood Park',
+      lastUpdated: '2020-11-26T02:16:34Z',
+    },
+    {
+      id: 60,
+      area: { id: 2072, name: 'England' },
+      name: 'Bolton Wanderers FC',
+      shortName: 'Bolton',
+      tla: 'BOL',
+      crestUrl: 'https://crests.football-data.org/60.svg',
+      address: 'Burnden Way Bolton BL6 6JW',
+      phone: '+44 (0844) 8712932',
+      website: 'http://www.bwfc.co.uk',
+      email: 'reception@bwfc.co.uk',
+      founded: 1874,
+      clubColors: 'White / Navy Blue',
+      venue: 'University of Bolton Stadium',
+      lastUpdated: '2020-11-26T02:16:54Z',
+    },
+  ],
+}
+*/

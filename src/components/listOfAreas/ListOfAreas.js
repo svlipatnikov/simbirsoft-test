@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Context } from '../../context.js'
-import { sendRequest } from '../const'
+import { sendRequest } from '../../fetch.js'
 import './listOfAreas.css'
 
 export default function ListOfAreas() {

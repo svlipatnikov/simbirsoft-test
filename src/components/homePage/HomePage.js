@@ -49,13 +49,12 @@ export default function HomePage() {
         </form>
 
         <h4>
-          Текущий токен:{' '}
+          Текущий токен:
           <span className="home-page__curent-token">{token}</span>
         </h4>
 
         <h4 className="home-page__text">
-          По умолчанию (если ничего не вводить) сайт использует токен,
-          полученный автором данного сайта:{' '}
+          По умолчанию сайт использует токен, полученный автором данного сайта:
           <div
             className="home-page__autor-token"
             onClick={() => setText('8c4f30d4f4354979ac043901839c7664')}

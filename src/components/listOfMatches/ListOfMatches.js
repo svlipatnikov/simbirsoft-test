@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { sendRequest } from '../const'
+import { sendRequest } from '../../fetch.js'
 import { Context } from '../../context.js'
 // import './listOfMatches.css'
 

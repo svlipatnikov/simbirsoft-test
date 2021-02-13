@@ -24,3 +24,6 @@ yarn-error.log*
 
 # ТЗ Frontend_2.pdf
 ТЗ Frontend_2.pdf
+
+# Настройки vs code
+/.vscode

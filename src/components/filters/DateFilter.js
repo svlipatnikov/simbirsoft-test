@@ -9,9 +9,9 @@ export default function DateFilter({ filter, setFilters }) {
   const [date, setDate] = useState(undefined)
   const calendarRef = useRef(null)
 
-  // после получения даты
+  // После получения даты
   useEffect(() => {
-    // Закрытия календаря с задержкой
+    // Закрытие календаря с задержкой
     setTimeout(() => setOpenState(false), 300)
 
     // Применение даты в массив фальтров
@@ -29,12 +29,10 @@ export default function DateFilter({ filter, setFilters }) {
     setDate(undefined)
   }, [params])
 
-  // ComponentDidMount
+  // ComponentDidMount (слушатель клика для закрытия календаря)
   useEffect(() => {
-    console.log('addEventListener')
     document.addEventListener('mousedown', mouseHanleClick)
     return () => {
-      console.log('removeEventListener')
       document.removeEventListener('mousedown', mouseHanleClick)
     }
   }, [])
@@ -63,7 +61,7 @@ export default function DateFilter({ filter, setFilters }) {
       <div className="filter__item__name">{filter.name}</div>
 
       {OpenState === true ? (
-        <Calendar selectRange={true} returnValue="end" onChange={setDate} on />
+        <Calendar selectRange={true} returnValue="end" onChange={setDate} />
       ) : (
         <input
           className="filter__item__value"

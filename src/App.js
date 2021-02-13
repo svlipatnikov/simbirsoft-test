@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { Context } from './context'
 
 import Filters from './components/filters/Filters.js'
 import Content from './components/content/Content.js'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
-
-import { baseName } from './components/const.js'
+import BreadCrumbs from './components/breadСrumbs/BreadCrumbs'
 
 export default function App() {
   const [params, setParams] = useState([])
@@ -21,8 +20,9 @@ export default function App() {
 
   return (
     <Context.Provider value={{ params, setParams, token, setToken }}>
-      <BrowserRouter basename={baseName}>
+      <HashRouter>
         <Header />
+        <BreadCrumbs />
 
         <div className="data-block">
           <Filters />
@@ -30,7 +30,7 @@ export default function App() {
         </div>
 
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </Context.Provider>
   )
 }

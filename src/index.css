@@ -27,7 +27,6 @@ body {
 
 .content {
   width: 60%;
-  /* min-width: 550px; */
   padding: 5px;
   overflow: auto;
 

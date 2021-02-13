@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { sendRequest } from '../const'
+import { sendRequest } from '../../fetch.js'
 import './standings.css'
 
 export default function Standings() {
@@ -104,3 +104,70 @@ export default function Standings() {
     </div>
   )
 }
+
+/*
+{
+  filters: {},
+  competition: {
+    id: 2021,
+    area: { id: 2072, name: 'England' },
+    name: 'Premier League',
+    code: 'PL',
+    plan: 'TIER_ONE',
+    lastUpdated: '2021-02-12T00:00:09Z',
+  },
+  season: {
+    id: 619,
+    startDate: '2020-09-12',
+    endDate: '2021-05-23',
+    currentMatchday: 24,
+    winner: null,
+  },
+  standings: [
+    {
+      stage: 'REGULAR_SEASON',
+      type: 'TOTAL',
+      group: null,
+      table: [
+        {
+          position: 1,
+          team: {
+            id: 65,
+            name: 'Manchester City FC',
+            crestUrl: 'https://crests.football-data.org/65.svg',
+          },
+          playedGames: 22,
+          form: 'W,W,W,W,W',
+          won: 15,
+          draw: 5,
+          lost: 2,
+          points: 50,
+          goalsFor: 43,
+          goalsAgainst: 14,
+          goalDifference: 29,
+        },
+       
+        ...
+
+        {
+          position: 20,
+          team: {
+            id: 356,
+            name: 'Sheffield United FC',
+            crestUrl: 'https://crests.football-data.org/356.svg',
+          },
+          playedGames: 23,
+          form: 'L,W,L,W,L',
+          won: 3,
+          draw: 2,
+          lost: 18,
+          points: 11,
+          goalsFor: 15,
+          goalsAgainst: 37,
+          goalDifference: -22,
+        },
+      ],
+    },
+  ],
+}
+*/

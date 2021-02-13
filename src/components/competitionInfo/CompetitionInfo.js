@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { sendRequest } from '../const'
+import { sendRequest } from '../../fetch.js'
 import './competitionInfo.css'
 
 export default function CompetitionInfo() {

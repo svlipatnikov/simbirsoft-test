@@ -1,0 +1,26 @@
+.bread-crumbs {
+  width: 100%;
+  padding: 20px 5px 10px;
+}
+
+.bread-crumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.bread-crumbs__item {
+  color: #5c821a;
+
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.bread-crumbs__item:hover {
+  color: #32382e;
+  text-decoration: underline;
+}
