@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Simbirsoft test app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Требования к заданию:
 
-In the project directory, you can run:
+> Обязательные технологии: Фреймворк React/Vuejs/Angular
 
-### `npm start`
+Приложение разработано с использованием **React JS**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> Допускается использовать: Любые UI библиотеки (Оценивается рациональность выбора)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+В приложении использован сторонний компонент **react-calendar** для упрощения ввода данных в фильтр по дате
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Основные требования:
 
-### `npm run build`
+> Приложение должно представлять из себя сайт просмотра статистики ведущих европейских турниров по футболу.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Приложение является STA и предоставляет данные по статистике ведущих европейских турниров по футболу с помощью API: https://www.football-data.org/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> ### Обязательные страницы:
+>
+> - Список лиг
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Реализована страница Competitions:
+https://svlipatnikov.github.io/simbirsoft-test/#/competitions
 
-### `npm run eject`
+> - Список команд
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Реализована страница Teams:
+https://svlipatnikov.github.io/simbirsoft-test/#/teams
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> - Календарь лиги
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Для каждой лиги реализована страница **Matches**, на которой представлены все матчи лиги, например:
+https://svlipatnikov.github.io/simbirsoft-test/#/competitions/2013/matches
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> - Календарь одной команды
 
-## Learn More
+Для каждой команды реализована страница **Matches**, на которой представлены все матчи лиги, например:
+https://svlipatnikov.github.io/simbirsoft-test/#/teams/57/matches
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> На каждой странице должна быть возможность выбрать год.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Требование не реализовано напрямую по следующим причинам:
 
-### Code Splitting
+- Напрямую в API отсутствуют фильтр выбора года для "обязательных" страниц
+- Информация, получаемая с API по "обязательным" страницам, не содержит данных, которые можно использовать для реализации собственного фильтра выбора года
+- Для страниц "Список лиг" и "Список команд" смысловая суть фильтра выбора года не понятна, для страниц "Календарь лиги" и "Календарь одной команды" реализован фильтр **DATE**, позволяющий выбрать любой диапазон даты.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> На страницах календаря можно указать фильтр по дате (с, по)
 
-### Analyzing the Bundle Size
+Реализовано с помощью фильтра **DATE**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> На страницах списка можно найти сущность по текстовому поиску.
 
-### Making a Progressive Web App
+Реализован текстовый поиск по полученной информации с помощью фильтра **SEARCH**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+> После обновления страницы данные (год, команда, поисковой запрос) должны сохраняться, т.е. параметры должны быть отображены в адресной строке (роутинг либо GET параметры)
 
-### Advanced Configuration
+Реализовано через **GET параметры**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+> В качестве публичного API для получения данных рекомендуется использовать https://www.football-data.org/. Кандидат может использовать любое другое API при условии что оно позволит получить необходимые для выполнения задания данные.
 
-### Deployment
+Использовано API https://www.football-data.org/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Требования к сдаче ТЗ:
 
-### `npm run build` fails to minify
+> Проект должен быть выложен на репозиторий GitHub
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Проект выложен на GitHub: https://github.com/svlipatnikov/simbirsoft-test
+
+> Код должен быть чистым (желательно использовать линты и pretier для автоматического контроля)
+
+При создании проекта использовался **Prettier - Code formatter** для VS Code
+
+> В индекс не должны попадать временные файлы, файлы настроек проекта и библиотек
+
+В индексе **отсутствуют** временные файлы и библиотеки.
+
+> Ключи к API не должны быть захардкожены.
+
+На стартовой странице проекта есть возможность ввести собственный X-Auth-Token для работы с API
+
+> Плюсом к сдаче приложения будет настроенный деплой на gh-pages.
+
+Деплой на gh-pages настроен:
+https://svlipatnikov.github.io/simbirsoft-test/#/
+
+> При оценке будет учитываться наличие адаптивной версии.
+
+Изменение позиционирования блоков приложения происходит при ширине экрана **менее 840px**
